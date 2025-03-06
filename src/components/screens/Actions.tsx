@@ -4,18 +4,34 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 
-const Actions: React.FC = () => {
-  const [warrantReason, setWarrantReason] = useState('');
-  const [reportDetails, setReportDetails] = useState('');
+type ReportType = 'Arrest Report' | 'Warrant' | 'Serial# KALOF' | 'Field Contact Report';
 
-  const handleAddWarrant = () => {
-    if (!warrantReason.trim()) {
-      toast.error('Please enter a warrant reason');
+const Actions: React.FC = () => {
+  const [reportType, setReportType] = useState<ReportType>('Arrest Report');
+  const [section1Text, setSection1Text] = useState('');
+  const [section2Text, setSection2Text] = useState('');
+
+  const handleAddReport = () => {
+    if (!section1Text.trim() || !section2Text.trim()) {
+      toast.error('Please complete both sections of the report');
       return;
     }
     
-    toast.success('Warrant added successfully');
-    setWarrantReason('');
+    toast.success(`${reportType} added successfully`);
+    setSection1Text('');
+    setSection2Text('');
+  };
+
+  const loadPursuitTemplate = () => {
+    setReportType('Warrant');
+    setSection1Text('Outstanding Warrant for Questioning - FIRSTNAME LASTNAME\n\nList of Charges and/or PINS:\n- Engage in a Police pursuit / Evade Police');
+    setSection2Text('Preliminary Details\nTime: xxxx HRS\nDate: xx/xx/20\n\nWarrant Details:\n[CALL SIGN] signalled for [VEHICLE DESCRIPTION] to stop. The driver of the vehicle deliberately increased their speed and engaged in a police pursuit. The vehicle was successful in evading police. The registered owner of the vehicle is [REGISTERED OWNER\'S NAME] and the vehicle was NOT listed as stolen at the time of the pursuit. The accused is required to provide evidence of the driver at the time of the incident or they are to be charged with the above charges as the registered owner of the vehicle.\n\nEvidence:\nEvidence Locker: \n\n- Example: Highway Patrol Radar Print Out\n\nANPR Hits:\nIf applicable - to be copied from your MDT\n\nVicRoads Profile:\nTo be copied and pasted after running a vehicle check on the license plate\n\nSigned,\nFIRSTNAME LASTNAME\nRank | Callsign\nVictoria Police');
+  };
+
+  const loadStolenWeaponTemplate = () => {
+    setReportType('Serial# KALOF');
+    setSection1Text('SERIAL KALOF - Reported stolen\n\nCHARGES: \n-Robbery\n-Possess a [Class A / B / C] firearm without legal authority');
+    setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.');
   };
 
   return (
@@ -61,33 +77,58 @@ const Actions: React.FC = () => {
         </Button>
       </div>
       
-      <div className="mb-6 bg-card border border-border p-4 rounded-md">
-        <h3 className="text-destructive mb-2">Warrant</h3>
-        <div className="bg-red-900/20 border border-red-900/30 p-3 rounded mb-4">
-          <p className="text-sm text-red-400 mb-1">
-            <strong>1:1 Outstanding Warrant E-Warrant ID | or Wanted for Questioning</strong> (Vehicle Details Only, Suspect Visual Description) (#)
-          </p>
-          <p className="text-xs text-red-300">
-            Type of Charges
-          </p>
+      <div className="mb-2 flex justify-between items-center">
+        <div className="flex space-x-2">
+          <Button size="sm" onClick={loadPursuitTemplate} className="bg-secondary hover:bg-secondary/80">
+            Load Pursuit Template
+          </Button>
+          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-secondary hover:bg-secondary/80">
+            Load Stolen Weapon Template
+          </Button>
         </div>
         
-        <div className="mb-4">
-          <h4 className="text-red-400 mb-1">Report Details:</h4>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-primary">Report Type:</span>
+          <select 
+            className="bg-black/50 border border-muted rounded-md px-3 py-1 text-foreground text-sm"
+            value={reportType}
+            onChange={(e) => setReportType(e.target.value as ReportType)}
+          >
+            <option value="Arrest Report">Arrest Report</option>
+            <option value="Warrant">Warrant</option>
+            <option value="Serial# KALOF">Serial# KALOF</option>
+            <option value="Field Contact Report">Field Contact Report</option>
+          </select>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 gap-4 mb-6">
+        <div className="bg-card border border-border p-4 rounded-md">
+          <h3 className="text-primary mb-2">Section 1 - {reportType}</h3>
           <Textarea 
-            placeholder="Your report should contain sufficient information for police who come across the individual to not only have a reasonable basis to pick up and pursue the matter further (including any Magistrate hearing that might result), but also sufficient to enable them to identify the individual (eg. identifying features, known addresses, known associates, known hangouts, etc.)."
-            className="h-32 bg-black/50 border-red-900/30 text-white placeholder:text-red-900/60"
-            value={reportDetails}
-            onChange={(e) => setReportDetails(e.target.value)}
+            placeholder="Enter details for Section 1..."
+            className="h-32 bg-black/50 border-border text-white mb-4"
+            value={section1Text}
+            onChange={(e) => setSection1Text(e.target.value)}
           />
+          
+          <h3 className="text-primary mb-2">Section 2 - Report Details</h3>
+          <Textarea 
+            placeholder="Enter detailed information for Section 2..."
+            className="h-48 bg-black/50 border-border text-white"
+            value={section2Text}
+            onChange={(e) => setSection2Text(e.target.value)}
+          />
+          
+          <div className="mt-4">
+            <Button 
+              className="bg-primary hover:bg-primary/80"
+              onClick={handleAddReport}
+            >
+              Submit Report
+            </Button>
+          </div>
         </div>
-        
-        <Button 
-          className="bg-destructive hover:bg-destructive/80"
-          onClick={handleAddWarrant}
-        >
-          Add Warrant
-        </Button>
       </div>
     </div>
   );
