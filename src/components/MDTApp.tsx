@@ -15,6 +15,7 @@ import SerialSearch from './screens/SerialSearch';
 import Actions from './screens/Actions';
 import Units from './screens/Units';
 import Warrants from './screens/Warrants';
+import Reports from './screens/Reports';
 import { OfficerStatus } from '@/types';
 
 type Screen = 
@@ -98,6 +99,8 @@ const MDTApp: React.FC = () => {
         return <CriminalHistory />;
       case 'traffic':
         return <TrafficOffences />;
+      case 'reports':
+        return <Reports />;
       case 'serials':
         return <SerialSearch />;
       case 'actions':
