@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 
 type ReportType = 'Arrest Report' | 'Warrant' | 'Serial# KALOF' | 'Field Contact Report';
@@ -10,6 +11,7 @@ const Actions: React.FC = () => {
   const [reportType, setReportType] = useState<ReportType>('Arrest Report');
   const [section1Text, setSection1Text] = useState('');
   const [section2Text, setSection2Text] = useState('');
+  const [serialNumber, setSerialNumber] = useState('');
 
   const handleAddReport = () => {
     if (!section1Text.trim() || !section2Text.trim()) {
@@ -17,9 +19,15 @@ const Actions: React.FC = () => {
       return;
     }
     
+    if (reportType === 'Serial# KALOF' && !serialNumber.trim()) {
+      toast.error('Please enter a serial number');
+      return;
+    }
+    
     toast.success(`${reportType} added successfully`);
     setSection1Text('');
     setSection2Text('');
+    setSerialNumber('');
   };
 
   const loadPursuitTemplate = () => {
@@ -32,6 +40,7 @@ const Actions: React.FC = () => {
     setReportType('Serial# KALOF');
     setSection1Text('SERIAL KALOF - Reported stolen\n\nCHARGES: \n-Robbery\n-Possess a [Class A / B / C] firearm without legal authority');
     setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.');
+    setSerialNumber(''); // Clear the serial number field when loading the template
   };
 
   return (
@@ -104,6 +113,18 @@ const Actions: React.FC = () => {
       
       <div className="grid grid-cols-1 gap-4 mb-6">
         <div className="bg-card border border-border p-4 rounded-md">
+          {reportType === 'Serial# KALOF' && (
+            <div className="mb-4">
+              <label className="text-primary block mb-2">Serial Number:</label>
+              <Input 
+                placeholder="Enter the serial number..." 
+                className="bg-black/50 border-border text-white"
+                value={serialNumber}
+                onChange={(e) => setSerialNumber(e.target.value)}
+              />
+            </div>
+          )}
+          
           <h3 className="text-primary mb-2">Section 1 - {reportType}</h3>
           <Textarea 
             placeholder="Enter details for Section 1..."

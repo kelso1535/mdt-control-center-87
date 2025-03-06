@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { TrafficOffence } from '@/types';
 import { Button } from '@/components/ui/button';
-import { RefreshCcw, Plus } from 'lucide-react';
+import { RefreshCcw } from 'lucide-react';
 
 const mockTrafficOffences: TrafficOffence[] = [
   {
@@ -42,9 +41,6 @@ const TrafficOffences: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-green-400 text-2xl font-bold">Infringement Notices & Fines</h2>
         <div className="flex gap-2">
-          <Button variant="outline" className="bg-card border-primary/30 text-primary" size="sm">
-            <Plus className="w-4 h-4 mr-1" /> New Fine
-          </Button>
           <Button 
             variant="outline" 
             className="bg-card border-primary/30 text-primary" 
