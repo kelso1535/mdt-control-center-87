@@ -4,7 +4,7 @@ import MDTApp from '@/components/MDTApp';
 
 const Index = () => {
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center">
+    <div className="w-full h-screen overflow-hidden">
       <MDTApp />
     </div>
   );
