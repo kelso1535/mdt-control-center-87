@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { AlertTriangle, ChevronDown, Flag, LogOut, ShieldAlert, User, Users, X } from 'lucide-react';
+import { AlertTriangle, ChevronDown, Flag, LogOut, User, Users, X } from 'lucide-react';
 import { OfficerStatus } from '@/types';
 import MDTLogo from '../MDTLogo';
 import SidebarButton from '../SidebarButton';
@@ -43,13 +43,6 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         Login to MDT
       </SidebarButton>
       
-      <SidebarButton 
-        icon={<Users className="w-full h-full" />}
-        variant="blue"
-      >
-        Login Auto Callsign
-      </SidebarButton>
-      
       <div className="relative mt-2">
         <SidebarButton 
           icon={<ChevronDown className="w-full h-full" />}
@@ -70,13 +63,6 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         onClick={onDuress}
       >
         [- DURESS -]
-      </SidebarButton>
-      
-      <SidebarButton 
-        icon={<ShieldAlert className="w-full h-full" />}
-      >
-        Law Enforcement
-        <br />Assistance Program (LEAP)
       </SidebarButton>
       
       <SidebarButton 

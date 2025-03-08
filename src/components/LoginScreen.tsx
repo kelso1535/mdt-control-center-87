@@ -61,17 +61,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
               </span>
             ) : 'Login to MDT'}
           </Button>
-          
-          <Button 
-            onClick={() => {
-              setCallsign(`${Math.floor(Math.random() * 99)}-${Math.floor(Math.random() * 99)}`);
-              toast.info('Auto callsign generated');
-            }} 
-            variant="outline" 
-            className="w-full glass-button bg-secondary/20"
-          >
-            Auto Callsign
-          </Button>
         </div>
       </div>
     </div>
