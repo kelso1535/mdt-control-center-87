@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { AlertTriangle, ChevronDown, Flag, LogOut, User, Users, X } from 'lucide-react';
+import { AlertTriangle, ChevronDown, Flag, LogOut, Users, X } from 'lucide-react';
 import { OfficerStatus } from '@/types';
 import MDTLogo from '../MDTLogo';
 import SidebarButton from '../SidebarButton';
@@ -35,13 +35,6 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       <div className="mdt-logo">
         <MDTLogo />
       </div>
-      
-      <SidebarButton 
-        icon={<User className="w-full h-full" />}
-        variant="blue"
-      >
-        Login to MDT
-      </SidebarButton>
       
       <div className="relative mt-2">
         <SidebarButton 
