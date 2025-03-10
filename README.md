@@ -1,69 +1,56 @@
-# Welcome to your Lovable project
 
-## Project info
+# QB-Core Police MDT System
 
-**URL**: https://lovable.dev/projects/20990809-4a97-4083-889d-35ffab70e937
+A modern police Mobile Data Terminal (MDT) system for QB-Core FiveM servers.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Modern, responsive UI with a realistic MDT look and feel
+- Officer login with callsign verification
+- Status updates for officers
+- Person, vehicle, and serial number searches
+- Criminal and traffic history lookups
+- Warrant system
+- Duress/emergency functionality
+- Officer tracking for command staff
 
-**Use Lovable**
+## Installation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/20990809-4a97-4083-889d-35ffab70e937) and start prompting.
+1. Copy this resource to your server's resource folder
+2. Add `ensure qb-mdt` to your server.cfg
+3. Configure the `config.lua` file to match your server's needs
+4. Build the web UI (see instructions below)
+5. Restart your server
 
-Changes made via Lovable will be committed automatically to this repo.
+## Building the Web UI
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+cd web
+npm install
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Commands
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `/mdt` - Open the MDT interface
+- `/setcallsign [callsign]` - Set your officer callsign
+- `/checkwarrants` - Check active warrants
 
-**Use GitHub Codespaces**
+## Configuration
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+You can configure the MDT system in the `config.lua` file:
 
-## What technologies are used for this project?
+- Job requirements
+- Command and key bindings
+- Callsign requirements
+- Status options
+- Department name
 
-This project is built with .
+## Dependencies
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- QB-Core framework
+- oxmysql
 
-## How can I deploy this project?
+## Credits
 
-Simply open [Lovable](https://lovable.dev/projects/20990809-4a97-4083-889d-35ffab70e937) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Developed by Lovable AI for QB-Core FiveM servers.
