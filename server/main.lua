@@ -1,8 +1,34 @@
-
 local QBCore = exports['qb-core']:GetCoreObject()
+local searchHistory = {}
+
+-- Function to add a search to history
+local function AddToSearchHistory(source, searchType, query)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return end
+    
+    local timestamp = os.date("%Y-%m-%d %H:%M")
+    local searchId = #searchHistory + 1
+    
+    searchHistory[searchId] = {
+        id = searchId,
+        officer = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname,
+        callsign = Player.PlayerData.metadata.callsign or 'Unknown',
+        timestamp = timestamp,
+        type = searchType,
+        query = query
+    }
+    
+    -- Keep only the last 50 searches
+    if #searchHistory > 50 then
+        table.remove(searchHistory, 1)
+    end
+end
 
 -- Server callbacks
 QBCore.Functions.CreateCallback('mdt:server:SearchPerson', function(source, cb, name)
+    -- Log the person search
+    AddToSearchHistory(source, 'Person', name)
+    
     -- This would typically query the database for person information
     -- For now returning mock data
     local results = {}
@@ -12,6 +38,9 @@ QBCore.Functions.CreateCallback('mdt:server:SearchPerson', function(source, cb, 
 end)
 
 QBCore.Functions.CreateCallback('mdt:server:SearchVehicle', function(source, cb, plate)
+    -- Log the vehicle search
+    AddToSearchHistory(source, 'Vehicle', plate)
+    
     -- This would typically query the database for vehicle information
     -- For now returning mock data
     local results = {}
@@ -21,6 +50,9 @@ QBCore.Functions.CreateCallback('mdt:server:SearchVehicle', function(source, cb,
 end)
 
 QBCore.Functions.CreateCallback('mdt:server:GetWarrants', function(source, cb)
+    -- Log the warrant search
+    AddToSearchHistory(source, 'Warrant', 'All Active Warrants')
+    
     -- Query database for active warrants
     -- Mock data for now
     local warrants = {}
@@ -28,10 +60,17 @@ QBCore.Functions.CreateCallback('mdt:server:GetWarrants', function(source, cb)
     cb(warrants)
 end)
 
+QBCore.Functions.CreateCallback('mdt:server:GetSearchHistory', function(source, cb)
+    cb(searchHistory)
+end)
+
 -- ANPR scanning functionality
 RegisterNetEvent('mdt:server:ANPRScan', function(plate)
     local src = source
     if not plate then return end
+    
+    -- Log the ANPR scan
+    AddToSearchHistory(src, 'ANPR', plate)
     
     plate = string.gsub(plate, "^%s*(.-)%s*$", "%1") -- Trim whitespace
     

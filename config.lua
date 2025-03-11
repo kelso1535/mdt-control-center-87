@@ -1,4 +1,5 @@
 
+
 Config = {}
 
 -- MDT Configuration
@@ -25,6 +26,11 @@ Config.UseOxLib = true -- Set to true to use ox_lib for notifications
 -- ANPR Configuration
 Config.EnableANPR = true -- Enable ANPR integration
 Config.ANPRScanDistance = 7.0 -- Distance in meters for ANPR scanning
+Config.ManualANPRKey = 'PAGEDOWN' -- Key for manual ANPR scan
 
 -- DMV Integration 
 Config.EnableDMVIntegration = true -- Enable DMV database integration
+
+-- Search History
+Config.EnableSearchHistory = true -- Enable search history tracking
+

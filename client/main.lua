@@ -1,4 +1,3 @@
-
 local QBCore = exports['qb-core']:GetCoreObject()
 local MDTOpen = false
 local callsign = nil
@@ -137,9 +136,19 @@ function ScanVehicleAhead()
         if plate ~= lastScannedPlate then
             lastScannedPlate = plate
             TriggerServerEvent('mdt:server:ANPRScan', plate)
+            Notify(Lang:t('info.anpr_scanning'), 'inform')
         end
+    else
+        Notify(Lang:t('error.anpr_no_vehicle'), 'error')
     end
 end
+
+-- Manual ANPR scan with PageDown key
+RegisterCommand('manual_anpr', function()
+    ScanVehicleAhead()
+end, false)
+
+RegisterKeyMapping('manual_anpr', 'Manual ANPR Scan', 'keyboard', 'PAGEDOWN')
 
 -- Only register ANPR command if enabled
 if Config.EnableANPR then
@@ -150,6 +159,13 @@ if Config.EnableANPR then
     -- Register keybinding for ANPR
     RegisterKeyMapping('anpr', 'Scan vehicle with ANPR', 'keyboard', 'Y')
 end
+
+-- NUI Callbacks for Search History
+RegisterNUICallback('getSearchHistory', function(_, cb)
+    QBCore.Functions.TriggerCallback('mdt:server:GetSearchHistory', function(history)
+        cb(history)
+    end)
+end)
 
 -- Event Handlers
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()

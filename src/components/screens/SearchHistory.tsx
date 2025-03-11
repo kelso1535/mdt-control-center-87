@@ -1,7 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { SearchHistoryItem } from '@/types';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { RefreshCcw } from 'lucide-react';
 
+// Expanded mock data to include ANPR and Warrant searches
 const mockSearchHistory: SearchHistoryItem[] = [
   {
     id: 'sh1',
@@ -26,6 +30,18 @@ const mockSearchHistory: SearchHistoryItem[] = [
     timestamp: '2024-02-20 19:00',
     type: 'Person',
     query: 'Jane Doe'
+  },
+  {
+    id: 'sh5',
+    timestamp: '2024-02-20 18:45',
+    type: 'ANPR',
+    query: 'XYZ789'
+  },
+  {
+    id: 'sh6',
+    timestamp: '2024-02-20 18:30',
+    type: 'Warrant',
+    query: 'Emily Johnson'
   }
 ];
 
@@ -33,12 +49,18 @@ const SearchHistory: React.FC = () => {
   const [history, setHistory] = useState<SearchHistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const loadHistory = () => {
+    setLoading(true);
     // Simulate API call
     setTimeout(() => {
       setHistory(mockSearchHistory);
       setLoading(false);
+      toast.success('Search history refreshed');
     }, 800);
+  };
+
+  useEffect(() => {
+    loadHistory();
   }, []);
 
   if (loading) {
@@ -55,7 +77,19 @@ const SearchHistory: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-green-400 text-2xl font-bold mb-4">Search History</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-green-400 text-2xl font-bold">Search History</h2>
+        <Button 
+          variant="outline" 
+          className="bg-card border-primary/30 text-primary" 
+          size="sm"
+          onClick={loadHistory}
+          disabled={loading}
+        >
+          <RefreshCcw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          <span className="ml-1">Refresh</span>
+        </Button>
+      </div>
       
       <div className="bg-card/30 border border-border rounded-md p-4 overflow-auto">
         <table className="w-full">
@@ -67,13 +101,21 @@ const SearchHistory: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {history.map((item) => (
-              <tr key={item.id} className="border-t border-border/30">
-                <td className="py-2 px-1 text-green-400">{item.timestamp}</td>
-                <td className="py-2 px-1 text-green-400">{item.type}</td>
-                <td className="py-2 px-1 text-green-400">{item.query}</td>
+            {history.length === 0 ? (
+              <tr>
+                <td colSpan={3} className="py-8 text-center text-muted-foreground">
+                  No search history found
+                </td>
               </tr>
-            ))}
+            ) : (
+              history.map((item) => (
+                <tr key={item.id} className="border-t border-border/30">
+                  <td className="py-2 px-1 text-green-400">{item.timestamp}</td>
+                  <td className="py-2 px-1 text-green-400">{item.type}</td>
+                  <td className="py-2 px-1 text-green-400">{item.query}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
