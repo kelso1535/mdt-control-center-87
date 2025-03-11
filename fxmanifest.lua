@@ -29,4 +29,9 @@ files {
     'web/dist/**/*'
 }
 
+dependencies {
+    'qb-core',
+    'oxmysql'
+}
+
 lua54 'yes'

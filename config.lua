@@ -20,4 +20,11 @@ Config.StatusOptions = {
 Config.DepartmentName = 'Los Santos Police Department'
 
 -- Notification settings
-Config.UseOxLib = false -- Set to true if using ox_lib for notifications
+Config.UseOxLib = true -- Set to true to use ox_lib for notifications
+
+-- ANPR Configuration
+Config.EnableANPR = true -- Enable ANPR integration
+Config.ANPRScanDistance = 7.0 -- Distance in meters for ANPR scanning
+
+-- DMV Integration 
+Config.EnableDMVIntegration = true -- Enable DMV database integration
