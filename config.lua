@@ -1,6 +1,5 @@
 
-
-Config = {}
+local Config = {}
 
 -- MDT Configuration
 Config.RequireJobName = 'police' -- Job name required to access MDT
@@ -34,3 +33,4 @@ Config.EnableDMVIntegration = true -- Enable DMV database integration
 -- Search History
 Config.EnableSearchHistory = true -- Enable search history tracking
 
+return Config
