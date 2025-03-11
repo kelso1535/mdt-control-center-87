@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { RefreshCcw } from 'lucide-react';
 
-// Expanded mock data to include ANPR and Warrant searches
+// Updated mock data with proper typing
 const mockSearchHistory: SearchHistoryItem[] = [
   {
     id: 'sh1',

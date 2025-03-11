@@ -83,7 +83,7 @@ export interface TrafficOffence {
 export interface SearchHistoryItem {
   id: string;
   timestamp: string;
-  type: 'Person' | 'Vehicle' | 'Serial' | 'ANPR' | 'Warrant';
+  type: string; // Making this more flexible for FiveM server integration
   query: string;
 }
 
