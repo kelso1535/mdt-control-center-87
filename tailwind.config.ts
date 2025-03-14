@@ -58,6 +58,8 @@ export default {
 					foreground: 'hsl(var(--sidebar-foreground))',
 					border: 'hsl(var(--sidebar-border))'
 				},
+				'police-blue': 'hsl(var(--police-blue))',
+				'alert-red': 'hsl(var(--alert-red))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

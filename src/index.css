@@ -110,7 +110,7 @@
     @apply bg-destructive hover:bg-destructive/90 text-destructive-foreground;
   }
   .mdt-btn-blue {
-    @apply bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue)/90)] text-white;
+    @apply bg-police-blue hover:bg-police-blue/90 text-white;
   }
   .mdt-sidebar-item {
     @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm;
