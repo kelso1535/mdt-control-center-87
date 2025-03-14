@@ -1,0 +1,28 @@
+
+@layer base {
+  /* Button styles */
+  .mdt-btn {
+    @apply bg-secondary hover:bg-muted text-secondary-foreground rounded-md px-4 py-2 text-sm flex items-center gap-2 transition-colors;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .mdt-btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground;
+  }
+  
+  .mdt-btn-alert {
+    @apply bg-destructive hover:bg-destructive/90 text-destructive-foreground;
+  }
+  
+  .mdt-btn-blue {
+    @apply bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))/90] text-white;
+  }
+  
+  .glass-button {
+    @apply bg-primary/10 backdrop-blur-sm border border-primary/30 text-primary hover:bg-primary/20 transition-all duration-300 rounded-md px-4 py-2;
+  }
+  
+  .search-button {
+    @apply bg-[hsl(var(--police-blue))] text-primary-foreground rounded-md px-4 py-2 text-sm hover:bg-[hsl(var(--police-blue))/90] transition-colors;
+  }
+}

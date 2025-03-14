@@ -1,0 +1,38 @@
+
+@layer base {
+  /* MDT Layout */
+  .mdt-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .mdt-sidebar {
+    width: 280px;
+    height: 100%;
+    @apply bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))];
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .mdt-content {
+    flex: 1;
+    height: 100%;
+    padding: 1rem;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .mdt-logo {
+    height: 80px;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+  }
+  
+  .login-screen {
+    @apply flex flex-col items-center justify-center h-full;
+  }
+}

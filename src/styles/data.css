@@ -1,0 +1,40 @@
+
+@layer base {
+  /* Data display styles */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-header {
+    @apply text-primary text-sm font-bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  
+  .data-section {
+    @apply mb-6;
+  }
+  
+  .data-line {
+    @apply flex justify-between mb-1 text-sm;
+  }
+  
+  .text-unpaid {
+    @apply text-destructive;
+  }
+  
+  .text-paid {
+    @apply text-primary;
+  }
+  
+  .dashed-line {
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+  }
+  
+  .data-card {
+    @apply border border-border/50 rounded-lg p-4 bg-card/50 backdrop-blur-sm;
+  }
+}

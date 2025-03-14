@@ -1,0 +1,27 @@
+
+@layer base {
+  /* Utility classes */
+  .mdt-title {
+    @apply text-xl font-bold text-[hsl(var(--police-blue))] mb-4;
+  }
+  
+  .terminal-text {
+    @apply text-[hsl(var(--police-blue))];
+  }
+  
+  .police-badge {
+    @apply bg-[hsl(var(--police-blue))]/20 text-[hsl(var(--police-blue))] border border-[hsl(var(--police-blue))]/30 px-2 py-1 rounded-md text-xs font-bold;
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all;
+  }
+  
+  .nav-item:hover, .nav-item.active {
+    @apply bg-[hsl(var(--police-blue))]/20 text-[hsl(var(--police-blue))];
+  }
+  
+  .highlight-text {
+    @apply text-[hsl(var(--police-blue))] font-bold;
+  }
+}

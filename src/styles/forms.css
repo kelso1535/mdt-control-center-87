@@ -1,0 +1,24 @@
+
+@layer base {
+  /* Form elements */
+  .search-input {
+    @apply bg-input border border-border rounded-md px-3 py-2 text-foreground w-full focus:outline-none focus:ring-1 focus:ring-primary;
+  }
+  
+  .mdt-sidebar-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm;
+    transition: all 0.2s ease;
+  }
+  
+  .mdt-sidebar-item:hover, .mdt-sidebar-item.active {
+    @apply bg-muted text-white;
+  }
+  
+  .mdt-sidebar-icon {
+    @apply w-5 h-5;
+  }
+  
+  .mdt-hr {
+    @apply border-t border-border my-2;
+  }
+}
