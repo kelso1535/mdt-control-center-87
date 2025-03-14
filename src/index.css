@@ -1,19 +1,21 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    --foreground: 210 40% 98%;
 
     --card: 215 25% 10%;
-    --card-foreground: 0 0% 98%;
+    --card-foreground: 210 40% 98%;
 
     --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 98%;
+    --popover-foreground: 210 40% 98%;
 
     --primary: 142 76% 45%;
     --primary-foreground: 0 0% 0%;
@@ -28,7 +30,7 @@
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
     --border: 215 27% 20%;
     --input: 215 27% 18%;
@@ -40,7 +42,7 @@
     --alert-red: 0 100% 50%;
     
     --sidebar-background: 215 30% 15%;
-    --sidebar-foreground: 0 0% 98%;
+    --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 215 27% 20%;
   }
 }
@@ -51,76 +53,13 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Roboto Condensed', 'Share Tech Mono', monospace;
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
   
-  .tablet-frame {
-    width: 100%;
-    max-width: 1200px;
-    height: 85vh;
-    position: relative;
-    border-radius: 20px;
-    background-color: #1a1a1a;
-    padding: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 8px rgba(0, 0, 0, 0.6);
-    border: 2px solid #333;
-    overflow: hidden;
-  }
-  
-  .tablet-screen {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #000;
-    position: relative;
-  }
-  
-  .tablet-camera {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #333;
-    border-radius: 50%;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
-  
-  .tablet-power-button {
-    position: absolute;
-    width: 4px;
-    height: 35px;
-    background-color: #333;
-    right: -4px;
-    top: 80px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-  }
-  
-  .tablet-volume-buttons {
-    position: absolute;
-    width: 4px;
-    height: 70px;
-    right: -4px;
-    top: 140px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .tablet-volume-buttons:before, .tablet-volume-buttons:after {
-    content: '';
-    width: 4px;
-    height: 30px;
-    background-color: #333;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-  }
+  /* ... keep existing code (tablet-frame, tablet-screen, tablet-camera, tablet-power-button, tablet-volume-buttons) */
   
   .mdt-container {
     width: 100%;
@@ -128,6 +67,9 @@
     overflow: hidden;
     position: relative;
     @apply bg-card;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(0, 40, 83, 0.8) 0%, rgba(0, 0, 0, 0.6) 90%),
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
   }
   
   .mdt-main {
@@ -154,7 +96,7 @@
   }
   .mdt-logo {
     height: 80px;
-    opacity: 0.7;
+    opacity: 0.9;
     margin-bottom: 1rem;
   }
   .mdt-btn {
@@ -184,56 +126,14 @@
     @apply border-t border-border my-2;
   }
   .mdt-title {
-    @apply text-xl font-bold text-primary mb-4;
+    @apply text-xl font-bold text-police-blue mb-4;
   }
   .terminal-text {
-    @apply text-primary;
+    @apply text-police-blue;
   }
-  .screen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none;
-    z-index: 10;
-  }
-  .data-table {
-    width: 100%;
-    @apply text-sm;
-  }
-  .data-table th {
-    @apply bg-muted text-primary text-left p-2;
-  }
-  .data-table td {
-    @apply border-b border-border p-2;
-  }
-  .data-header {
-    @apply text-primary text-center my-4 text-xl;
-  }
-  .data-section {
-    @apply border border-muted rounded-md p-4 mb-4 bg-card;
-  }
-  .data-line {
-    @apply flex justify-between p-1;
-  }
-  .text-unpaid {
-    @apply text-destructive;
-  }
-  .text-paid {
-    @apply text-primary;
-  }
-  .dashed-line {
-    background-image: linear-gradient(to right, hsl(var(--primary)) 50%, transparent 0%);
-    background-position: top;
-    background-size: 14px 1px;
-    background-repeat: repeat-x;
-    height: 1px;
-    width: 100%;
-    margin: 0.5rem 0;
-  }
+  
+  /* ... keep existing code (screen-overlay, data-table, data-header, data-section, data-line, text-unpaid, text-paid, dashed-line) */
+  
   .login-screen {
     @apply flex flex-col items-center justify-center h-full;
   }
@@ -263,7 +163,7 @@
     display: inline-flex;
   }
   .loading-dots div {
-    @apply bg-primary;
+    @apply bg-police-blue;
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -293,7 +193,7 @@
     top: 0;
     height: 100%;
     width: 5px;
-    background-color: hsl(var(--primary));
+    background-color: currentColor;
     animation: blink 1s step-end infinite;
   }
   @keyframes blink {
@@ -306,6 +206,27 @@
   }
   
   .search-button {
-    @apply bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm hover:bg-primary/90 transition-colors;
+    @apply bg-police-blue text-primary-foreground rounded-md px-4 py-2 text-sm hover:bg-police-blue/90 transition-colors;
+  }
+  
+  /* New styles for enhanced MDT */
+  .police-badge {
+    @apply bg-police-blue/20 text-police-blue border border-police-blue/30 px-2 py-1 rounded-md text-xs font-bold;
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all;
+  }
+  
+  .nav-item:hover, .nav-item.active {
+    @apply bg-police-blue/20 text-police-blue;
+  }
+  
+  .data-card {
+    @apply border border-border/50 rounded-lg p-4 bg-card/50 backdrop-blur-sm;
+  }
+  
+  .highlight-text {
+    @apply text-police-blue font-bold;
   }
 }

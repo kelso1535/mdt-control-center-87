@@ -5,37 +5,32 @@ import { cn } from '@/lib/utils';
 interface SidebarButtonProps {
   icon: React.ReactNode;
   children: React.ReactNode;
-  active?: boolean;
-  onClick?: () => void;
-  variant?: 'default' | 'primary' | 'alert' | 'blue';
+  onClick: () => void;
+  variant?: 'default' | 'blue' | 'alert';
+  className?: string;
 }
 
-const SidebarButton: React.FC<SidebarButtonProps> = ({ 
-  icon, 
-  children, 
-  active = false, 
+const SidebarButton: React.FC<SidebarButtonProps> = ({
+  icon,
+  children,
   onClick,
-  variant = 'default'
+  variant = 'default',
+  className
 }) => {
-  const baseClasses = "mdt-btn w-full justify-start";
-  
-  const variantClasses = {
-    default: "",
-    primary: "mdt-btn-primary",
-    alert: "mdt-btn-alert",
-    blue: "mdt-btn-blue"
-  };
+  const buttonClass = cn(
+    'mdt-btn',
+    {
+      'mdt-btn-blue': variant === 'blue',
+      'mdt-btn-alert': variant === 'alert'
+    },
+    className
+  );
 
   return (
-    <button 
-      className={cn(
-        baseClasses, 
-        variantClasses[variant],
-        active && "ring-1 ring-primary/50"
-      )} 
-      onClick={onClick}
-    >
-      <span className="w-5 h-5">{icon}</span>
+    <button className={buttonClass} onClick={onClick}>
+      <div className="w-5 h-5">
+        {icon}
+      </div>
       <span>{children}</span>
     </button>
   );

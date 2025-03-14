@@ -4,6 +4,7 @@ import MDTLogo from './MDTLogo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
+import { Shield } from 'lucide-react';
 
 interface LoginScreenProps {
   onLogin: (callsign: string) => void;
@@ -28,14 +29,17 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-screen">
+    <div className="login-screen bg-gradient-to-b from-sidebar-background/50 to-background/95">
       <div className="mb-8 animate-fade-in">
         <MDTLogo />
       </div>
-      <div className="w-full max-w-md p-6 space-y-6 animate-slide-in">
-        <h2 className="text-xl text-center text-primary font-bold">
-          <span className="terminal-effect">LOGIN TO MDT</span>
-        </h2>
+      <div className="w-full max-w-md p-6 space-y-6 animate-slide-in backdrop-blur-sm bg-card/30 border border-border/30 rounded-lg shadow-lg">
+        <div className="flex items-center justify-center space-x-2">
+          <Shield className="h-6 w-6 text-police-blue" />
+          <h2 className="text-xl text-center font-bold">
+            <span className="terminal-effect text-police-blue">POLICE MDT</span>
+          </h2>
+        </div>
         
         <div className="space-y-4">
           <div className="space-y-2">
@@ -44,13 +48,16 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
               placeholder="Enter your callsign"
               value={callsign}
               onChange={(e) => setCallsign(e.target.value)}
-              className="bg-input/50 border-border/50 backdrop-blur-sm"
+              className="bg-input/50 border-border/50 backdrop-blur-sm text-foreground"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleLogin();
+              }}
             />
           </div>
           
           <Button 
             onClick={handleLogin} 
-            className="w-full glass-button" 
+            className="w-full glass-button bg-police-blue/20 border-police-blue/30 text-police-blue hover:bg-police-blue/30" 
             disabled={loading}
           >
             {loading ? (
@@ -59,8 +66,12 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
                 <div></div>
                 <div></div>
               </span>
-            ) : 'Login to MDT'}
+            ) : 'Secure Login'}
           </Button>
+          
+          <div className="text-xs text-center text-muted-foreground mt-2">
+            Authorized personnel only
+          </div>
         </div>
       </div>
     </div>

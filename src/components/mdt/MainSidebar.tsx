@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { AlertTriangle, ChevronDown, Flag, LogOut, Users, X } from 'lucide-react';
+import { AlertTriangle, ChevronDown, Flag, LogOut, Shield, X } from 'lucide-react';
 import { OfficerStatus } from '@/types';
 import MDTLogo from '../MDTLogo';
 import SidebarButton from '../SidebarButton';
@@ -31,7 +31,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
   };
 
   return (
-    <div className="mdt-sidebar">
+    <div className="mdt-sidebar bg-sidebar/90 backdrop-blur-sm">
       <div className="mdt-logo">
         <MDTLogo />
       </div>
@@ -40,6 +40,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         <SidebarButton 
           icon={<ChevronDown className="w-full h-full" />}
           onClick={() => setShowStatusMenu(!showStatusMenu)}
+          variant="blue"
         >
           Change Status
         </SidebarButton>
@@ -81,10 +82,14 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       
       <div className="flex-1"></div>
       
-      <div className="text-xs text-muted-foreground mt-4">
-        Officer: {callsign}
-        <br />
-        Status: {currentStatus}
+      <div className="flex flex-col items-center p-3 mt-4 bg-police-blue/10 rounded-md border border-police-blue/20">
+        <Shield className="h-4 w-4 text-police-blue mb-1" />
+        <div className="text-xs">
+          <span className="text-muted-foreground">Officer:</span> <span className="text-police-blue font-bold">{callsign}</span>
+        </div>
+        <div className="text-xs mt-1">
+          <span className="text-muted-foreground">Status:</span> <span className="text-police-blue">{currentStatus}</span>
+        </div>
       </div>
     </div>
   );
