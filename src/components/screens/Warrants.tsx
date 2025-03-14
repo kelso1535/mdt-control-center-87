@@ -44,7 +44,7 @@ const Warrants: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-green-400 text-2xl font-bold">Active Warrants</h2>
+        <h2 className="text-police-blue text-2xl font-bold">Active Warrants</h2>
         <Button 
           variant="outline" 
           className="bg-card border-primary/30 text-primary" 
@@ -61,9 +61,9 @@ const Warrants: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-green-400 py-2 px-2">Name</th>
-              <th className="text-green-400 py-2 px-2">Status</th>
-              <th className="text-green-400 py-2 px-2">Warrant Count</th>
+              <th className="text-police-blue py-2 px-2">Name</th>
+              <th className="text-police-blue py-2 px-2">Status</th>
+              <th className="text-police-blue py-2 px-2">Warrant Count</th>
             </tr>
           </thead>
           <tbody>
@@ -86,9 +86,9 @@ const Warrants: React.FC = () => {
             ) : (
               warrants.map((warrant) => (
                 <tr key={warrant.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-green-400">{warrant.name}</td>
+                  <td className="py-2 px-2 text-police-blue">{warrant.name}</td>
                   <td className="py-2 px-2 text-destructive">{warrant.status}</td>
-                  <td className="py-2 px-2 text-green-400">{warrant.count}</td>
+                  <td className="py-2 px-2 text-police-blue">{warrant.count}</td>
                 </tr>
               ))
             )}

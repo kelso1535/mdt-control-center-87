@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { TrafficOffence } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -39,7 +40,7 @@ const TrafficOffences: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-green-400 text-2xl font-bold">Infringement Notices & Fines</h2>
+        <h2 className="text-police-blue text-2xl font-bold">Infringement Notices & Fines</h2>
         <div className="flex gap-2">
           <Button 
             variant="outline" 
@@ -58,10 +59,10 @@ const TrafficOffences: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-green-400 py-2 px-2">Date</th>
-              <th className="text-green-400 py-2 px-2">Type</th>
-              <th className="text-green-400 py-2 px-2">Amount</th>
-              <th className="text-green-400 py-2 px-2">Details</th>
+              <th className="text-police-blue py-2 px-2">Date</th>
+              <th className="text-police-blue py-2 px-2">Type</th>
+              <th className="text-police-blue py-2 px-2">Amount</th>
+              <th className="text-police-blue py-2 px-2">Details</th>
             </tr>
           </thead>
           <tbody>
@@ -84,10 +85,10 @@ const TrafficOffences: React.FC = () => {
             ) : (
               offences.map((offence) => (
                 <tr key={offence.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-green-400">{offence.date}</td>
-                  <td className="py-2 px-2 text-green-400">{offence.type}</td>
-                  <td className="py-2 px-2 text-green-400">${offence.amount}</td>
-                  <td className="py-2 px-2 text-green-400">{offence.details}</td>
+                  <td className="py-2 px-2 text-police-blue">{offence.date}</td>
+                  <td className="py-2 px-2 text-police-blue">{offence.type}</td>
+                  <td className="py-2 px-2 text-police-blue">${offence.amount}</td>
+                  <td className="py-2 px-2 text-police-blue">{offence.details}</td>
                 </tr>
               ))
             )}

@@ -50,7 +50,7 @@ const FinancialRecords: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-green-400 text-2xl font-bold">Financial Records</h2>
+        <h2 className="text-police-blue text-2xl font-bold">Financial Records</h2>
         <Button 
           variant="outline" 
           className="bg-card border-primary/30 text-primary" 
@@ -67,11 +67,11 @@ const FinancialRecords: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-green-400 py-2 px-2">Date</th>
-              <th className="text-green-400 py-2 px-2">Type</th>
-              <th className="text-green-400 py-2 px-2">Amount</th>
-              <th className="text-green-400 py-2 px-2">Status</th>
-              <th className="text-green-400 py-2 px-2">Description</th>
+              <th className="text-police-blue py-2 px-2">Date</th>
+              <th className="text-police-blue py-2 px-2">Type</th>
+              <th className="text-police-blue py-2 px-2">Amount</th>
+              <th className="text-police-blue py-2 px-2">Status</th>
+              <th className="text-police-blue py-2 px-2">Description</th>
             </tr>
           </thead>
           <tbody>
@@ -94,13 +94,13 @@ const FinancialRecords: React.FC = () => {
             ) : (
               records.map((record) => (
                 <tr key={record.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-green-400">{record.date}</td>
-                  <td className="py-2 px-2 text-green-400">{record.type}</td>
-                  <td className="py-2 px-2 text-green-400">${record.amount.toLocaleString()}</td>
+                  <td className="py-2 px-2 text-police-blue">{record.date}</td>
+                  <td className="py-2 px-2 text-police-blue">{record.type}</td>
+                  <td className="py-2 px-2 text-police-blue">${record.amount.toLocaleString()}</td>
                   <td className={`py-2 px-2 ${record.status === 'PAID' ? 'text-paid' : 'text-unpaid'}`}>
                     {record.status}
                   </td>
-                  <td className="py-2 px-2 text-green-400">{record.description}</td>
+                  <td className="py-2 px-2 text-police-blue">{record.description}</td>
                 </tr>
               ))
             )}
