@@ -11,7 +11,7 @@
   }
   
   .mdt-btn-primary {
-    @apply bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))/90] text-primary-foreground;
+    @apply bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))/90] text-white;
   }
   
   .mdt-btn-alert {
@@ -27,6 +27,6 @@
   }
   
   .search-button {
-    @apply bg-[hsl(var(--police-blue))] text-primary-foreground rounded-md px-4 py-2 text-sm hover:bg-[hsl(var(--police-blue))/90] transition-colors;
+    @apply bg-[hsl(var(--police-blue))] text-white rounded-md px-4 py-2 text-sm hover:bg-[hsl(var(--police-blue))/90] transition-colors;
   }
 }

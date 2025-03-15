@@ -9,13 +9,14 @@
   }
   
   .mdt-sidebar {
-    width: 230px;
+    width: 240px;
     height: 100%;
     @apply bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))];
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    overflow-y: auto;
   }
   
   .mdt-content {

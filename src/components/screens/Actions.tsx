@@ -48,50 +48,50 @@ const Actions: React.FC = () => {
       <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-4">Police Actions</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Toggle Suspend Driver's Licence
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Revoke Prov Chgr/PIN Notice
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Revoke Weapon Licence
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Flag Weapons
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Flag Mental Health
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Flag Violence
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Toggle Stolen Vehicle
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Flag Violence Agn Police
         </Button>
-        <Button className="bg-destructive hover:bg-destructive/80 text-sm h-auto py-2.5">
+        <Button className="bg-destructive hover:bg-destructive/80 text-white text-sm h-auto py-2.5">
           CLEAR Criminal Warrants
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           CLEAR Active Bails
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
           Revoke Mobility Aid
         </Button>
       </div>
       
       <div className="mb-4 flex justify-between items-center">
         <div className="flex space-x-2">
-          <Button size="sm" onClick={loadPursuitTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80">
+          <Button size="sm" onClick={loadPursuitTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white">
             Load Pursuit Template
           </Button>
-          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80">
+          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white">
             Load Stolen Weapon Template
           </Button>
         </div>
@@ -143,7 +143,7 @@ const Actions: React.FC = () => {
           
           <div className="mt-4">
             <Button 
-              className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80"
+              className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white"
               onClick={handleAddReport}
             >
               Submit Report
