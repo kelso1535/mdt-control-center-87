@@ -18,7 +18,7 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
   className
 }) => {
   const buttonClass = cn(
-    'mdt-btn',
+    'mdt-btn w-full',
     {
       'mdt-btn-blue': variant === 'blue',
       'mdt-btn-alert': variant === 'alert'
@@ -28,10 +28,10 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
 
   return (
     <button className={buttonClass} onClick={onClick}>
-      <div className="w-5 h-5">
+      <div className="w-5 h-5 flex-shrink-0">
         {icon}
       </div>
-      <span>{children}</span>
+      <span className="truncate">{children}</span>
     </button>
   );
 };

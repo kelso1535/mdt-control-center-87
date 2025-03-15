@@ -57,7 +57,7 @@ const PeopleSearch: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-blue-400 font-bold mb-4">Search Person</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-4">Search Person</h2>
       
       <div className="flex space-x-2 mb-4">
         <Input
@@ -69,7 +69,7 @@ const PeopleSearch: React.FC = () => {
         />
         <Button 
           onClick={handleSearch}
-          className="search-button"
+          className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/90 text-white"
           disabled={loading}
         >
           {loading ? 'Searching...' : 'Run Person Check'}
@@ -81,28 +81,28 @@ const PeopleSearch: React.FC = () => {
           <div className="flex justify-between">
             <div className="flex-1">
               <div className="text-center mb-2">
-                <h3 className="text-primary text-lg">------- LEAP DATABASE ENTRY -------</h3>
+                <h3 className="text-[hsl(var(--police-blue))] text-lg">------- LEAP DATABASE ENTRY -------</h3>
               </div>
               
               <div className="grid grid-cols-2 gap-2">
                 <div className="data-line">
-                  <span className="text-primary">NAME:</span>
+                  <span className="text-[hsl(var(--police-blue))]">NAME:</span>
                   <span>{searchResult.name}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">DOB:</span>
+                  <span className="text-[hsl(var(--police-blue))]">DOB:</span>
                   <span>{searchResult.dob}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">SEX:</span>
+                  <span className="text-[hsl(var(--police-blue))]">SEX:</span>
                   <span>{searchResult.gender}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">HOME ADDR:</span>
+                  <span className="text-[hsl(var(--police-blue))]">HOME ADDR:</span>
                   <span>{searchResult.address}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">PHONE NO:</span>
+                  <span className="text-[hsl(var(--police-blue))]">PHONE NO:</span>
                   <span>{searchResult.phone}</span>
                 </div>
               </div>
@@ -110,29 +110,29 @@ const PeopleSearch: React.FC = () => {
               <DashedDivider />
               
               <div className="text-center mb-2">
-                <h3 className="text-primary">------- ROAD TRAFFIC AUTHORITY -------</h3>
+                <h3 className="text-[hsl(var(--police-blue))]">------- ROAD TRAFFIC AUTHORITY -------</h3>
               </div>
               
               <div className="grid grid-cols-2 gap-2">
                 <div className="data-line">
-                  <span className="text-primary">LIC CLASS:</span>
+                  <span className="text-[hsl(var(--police-blue))]">LIC CLASS:</span>
                   <span>{searchResult.licenseClass}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">LIC STATUS:</span>
+                  <span className="text-[hsl(var(--police-blue))]">LIC STATUS:</span>
                   <span>{searchResult.licenseStatus}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">EXPIRES:</span>
+                  <span className="text-[hsl(var(--police-blue))]">EXPIRES:</span>
                   <span>{searchResult.licenseExpiry}</span>
                 </div>
                 <div></div>
                 <div className="data-line">
-                  <span className="text-primary">CONDITIONS:</span>
+                  <span className="text-[hsl(var(--police-blue))]">CONDITIONS:</span>
                   <span>{searchResult.demeritPoints === 0 ? 'NONE' : 'POINTS'}</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">DEMERIT PTS:</span>
+                  <span className="text-[hsl(var(--police-blue))]">DEMERIT PTS:</span>
                   <span>{searchResult.demeritPoints} (LAST 7 DAYS)</span>
                 </div>
               </div>
@@ -142,24 +142,24 @@ const PeopleSearch: React.FC = () => {
               <div className="grid grid-cols-2 gap-x-8">
                 <div>
                   <div className="text-center mb-2">
-                    <h3 className="text-primary">------- WANTED -------</h3>
+                    <h3 className="text-[hsl(var(--police-blue))]">------- WANTED -------</h3>
                   </div>
                   
                   <div className="space-y-1">
                     <div className="data-line">
-                      <span className="text-primary">WANTED:</span>
+                      <span className="text-[hsl(var(--police-blue))]">WANTED:</span>
                       <span>{searchResult.flags.wanted ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">BAIL:</span>
+                      <span className="text-[hsl(var(--police-blue))]">BAIL:</span>
                       <span>{searchResult.flags.bail ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">MEN. HEALTH:</span>
+                      <span className="text-[hsl(var(--police-blue))]">MEN. HEALTH:</span>
                       <span>{searchResult.flags.mentalHealth ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">POS WEAP:</span>
+                      <span className="text-[hsl(var(--police-blue))]">POS WEAP:</span>
                       <span>{searchResult.flags.possessWeapon ? 'YES' : 'NO'}</span>
                     </div>
                   </div>
@@ -167,16 +167,16 @@ const PeopleSearch: React.FC = () => {
                 
                 <div>
                   <div className="text-center mb-2">
-                    <h3 className="text-primary">------- FLAGS -------</h3>
+                    <h3 className="text-[hsl(var(--police-blue))]">------- FLAGS -------</h3>
                   </div>
                   
                   <div className="space-y-1">
                     <div className="data-line">
-                      <span className="text-primary">VIOLENCE POLICE:</span>
+                      <span className="text-[hsl(var(--police-blue))]">VIOLENCE POLICE:</span>
                       <span>{searchResult.flags.violencePolice ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">VIOLENCE:</span>
+                      <span className="text-[hsl(var(--police-blue))]">VIOLENCE:</span>
                       <span>{searchResult.flags.violence ? 'YES' : 'NO'}</span>
                     </div>
                   </div>
@@ -188,20 +188,20 @@ const PeopleSearch: React.FC = () => {
               <div className="grid grid-cols-2 gap-x-8">
                 <div>
                   <div className="text-center mb-2">
-                    <h3 className="text-primary">------- WEAPON LONGARM -------</h3>
+                    <h3 className="text-[hsl(var(--police-blue))]">------- WEAPON LONGARM -------</h3>
                   </div>
                   
                   <div className="space-y-1">
                     <div className="data-line">
-                      <span className="text-primary">WEAPON LONGARM:</span>
+                      <span className="text-[hsl(var(--police-blue))]">WEAPON LONGARM:</span>
                       <span>{searchResult.weapons.longarm ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">CONCEAL CARRY PERMIT:</span>
+                      <span className="text-[hsl(var(--police-blue))]">CONCEAL CARRY PERMIT:</span>
                       <span>{searchResult.weapons.concealCarry ? 'YES' : 'NO'}</span>
                     </div>
                     <div className="data-line">
-                      <span className="text-primary">F/ARM PROHIB ORDER:</span>
+                      <span className="text-[hsl(var(--police-blue))]">F/ARM PROHIB ORDER:</span>
                       <span>{searchResult.weapons.prohibOrder ? 'YES' : 'NO'}</span>
                     </div>
                   </div>
@@ -209,12 +209,12 @@ const PeopleSearch: React.FC = () => {
                 
                 <div>
                   <div className="text-center mb-2">
-                    <h3 className="text-primary">------- WEAPON LICENCES -------</h3>
+                    <h3 className="text-[hsl(var(--police-blue))]">------- WEAPON LICENCES -------</h3>
                   </div>
                   
                   <div className="space-y-1">
                     <div className="data-line">
-                      <span className="text-primary">HANDGUN:</span>
+                      <span className="text-[hsl(var(--police-blue))]">HANDGUN:</span>
                       <span>{searchResult.weapons.handgun ? 'YES' : 'NO'}</span>
                     </div>
                   </div>
@@ -224,16 +224,16 @@ const PeopleSearch: React.FC = () => {
               <DashedDivider />
               
               <div className="text-center mb-2">
-                <h3 className="text-primary">------- OTHER -------</h3>
+                <h3 className="text-[hsl(var(--police-blue))]">------- OTHER -------</h3>
               </div>
               
               <div className="grid grid-cols-2 gap-2">
                 <div className="data-line">
-                  <span className="text-primary">DNA ON FILE:</span>
+                  <span className="text-[hsl(var(--police-blue))]">DNA ON FILE:</span>
                   <span>CURRENT ON FILE</span>
                 </div>
                 <div className="data-line">
-                  <span className="text-primary">FINE / CHARGE:</span>
+                  <span className="text-[hsl(var(--police-blue))]">FINE / CHARGE:</span>
                   <span>$ - AS NECESSARY</span>
                 </div>
               </div>

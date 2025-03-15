@@ -45,59 +45,59 @@ const Actions: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-blue-400 font-bold mb-4">Police Actions</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-4">Police Actions</h2>
       
-      <div className="grid grid-cols-3 gap-3 mb-6">
-        <Button className="bg-secondary hover:bg-secondary/80">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Toggle Suspend Driver's Licence
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Revoke Prov Chgr/PIN Notice
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Revoke Weapon Licence
         </Button>
         
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Flag Weapons
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Flag Mental Health
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Flag Violence
         </Button>
         
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Toggle Stolen Vehicle
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Flag Violence Agn Police
         </Button>
-        <Button className="bg-destructive hover:bg-destructive/80">
+        <Button className="bg-destructive hover:bg-destructive/80 text-sm h-auto py-2.5">
           CLEAR Criminal Warrants
         </Button>
         
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           CLEAR Active Bails
         </Button>
-        <Button className="bg-secondary hover:bg-secondary/80">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-sm h-auto py-2.5">
           Revoke Mobility Aid
         </Button>
       </div>
       
-      <div className="mb-2 flex justify-between items-center">
+      <div className="mb-4 flex justify-between items-center">
         <div className="flex space-x-2">
-          <Button size="sm" onClick={loadPursuitTemplate} className="bg-secondary hover:bg-secondary/80">
+          <Button size="sm" onClick={loadPursuitTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80">
             Load Pursuit Template
           </Button>
-          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-secondary hover:bg-secondary/80">
+          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80">
             Load Stolen Weapon Template
           </Button>
         </div>
         
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-primary">Report Type:</span>
+          <span className="text-sm text-[hsl(var(--police-blue))]">Report Type:</span>
           <select 
             className="bg-black/50 border border-muted rounded-md px-3 py-1 text-foreground text-sm"
             value={reportType}
@@ -115,7 +115,7 @@ const Actions: React.FC = () => {
         <div className="bg-card border border-border p-4 rounded-md">
           {reportType === 'Serial# KALOF' && (
             <div className="mb-4">
-              <label className="text-primary block mb-2">Serial Number:</label>
+              <label className="text-[hsl(var(--police-blue))] block mb-2">Serial Number:</label>
               <Input 
                 placeholder="Enter the serial number..." 
                 className="bg-black/50 border-border text-white"
@@ -125,7 +125,7 @@ const Actions: React.FC = () => {
             </div>
           )}
           
-          <h3 className="text-primary mb-2">Section 1 - {reportType}</h3>
+          <h3 className="text-[hsl(var(--police-blue))] mb-2">Section 1 - {reportType}</h3>
           <Textarea 
             placeholder="Enter details for Section 1..."
             className="h-32 bg-black/50 border-border text-white mb-4"
@@ -133,7 +133,7 @@ const Actions: React.FC = () => {
             onChange={(e) => setSection1Text(e.target.value)}
           />
           
-          <h3 className="text-primary mb-2">Section 2 - Report Details</h3>
+          <h3 className="text-[hsl(var(--police-blue))] mb-2">Section 2 - Report Details</h3>
           <Textarea 
             placeholder="Enter detailed information for Section 2..."
             className="h-48 bg-black/50 border-border text-white"
@@ -143,7 +143,7 @@ const Actions: React.FC = () => {
           
           <div className="mt-4">
             <Button 
-              className="bg-primary hover:bg-primary/80"
+              className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80"
               onClick={handleAddReport}
             >
               Submit Report

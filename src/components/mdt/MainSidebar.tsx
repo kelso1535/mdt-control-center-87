@@ -32,11 +32,11 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
 
   return (
     <div className="mdt-sidebar bg-sidebar/90 backdrop-blur-sm">
-      <div className="mdt-logo">
+      <div className="mdt-logo flex justify-center">
         <MDTLogo />
       </div>
       
-      <div className="relative mt-2">
+      <div className="relative mt-2 mb-4">
         <SidebarButton 
           icon={<ChevronDown className="w-full h-full" />}
           onClick={() => setShowStatusMenu(!showStatusMenu)}
@@ -59,6 +59,8 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         [- DURESS -]
       </SidebarButton>
       
+      <div className="my-2"></div>
+      
       <SidebarButton 
         icon={<Flag className="w-full h-full" />}
         onClick={onFlagStolen}
@@ -66,12 +68,16 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         Flag Police Unit Stolen
       </SidebarButton>
       
+      <div className="my-1"></div>
+      
       <SidebarButton 
         icon={<LogOut className="w-full h-full" />}
         onClick={onLogout}
       >
         Logout of MDT
       </SidebarButton>
+      
+      <div className="my-1"></div>
       
       <SidebarButton 
         icon={<X className="w-full h-full" />}
@@ -82,13 +88,13 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       
       <div className="flex-1"></div>
       
-      <div className="flex flex-col items-center p-3 mt-4 bg-police-blue/10 rounded-md border border-police-blue/20">
-        <Shield className="h-4 w-4 text-police-blue mb-1" />
+      <div className="flex flex-col items-center p-3 mt-4 bg-[hsl(var(--police-blue))]/10 rounded-md border border-[hsl(var(--police-blue))]/20">
+        <Shield className="h-4 w-4 text-[hsl(var(--police-blue))] mb-1" />
         <div className="text-xs">
-          <span className="text-muted-foreground">Officer:</span> <span className="text-police-blue font-bold">{callsign}</span>
+          <span className="text-muted-foreground">Officer:</span> <span className="text-[hsl(var(--police-blue))] font-bold">{callsign}</span>
         </div>
         <div className="text-xs mt-1">
-          <span className="text-muted-foreground">Status:</span> <span className="text-police-blue">{currentStatus}</span>
+          <span className="text-muted-foreground">Status:</span> <span className="text-[hsl(var(--police-blue))]">{currentStatus}</span>
         </div>
       </div>
     </div>

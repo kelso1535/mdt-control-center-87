@@ -29,8 +29,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
 }) => {
   return (
     <div className="mdt-sidebar bg-sidebar/80 backdrop-blur-sm" style={{ width: '200px' }}>
-      <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center">
-        <Shield className="h-4 w-4 mr-1 text-police-blue" />
+      <div className="text-sm font-bold text-muted-foreground mb-3 flex items-center">
+        <Shield className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
         POLICE SERVICES
       </div>
       
@@ -58,10 +58,10 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <span>SEARCH HISTORY</span>
       </div>
       
-      <div className="mdt-hr"></div>
+      <div className="mdt-hr my-3"></div>
       
-      <div className="text-sm font-bold text-muted-foreground mb-2 mt-2 flex items-center">
-        <Clipboard className="h-4 w-4 mr-1 text-police-blue" />
+      <div className="text-sm font-bold text-muted-foreground mb-3 mt-2 flex items-center">
+        <Clipboard className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
         RECORDS
       </div>
       
@@ -97,10 +97,10 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <span>SERIALS</span>
       </div>
       
-      <div className="mdt-hr"></div>
+      <div className="mdt-hr my-3"></div>
       
-      <div className="text-sm font-bold text-muted-foreground mb-2 mt-2 flex items-center">
-        <AlertTriangle className="h-4 w-4 mr-1 text-police-blue" />
+      <div className="text-sm font-bold text-muted-foreground mb-3 mt-2 flex items-center">
+        <AlertTriangle className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
         SYSTEM
       </div>
       
@@ -135,6 +135,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <AlertTriangle className="mdt-sidebar-icon" />
         <span>WANTED</span>
       </div>
+      
+      <div className="my-2"></div>
       
       <div className="nav-item" onClick={onLogout}>
         <LogOut className="mdt-sidebar-icon" />
