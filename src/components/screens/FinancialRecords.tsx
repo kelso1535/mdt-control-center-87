@@ -49,7 +49,7 @@ const FinancialRecords: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-3">
         <h2 className="text-police-blue text-2xl font-bold">Financial Records</h2>
         <Button 
           variant="outline" 
@@ -97,7 +97,7 @@ const FinancialRecords: React.FC = () => {
                   <td className="py-2 px-2 text-police-blue">{record.date}</td>
                   <td className="py-2 px-2 text-police-blue">{record.type}</td>
                   <td className="py-2 px-2 text-police-blue">${record.amount.toLocaleString()}</td>
-                  <td className={`py-2 px-2 ${record.status === 'PAID' ? 'text-paid' : 'text-unpaid'}`}>
+                  <td className={`py-2 px-2 ${record.status === 'PAID' ? 'text-police-blue' : 'text-[#ff5555]'}`}>
                     {record.status}
                   </td>
                   <td className="py-2 px-2 text-police-blue">{record.description}</td>

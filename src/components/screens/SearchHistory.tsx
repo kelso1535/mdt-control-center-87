@@ -77,7 +77,7 @@ const SearchHistory: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-3">
         <h2 className="text-police-blue text-2xl font-bold">Search History</h2>
         <Button 
           variant="outline" 

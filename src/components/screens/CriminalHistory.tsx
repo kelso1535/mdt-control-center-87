@@ -115,7 +115,7 @@ const CriminalHistory: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-police-blue text-2xl font-bold mb-4">LEAP CRIMINAL HISTORY</h2>
+      <h2 className="text-police-blue text-2xl font-bold mb-3">LEAP CRIMINAL HISTORY</h2>
       
       <div className="bg-card/30 border border-border rounded-md p-4 overflow-auto">
         <table className="w-full">

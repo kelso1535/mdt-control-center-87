@@ -45,48 +45,48 @@ const Actions: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-4">Police Actions</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-3">Police Actions</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Toggle Suspend Driver's Licence
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Revoke Prov Chgr/PIN Notice
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Revoke Weapon Licence
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Flag Weapons
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Flag Mental Health
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Flag Violence
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Toggle Stolen Vehicle
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Flag Violence Agn Police
         </Button>
-        <Button className="bg-destructive hover:bg-destructive/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-destructive hover:bg-destructive/80 text-white text-sm h-auto py-2 px-3 truncate">
           CLEAR Criminal Warrants
         </Button>
         
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           CLEAR Active Bails
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2.5">
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-sm h-auto py-2 px-3 truncate">
           Revoke Mobility Aid
         </Button>
       </div>
       
-      <div className="mb-4 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <div className="flex space-x-2">
           <Button size="sm" onClick={loadPursuitTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white">
             Load Pursuit Template

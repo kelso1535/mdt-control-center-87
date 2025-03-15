@@ -2,12 +2,12 @@
 @layer base {
   /* Button styles */
   .mdt-btn {
-    @apply bg-secondary hover:bg-muted text-secondary-foreground rounded-md px-4 py-2.5 text-sm flex items-center gap-2 transition-colors;
+    @apply bg-secondary hover:bg-muted text-secondary-foreground rounded-md px-3 py-2 text-sm flex items-center gap-2 transition-colors;
     border: 1px solid rgba(255, 255, 255, 0.1);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   
   .mdt-btn-primary {

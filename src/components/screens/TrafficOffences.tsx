@@ -39,7 +39,7 @@ const TrafficOffences: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-3">
         <h2 className="text-police-blue text-2xl font-bold">Infringement Notices & Fines</h2>
         <div className="flex gap-2">
           <Button 

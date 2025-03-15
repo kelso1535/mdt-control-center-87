@@ -19,6 +19,6 @@
   }
   
   .mdt-hr {
-    @apply border-t border-border my-2;
+    @apply border-t border-border my-1.5;
   }
 }
