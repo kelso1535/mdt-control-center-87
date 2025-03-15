@@ -14,7 +14,7 @@
   }
   
   .nav-item {
-    @apply flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-all mb-1;
+    @apply flex items-center gap-2 px-2.5 py-1 rounded-md text-xs transition-all mb-0.5 cursor-pointer;
   }
   
   .nav-item:hover, .nav-item.active {

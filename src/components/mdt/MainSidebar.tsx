@@ -36,7 +36,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         <MDTLogo />
       </div>
       
-      <div className="relative mt-2 mb-4">
+      <div className="relative mb-2">
         <SidebarButton 
           icon={<ChevronDown className="w-full h-full" />}
           onClick={() => setShowStatusMenu(!showStatusMenu)}
@@ -59,7 +59,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
         [- DURESS -]
       </SidebarButton>
       
-      <div className="my-2"></div>
+      <div className="my-1"></div>
       
       <SidebarButton 
         icon={<Flag className="w-full h-full" />}
@@ -88,7 +88,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       
       <div className="flex-1"></div>
       
-      <div className="flex flex-col items-center p-3 mt-4 bg-[hsl(var(--police-blue))]/10 rounded-md border border-[hsl(var(--police-blue))]/20">
+      <div className="flex flex-col items-center p-2 mt-2 bg-[hsl(var(--police-blue))]/10 rounded-md border border-[hsl(var(--police-blue))]/20">
         <Shield className="h-4 w-4 text-[hsl(var(--police-blue))] mb-1" />
         <div className="text-xs">
           <span className="text-muted-foreground">Officer:</span> <span className="text-[hsl(var(--police-blue))] font-bold">{callsign}</span>

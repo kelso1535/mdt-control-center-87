@@ -7,10 +7,10 @@ type Screen =
   | 'people'
   | 'vehicles'
   | 'history'
+  | 'serials'
   | 'criminal'
   | 'traffic'
   | 'reports'
-  | 'serials'
   | 'actions'
   | 'financial'
   | 'supervisor'
@@ -28,7 +28,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   onLogout
 }) => {
   return (
-    <div className="mdt-sidebar bg-sidebar/80 backdrop-blur-sm" style={{ width: '200px' }}>
+    <div className="mdt-sidebar bg-sidebar/80 backdrop-blur-sm" style={{ width: '210px' }}>
       <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center">
         <Shield className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
         POLICE SERVICES
@@ -56,6 +56,14 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       >
         <Clock className="mdt-sidebar-icon" />
         <span>SEARCH HISTORY</span>
+      </div>
+      
+      <div 
+        className={`nav-item ${currentScreen === 'serials' ? 'active' : ''}`}
+        onClick={() => onScreenChange('serials')}
+      >
+        <FileSearch className="mdt-sidebar-icon" />
+        <span>SERIALS</span>
       </div>
       
       <div className="mdt-hr my-2"></div>
@@ -87,14 +95,6 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       >
         <Clipboard className="mdt-sidebar-icon" />
         <span>REPORTS</span>
-      </div>
-      
-      <div 
-        className={`nav-item ${currentScreen === 'serials' ? 'active' : ''}`}
-        onClick={() => onScreenChange('serials')}
-      >
-        <FileSearch className="mdt-sidebar-icon" />
-        <span>SERIALS</span>
       </div>
       
       <div className="mdt-hr my-2"></div>
