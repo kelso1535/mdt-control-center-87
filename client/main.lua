@@ -1,6 +1,32 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+
+local Config = require 'config'
 local MDTOpen = false
 local callsign = nil
+
+-- Create a standalone callback system
+local ClientCallbacks = {}
+
+function TriggerServerCallback(name, cb, ...)
+    ClientCallbacks[name] = cb
+    TriggerServerEvent('mdt:server:TriggerCallback', name, ...)
+end
+
+RegisterNetEvent('mdt:client:TriggerCallback')
+AddEventHandler('mdt:client:TriggerCallback', function(name, ...)
+    if ClientCallbacks[name] then
+        ClientCallbacks[name](...)
+        ClientCallbacks[name] = nil
+    end
+end)
+
+-- Standalone notification system
+RegisterNetEvent('mdt:client:Notify')
+AddEventHandler('mdt:client:Notify', function(message, type)
+    -- Basic notification if ox_lib is not available
+    SetNotificationTextEntry('STRING')
+    AddTextComponentString(message)
+    DrawNotification(false, false)
+end)
 
 -- Notification function that uses ox_lib if enabled
 local function Notify(message, type)
@@ -11,7 +37,7 @@ local function Notify(message, type)
             type = type or 'inform'
         })
     else
-        QBCore.Functions.Notify(message, type)
+        TriggerEvent('mdt:client:Notify', message, type)
     end
 end
 
@@ -19,20 +45,10 @@ end
 function OpenMDT()
     if MDTOpen then return end
     
-    -- Check if player has the required job
-    local PlayerData = QBCore.Functions.GetPlayerData()
-    if PlayerData.job.name ~= Config.RequireJobName then
-        Notify(Lang:t('error.not_authorized'), 'error')
+    -- In standalone, we can use a job check command to verify or simply use the callsign requirement
+    if not callsign and Config.EnableCallsign then
+        Notify('Please set your callsign using /' .. Config.OpenCommand .. '-callsign first', 'error')
         return
-    end
-
-    -- Set callsign if enabled and not already set
-    if Config.EnableCallsign and not callsign then
-        callsign = PlayerData.metadata.callsign
-        if not callsign or callsign == '' then
-            Notify(Lang:t('error.no_callsign'), 'error')
-            return
-        end
     end
 
     -- Trigger NUI open
@@ -42,7 +58,7 @@ function OpenMDT()
         type = "open",
         callsign = callsign
     })
-    Notify(Lang:t('info.mdt_opened'), 'primary')
+    Notify('MDT opened', 'primary')
 end
 
 function CloseMDT()
@@ -53,15 +69,26 @@ function CloseMDT()
     SendNUIMessage({
         type = "close"
     })
-    Notify(Lang:t('info.mdt_closed'), 'primary')
+    Notify('MDT closed', 'primary')
 end
 
--- Register Command
+-- Register MDT Command
 RegisterCommand(Config.OpenCommand, function()
     if not MDTOpen then
         OpenMDT()
     else
         CloseMDT()
+    end
+end, false)
+
+-- Register callsign command
+RegisterCommand(Config.OpenCommand .. '-callsign', function(source, args)
+    if args[1] then
+        callsign = args[1]
+        TriggerServerEvent('mdt:server:SetCallsign', callsign)
+        Notify('Callsign set to: ' .. callsign, 'success')
+    else
+        Notify('Please specify a callsign', 'error')
     end
 end, false)
 
@@ -80,7 +107,8 @@ RegisterNUICallback('login', function(data, cb)
     -- Handle login callback
     if data.callsign then
         callsign = data.callsign
-        Notify(Lang:t('success.logged_in'), 'success')
+        TriggerServerEvent('mdt:server:SetCallsign', callsign)
+        Notify('Logged in as: ' .. callsign, 'success')
     end
     cb({ success = true })
 end)
@@ -89,7 +117,7 @@ RegisterNUICallback('changeStatus', function(data, cb)
     -- Handle status change
     if data.status then
         TriggerServerEvent("police:server:UpdateStatus", data.status)
-        Notify(Lang:t('success.status_changed', {status = data.status}), 'success')
+        Notify('Status changed to: ' .. data.status, 'success')
     end
     cb('ok')
 end)
@@ -136,10 +164,10 @@ function ScanVehicleAhead()
         if plate ~= lastScannedPlate then
             lastScannedPlate = plate
             TriggerServerEvent('mdt:server:ANPRScan', plate)
-            Notify(Lang:t('info.anpr_scanning'), 'inform')
+            Notify('ANPR: Scanning plate ' .. plate, 'inform')
         end
     else
-        Notify(Lang:t('error.anpr_no_vehicle'), 'error')
+        Notify('ANPR: No vehicle detected', 'error')
     end
 end
 
@@ -162,24 +190,12 @@ end
 
 -- NUI Callbacks for Search History
 RegisterNUICallback('getSearchHistory', function(_, cb)
-    QBCore.Functions.TriggerCallback('mdt:server:GetSearchHistory', function(history)
+    TriggerServerCallback('mdt:server:GetSearchHistory', function(history)
         cb(history)
     end)
 end)
 
 -- Event Handlers
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    -- Reset variables when player loads
-    MDTOpen = false
-    callsign = QBCore.Functions.GetPlayerData().metadata.callsign
-end)
-
-RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
-    -- Reset variables when player unloads
-    MDTOpen = false
-    callsign = nil
-end)
-
 RegisterNetEvent('mdt:client:ANPRResults', function(results)
     if results and results.owner then
         Notify('ANPR: ' .. results.plate .. ' - Owner: ' .. results.owner, 'success')

@@ -3,14 +3,12 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'Lovable AI'
-description 'QB-Core Police MDT System'
+description 'Standalone Police MDT System'
 version '1.0.0'
 
 ui_page 'web/dist/index.html'
 
 shared_scripts {
-    '@qb-core/shared/locale.lua',
-    'locales/en.lua',
     'config.lua'
 }
 
@@ -30,7 +28,6 @@ files {
 }
 
 dependencies {
-    'qb-core',
     'oxmysql'
 }
 

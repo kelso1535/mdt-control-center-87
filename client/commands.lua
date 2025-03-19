@@ -1,5 +1,5 @@
 
-local QBCore = exports['qb-core']:GetCoreObject()
+local Config = require 'config'
 
 -- Helper function to use ox_lib notifications if enabled
 local function Notify(message, type)
@@ -10,45 +10,26 @@ local function Notify(message, type)
             type = type or 'inform'
         })
     else
-        QBCore.Functions.Notify(message, type)
+        TriggerEvent('mdt:client:Notify', message, type)
     end
 end
 
 -- Additional commands for police operations
-RegisterCommand('setcallsign', function(_, args)
-    local PlayerData = QBCore.Functions.GetPlayerData()
-    if PlayerData.job.name ~= Config.RequireJobName then
-        Notify(Lang:t('error.not_authorized'), 'error')
-        return
-    end
-
-    if not args[1] then
-        Notify('Please specify a callsign', 'error')
-        return
-    end
-
-    TriggerServerEvent('mdt:server:SetCallsign', args[1])
-end, false)
-
 RegisterCommand('checkwarrants', function()
-    local PlayerData = QBCore.Functions.GetPlayerData()
-    if PlayerData.job.name ~= Config.RequireJobName then
-        Notify(Lang:t('error.not_authorized'), 'error')
-        return
-    end
-
-    TriggerServerEvent('mdt:server:CheckWarrants')
+    TriggerServerCallback('mdt:server:GetWarrants', function(warrants)
+        if #warrants > 0 then
+            for i, warrant in ipairs(warrants) do
+                Notify(warrant.name .. ' - ' .. warrant.charges, 'inform')
+            end
+        else
+            Notify('No active warrants found', 'inform')
+        end
+    end)
 end, false)
 
 -- Add ANPR related commands
 if Config.EnableANPR then
     RegisterCommand('vehiclecheck', function(_, args)
-        local PlayerData = QBCore.Functions.GetPlayerData()
-        if PlayerData.job.name ~= Config.RequireJobName then
-            Notify(Lang:t('error.not_authorized'), 'error')
-            return
-        end
-        
         if not args[1] then
             Notify('Please specify a plate number', 'error')
             return
@@ -57,3 +38,33 @@ if Config.EnableANPR then
         TriggerServerEvent('mdt:server:ANPRScan', args[1])
     end, false)
 end
+
+-- Status command
+RegisterCommand('police-status', function(_, args)
+    if not args[1] then
+        local statusStr = table.concat(Config.StatusOptions, ", ")
+        Notify('Available statuses: ' .. statusStr, 'inform')
+        return
+    end
+    
+    -- Check if the status is valid
+    local validStatus = false
+    for _, status in ipairs(Config.StatusOptions) do
+        if status:lower() == args[1]:lower() then
+            TriggerServerEvent('police:server:UpdateStatus', status)
+            validStatus = true
+            break
+        end
+    end
+    
+    if not validStatus then
+        Notify('Invalid status. Use one of: ' .. table.concat(Config.StatusOptions, ", "), 'error')
+    end
+end, false)
+
+-- Duress command
+RegisterCommand('duress', function()
+    local coords = GetEntityCoords(PlayerPedId())
+    TriggerServerEvent('police:server:DuressSignal', coords)
+    Notify('EMERGENCY: Duress signal activated!', 'error')
+end, false)
