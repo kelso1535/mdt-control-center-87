@@ -109,7 +109,7 @@ const Units: React.FC = () => {
       <div className="bg-card/30 border border-border rounded-md p-4">
         <table className="w-full text-xs">
           <thead>
-            <tr className="text-left text-green-400">
+            <tr className="text-left text-blue-400">
               <th className="py-1 px-1">CALLSIGN</th>
               <th className="py-1 px-1">PIN #</th>
               <th className="py-1 px-1">NAME</th>
@@ -139,13 +139,13 @@ const Units: React.FC = () => {
             ) : (
               units.map((unit, index) => (
                 <tr key={index} className="border-t border-border/30">
-                  <td className="py-1 px-1 text-green-400">{unit.callsign}</td>
-                  <td className="py-1 px-1 text-green-400">{unit.pin}</td>
-                  <td className="py-1 px-1 text-green-400">{unit.name}</td>
-                  <td className="py-1 px-1 text-green-400">{unit.updated}</td>
-                  <td className="py-1 px-1 text-green-400">{unit.status}</td>
-                  <td className="py-1 px-1 text-green-400">{unit.location}</td>
-                  {showPhones && <td className="py-1 px-1 text-green-400">{unit.phone}</td>}
+                  <td className="py-1 px-1 text-blue-400">{unit.callsign}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.pin}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.name}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.updated}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.status}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.location}</td>
+                  {showPhones && <td className="py-1 px-1 text-blue-400">{unit.phone}</td>}
                 </tr>
               ))
             )}

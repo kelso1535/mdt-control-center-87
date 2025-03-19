@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AlertTriangle, Clipboard, Clock, Database, FileSearch, LogOut, Search, Shield, Users } from 'lucide-react';
 type Screen = 'login' | 'people' | 'vehicles' | 'history' | 'serials' | 'criminal' | 'traffic' | 'reports' | 'actions' | 'financial' | 'supervisor' | 'wanted';
@@ -35,8 +36,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       </div>
       
       <div className={`nav-item ${currentScreen === 'serials' ? 'active' : ''}`} onClick={() => onScreenChange('serials')}>
-        <FileSearch className="mdt-sidebar-icon" />
-        <span>SEARCH SERIALS</span>
+        <Search className="mdt-sidebar-icon" />
+        <span>SEARCH SERIALS</span>
       </div>
       
       <div className="mdt-hr my-2"></div>

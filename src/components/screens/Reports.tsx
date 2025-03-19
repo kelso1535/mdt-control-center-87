@@ -81,10 +81,10 @@ const Reports: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl text-green-400 font-bold">Police Reports</h2>
+        <h2 className="text-xl text-blue-400 font-bold">Police Reports</h2>
         <Button 
           variant="outline" 
-          className="bg-card border-green-500/30 text-green-400 hover:bg-green-500/10" 
+          className="bg-card border-blue-500/30 text-blue-400 hover:bg-blue-500/10" 
           size="sm"
           onClick={loadData}
           disabled={loading}
@@ -94,7 +94,7 @@ const Reports: React.FC = () => {
         </Button>
       </div>
       
-      <div className="bg-black border border-green-500/30 rounded-md">
+      <div className="bg-black border border-blue-500/30 rounded-md">
         {loading ? (
           <div className="p-8 text-center">
             <div className="loading-dots inline-flex">
@@ -104,17 +104,17 @@ const Reports: React.FC = () => {
             </div>
           </div>
         ) : reports.length === 0 ? (
-          <div className="p-8 text-center text-green-400">
+          <div className="p-8 text-center text-blue-400">
             No reports found
           </div>
         ) : (
           <div className="p-2 font-mono">
             {reports.map((report) => (
-              <div key={report.id} className="mb-6 text-green-400 text-sm">
-                <div className="w-full border-b border-green-400/50 flex mb-2">
-                  <div className="flex-1 border-t border-green-400/50"></div>
+              <div key={report.id} className="mb-6 text-blue-400 text-sm">
+                <div className="w-full border-b border-blue-400/50 flex mb-2">
+                  <div className="flex-1 border-t border-blue-400/50"></div>
                   <div className="px-4 text-center font-bold text-lg uppercase tracking-wider">WARRANTS</div>
-                  <div className="flex-1 border-t border-green-400/50"></div>
+                  <div className="flex-1 border-t border-blue-400/50"></div>
                 </div>
                 
                 <div className="mb-2">
