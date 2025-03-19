@@ -37,7 +37,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
         <div className="flex items-center justify-center space-x-2">
           <Shield className="h-6 w-6 text-police-blue" />
           <h2 className="text-xl text-center font-bold">
-            <span className="terminal-effect text-police-blue">POLICE MDT</span>
+            <span className="terminal-effect text-police-blue">OCEANIC POLICE MDT</span>
           </h2>
         </div>
         

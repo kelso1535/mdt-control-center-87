@@ -17,7 +17,7 @@ Config.StatusOptions = {
 }
 
 -- Department configuration
-Config.DepartmentName = 'Los Santos Police Department'
+Config.DepartmentName = 'Oceanic Police Force'
 
 -- Notification settings
 Config.UseOxLib = true -- Set to true to use ox_lib for notifications
