@@ -17,7 +17,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   }}>
       <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center">
         <Shield className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
-        OCEANIC POLICE FORCE
+        POLICE DEPARTMENT
       </div>
       
       <div className={`nav-item ${currentScreen === 'people' ? 'active' : ''}`} onClick={() => onScreenChange('people')}>

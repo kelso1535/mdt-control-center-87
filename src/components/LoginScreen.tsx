@@ -4,6 +4,7 @@ import MDTLogo from './MDTLogo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
+import { Shield } from 'lucide-react';
 
 interface LoginScreenProps {
   onLogin: (callsign: string) => void;
@@ -33,9 +34,12 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
         <MDTLogo />
       </div>
       <div className="w-full max-w-md p-6 space-y-6 animate-slide-in backdrop-blur-sm bg-card/30 border border-border/30 rounded-lg shadow-lg">
-        <h2 className="text-xl text-center font-bold">
-          <span className="terminal-effect text-police-blue">OCEANIC POLICE MDT</span>
-        </h2>
+        <div className="flex items-center justify-center space-x-2">
+          <Shield className="h-6 w-6 text-police-blue" />
+          <h2 className="text-xl text-center font-bold">
+            <span className="terminal-effect text-police-blue">POLICE MDT</span>
+          </h2>
+        </div>
         
         <div className="space-y-4">
           <div className="space-y-2">
