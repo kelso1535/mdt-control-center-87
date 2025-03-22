@@ -2,17 +2,17 @@
 import React from 'react';
 
 type Screen = 
-  | 'login'
-  | 'people'
-  | 'vehicles'
-  | 'history'
-  | 'criminal'
-  | 'traffic'
-  | 'reports'
-  | 'serials'
-  | 'actions'
-  | 'financial'
-  | 'supervisor'
+  | 'login' 
+  | 'people' 
+  | 'vehicles' 
+  | 'history' 
+  | 'criminal' 
+  | 'traffic' 
+  | 'reports' 
+  | 'serials' 
+  | 'actions' 
+  | 'financial' 
+  | 'supervisor' 
   | 'wanted'
   | 'admin';
 
@@ -42,20 +42,18 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   ];
 
   return (
-    <div className="w-48 bg-sidebar border-r border-sidebar-border p-2">
-      <div className="space-y-1">
+    <div className="w-48 bg-black border-r border-gray-800 p-2" style={{ minWidth: '160px' }}>
+      <div className="space-y-0">
         {navItems.map((item) => (
-          <button
+          <div
             key={item.id}
             onClick={() => onScreenChange(item.id)}
-            className={`w-full text-left p-2 rounded text-sm ${
-              currentScreen === item.id
-                ? 'bg-police-blue text-white'
-                : 'text-white hover:bg-muted'
+            className={`nav-item ${
+              currentScreen === item.id ? 'active' : ''
             }`}
           >
             {item.label}
-          </button>
+          </div>
         ))}
       </div>
     </div>

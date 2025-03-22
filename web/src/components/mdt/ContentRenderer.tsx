@@ -1,5 +1,17 @@
 
 import React from 'react';
+import PeopleSearch from '../screens/PeopleSearch';
+import VehicleSearch from '../screens/VehicleSearch';
+import SearchHistory from '../screens/SearchHistory';
+import CriminalHistory from '../screens/CriminalHistory';
+import TrafficOffences from '../screens/TrafficOffences';
+import FinancialRecords from '../screens/FinancialRecords';
+import SerialSearch from '../screens/SerialSearch';
+import Actions from '../screens/Actions';
+import Units from '../screens/Units';
+import Warrants from '../screens/Warrants';
+import Reports from '../screens/Reports';
+import Admin from '../screens/Admin';
 
 type Screen = 
   | 'login'
@@ -21,17 +33,60 @@ interface ContentRendererProps {
 }
 
 const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
-  // This is a placeholder - in a real implementation, you would import and render actual components
-  return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold text-police-blue mb-4">
-        {currentScreen.charAt(0).toUpperCase() + currentScreen.slice(1)} Screen
-      </h2>
-      <p className="text-white">
-        This is the {currentScreen} screen. Content will be rendered here.
-      </p>
+  const getScreenTitle = () => {
+    switch (currentScreen) {
+      case 'people': return 'People Screen';
+      case 'vehicles': return 'Vehicle Screen';
+      case 'history': return 'Search History Screen';
+      case 'criminal': return 'Criminal History Screen';
+      case 'traffic': return 'Traffic Offenses Screen';
+      case 'reports': return 'Reports Screen';
+      case 'serials': return 'Serial Search Screen';
+      case 'actions': return 'Actions Screen';
+      case 'financial': return 'Financial Records Screen';
+      case 'supervisor': return 'Units Screen';
+      case 'wanted': return 'Warrants Screen';
+      case 'admin': return 'Admin Screen';
+      default: return 'Unknown Screen';
+    }
+  };
+  
+  // Simple fallback content for screens without content
+  const SimplePlaceholder = () => (
+    <div>
+      <h2 className="text-2xl mb-4">{getScreenTitle()}</h2>
+      <p>This is the {currentScreen} screen. Content will be rendered here.</p>
     </div>
   );
+
+  switch (currentScreen) {
+    case 'people':
+      return <PeopleSearch />;
+    case 'vehicles':
+      return <VehicleSearch />;
+    case 'history':
+      return <SearchHistory />;
+    case 'criminal':
+      return <CriminalHistory />;
+    case 'traffic':
+      return <TrafficOffences />;
+    case 'reports':
+      return <Reports />;
+    case 'serials':
+      return <SerialSearch />;
+    case 'actions':
+      return <Actions />;
+    case 'financial':
+      return <FinancialRecords />;
+    case 'supervisor':
+      return <Units />;
+    case 'wanted':
+      return <Warrants />;
+    case 'admin':
+      return <Admin />;
+    default:
+      return <SimplePlaceholder />;
+  }
 };
 
 export default ContentRenderer;
