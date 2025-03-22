@@ -65,4 +65,16 @@
     --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 215 27% 20%;
   }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto Condensed', 'Share Tech Mono', monospace;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 }
