@@ -7,15 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
-/* Import all CSS files - must come after Tailwind directives */
-@import './styles/animations.css';
-@import './styles/components.css';
-@import './styles/layout.css';
-@import './styles/buttons.css';
-@import './styles/data.css';
-@import './styles/forms.css';
-@import './styles/utils.css';
-
 @layer base {
   :root {
     --background: 215 60% 10%;
@@ -57,3 +48,37 @@
     overflow: hidden;
   }
 }
+
+/* Embedding fonts locally as a fallback */
+@font-face {
+  font-family: 'Share Tech Mono';
+  src: url('./assets/fonts/ShareTechMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Import all CSS files - must come after Tailwind directives and :root variables */
+@import './styles/animations.css';
+@import './styles/components.css';
+@import './styles/layout.css';
+@import './styles/buttons.css';
+@import './styles/data.css';
+@import './styles/forms.css';
+@import './styles/utils.css';
