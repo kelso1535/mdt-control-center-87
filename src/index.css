@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import all CSS files */
+/* Import all CSS files - must come after Tailwind directives */
 @import './styles/global.css';
 @import './styles/animations.css';
 @import './styles/components.css';

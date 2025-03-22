@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import all CSS files */
+/* Import all CSS files - must come after Tailwind directives */
 @import './styles/animations.css';
 @import './styles/components.css';
 @import './styles/layout.css';
@@ -16,22 +16,25 @@
 @font-face {
   font-family: 'Share Tech Mono';
   src: url('./assets/fonts/ShareTechMono-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Roboto Condensed';
   src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Roboto Condensed';
   src: url('./assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
@@ -61,18 +64,5 @@
     --sidebar-background: 215 60% 15%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 215 27% 20%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Roboto Condensed', 'Share Tech Mono', monospace;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
   }
 }

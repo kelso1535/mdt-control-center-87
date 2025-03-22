@@ -14,7 +14,8 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: './dist',
-    emptyOutDir: true
+    emptyOutDir: true,
+    assetsInlineLimit: 0, // Ensure all assets are bundled and no external requests are made
   },
   plugins: [
     react(),
@@ -34,4 +35,5 @@ export default defineConfig(({ mode }) => ({
       ],
     },
   },
+  assetsInclude: ['**/*.ttf'], // Explicitly include font files as assets
 }));
