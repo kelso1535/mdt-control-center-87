@@ -6,7 +6,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: './', // Ensures relative paths for all assets
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -15,7 +15,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    // Ensure all assets are bundled and no external requests are made
-    assetsInlineLimit: 0
+    assetsInlineLimit: 0, // Ensure all assets are bundled and no external requests are made
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Disable code splitting for better compatibility
+      }
+    }
   }
 })

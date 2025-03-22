@@ -7,11 +7,17 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [callsign, setCallsign] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (callsign.trim()) {
-      onLogin(callsign.trim());
+      setLoading(true);
+      // Simulate login API call
+      setTimeout(() => {
+        onLogin(callsign.trim());
+        setLoading(false);
+      }, 500);
     }
   };
 
@@ -43,7 +49,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
             type="submit"
             className="w-full bg-police-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
           >
-            Login
+            {loading ? 'Loading...' : 'Login'}
           </button>
         </form>
       </div>
