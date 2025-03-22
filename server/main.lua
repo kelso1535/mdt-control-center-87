@@ -1,4 +1,3 @@
-
 -- Standalone MDT Server side
 local Config = require 'config'
 
@@ -227,6 +226,66 @@ AddEventHandler('mdt:server:IssueFine', function(password, citizenId, amount, re
     
     -- Example of how you might log this action
     AddToSearchHistory(src, 'Admin Action', 'Issued fine to ' .. citizenId .. ' for $' .. amount)
+end)
+
+RegisterNetEvent('mdt:server:RevokeAction')
+AddEventHandler('mdt:server:RevokeAction', function(password, citizenId, actionType)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    -- In a real implementation, this would update the database based on actionType
+    Config.Framework.Notify(src, 'Action revoked successfully', 'success')
+    
+    -- Log the revocation action
+    AddToSearchHistory(src, 'Admin Action', 'Revoked ' .. actionType .. ' for citizen ' .. citizenId)
+end)
+
+RegisterNetEvent('mdt:server:RemoveAllFines')
+AddEventHandler('mdt:server:RemoveAllFines', function(password, citizenId)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    -- In a real implementation, this would clear all fines for the citizen
+    Config.Framework.Notify(src, 'All fines removed successfully', 'success')
+    
+    -- Log the action
+    AddToSearchHistory(src, 'Admin Action', 'Removed all fines for citizen ' .. citizenId)
+end)
+
+RegisterNetEvent('mdt:server:ClearAllWarrants')
+AddEventHandler('mdt:server:ClearAllWarrants', function(password, citizenId)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    -- In a real implementation, this would clear all warrants for the citizen
+    Config.Framework.Notify(src, 'All warrants cleared successfully', 'success')
+    
+    -- Log the action
+    AddToSearchHistory(src, 'Admin Action', 'Cleared all warrants for citizen ' .. citizenId)
+end)
+
+RegisterNetEvent('mdt:server:RemoveAllFlags')
+AddEventHandler('mdt:server:RemoveAllFlags', function(password, citizenId)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    -- In a real implementation, this would remove all flags for the citizen
+    Config.Framework.Notify(src, 'All flags removed successfully', 'success')
+    
+    -- Log the action
+    AddToSearchHistory(src, 'Admin Action', 'Removed all flags for citizen ' .. citizenId)
 end)
 
 -- ANPR scanning functionality

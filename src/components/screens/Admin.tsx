@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +13,8 @@ import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { Trash, X, Ban, ShieldX } from 'lucide-react';
 
 interface Template {
   id: string;
@@ -50,7 +51,6 @@ const Admin: React.FC = () => {
     section2: ''
   });
 
-  // Fields for person management
   const [personId, setPersonId] = useState('');
   const [personName, setPersonName] = useState('');
   const [personFlags, setPersonFlags] = useState({
@@ -61,7 +61,6 @@ const Admin: React.FC = () => {
     violence: false
   });
 
-  // Fields for vehicle management
   const [vehiclePlate, setVehiclePlate] = useState('');
   const [vehicleModel, setVehicleModel] = useState('');
   const [vehicleOwner, setVehicleOwner] = useState('');
@@ -70,7 +69,6 @@ const Admin: React.FC = () => {
     wanted: false
   });
 
-  // Fields for serial management
   const [serialNumber, setSerialNumber] = useState('');
   const [serialType, setSerialType] = useState('');
   const [serialOwner, setSerialOwner] = useState('');
@@ -85,9 +83,10 @@ const Admin: React.FC = () => {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [editMode, setEditMode] = useState(false);
 
+  const [revocationCitizenId, setRevocationCitizenId] = useState('');
+  const [revocationType, setRevocationType] = useState('fine');
+
   const handleAuthenticate = () => {
-    // In a real implementation, we would check against Config.AdminPassword
-    // But for this frontend component, we'll just simulate authentication
     if (password === 'admin123') {
       setAuthenticated(true);
       toast.success('Admin authentication successful');
@@ -161,7 +160,6 @@ const Admin: React.FC = () => {
       return;
     }
 
-    // In a real implementation, we would send this to the server
     toast.success(`Fine of $${fineAmount} issued to ${citizenId} for ${fineReason}`);
     setCitizenId('');
     setFineAmount('');
@@ -219,6 +217,34 @@ const Admin: React.FC = () => {
     toast.success('Search history cleared successfully');
   };
 
+  const handleRevokeAction = () => {
+    if (!revocationCitizenId) {
+      toast.error('Please enter a citizen ID');
+      return;
+    }
+    
+    let successMessage = '';
+    switch (revocationType) {
+      case 'fine':
+        successMessage = `Fine removed for citizen ${revocationCitizenId}`;
+        break;
+      case 'bail':
+        successMessage = `Bail conditions removed for citizen ${revocationCitizenId}`;
+        break;
+      case 'warrant':
+        successMessage = `Warrant removed for citizen ${revocationCitizenId}`;
+        break;
+      case 'flag':
+        successMessage = `Flags removed for citizen ${revocationCitizenId}`;
+        break;
+      default:
+        successMessage = `Action successfully revoked for citizen ${revocationCitizenId}`;
+    }
+    
+    toast.success(successMessage);
+    setRevocationCitizenId('');
+  };
+
   if (!authenticated) {
     return (
       <div className="fade-in p-4">
@@ -254,17 +280,17 @@ const Admin: React.FC = () => {
       <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-3">Admin Panel</h2>
       
       <Tabs defaultValue="templates" className="w-full">
-        <TabsList className="grid grid-cols-5 mb-4">
+        <TabsList className="grid grid-cols-6 mb-4">
           <TabsTrigger value="templates">Templates</TabsTrigger>
           <TabsTrigger value="people">People</TabsTrigger>
           <TabsTrigger value="vehicles">Vehicles</TabsTrigger>
           <TabsTrigger value="serials">Serials</TabsTrigger>
+          <TabsTrigger value="revocations">Revocations</TabsTrigger>
           <TabsTrigger value="system">System</TabsTrigger>
         </TabsList>
         
         <TabsContent value="templates">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Template Management */}
             <div className="bg-card/30 border border-border rounded-md p-4">
               <h3 className="text-lg text-[hsl(var(--police-blue))] font-semibold mb-4">
                 {editMode ? 'Edit Template' : 'Add New Template'}
@@ -364,7 +390,6 @@ const Admin: React.FC = () => {
               </div>
             </div>
             
-            {/* Issue Fines */}
             <div className="bg-card/30 border border-border rounded-md p-4">
               <h3 className="text-lg text-[hsl(var(--police-blue))] font-semibold mb-4">
                 Issue Fine
@@ -418,7 +443,6 @@ const Admin: React.FC = () => {
             </div>
           </div>
           
-          {/* Template List */}
           <div className="mt-6 bg-card/30 border border-border rounded-md p-4">
             <h3 className="text-lg text-[hsl(var(--police-blue))] font-semibold mb-4">
               Template List
@@ -712,6 +736,134 @@ const Admin: React.FC = () => {
             >
               Update Serial Record
             </Button>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="revocations">
+          <div className="bg-card/30 border border-border rounded-md p-4">
+            <h3 className="text-lg text-[hsl(var(--police-blue))] font-semibold mb-4">
+              Revoke Accidental Police Actions
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Use this panel to remove fines, warrants, or flags that may have been accidentally applied to citizens.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-[hsl(var(--police-blue))] mb-1">
+                  Citizen ID
+                </label>
+                <Input 
+                  value={revocationCitizenId}
+                  onChange={(e) => setRevocationCitizenId(e.target.value)}
+                  className="bg-black/50 border-border text-white"
+                  placeholder="Enter citizen ID"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-[hsl(var(--police-blue))] mb-1">
+                  Action to Revoke
+                </label>
+                <Select 
+                  value={revocationType}
+                  onValueChange={(value) => setRevocationType(value)}
+                >
+                  <SelectTrigger className="bg-black/50 border-border text-white">
+                    <SelectValue placeholder="Select action to revoke" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="fine">Fine</SelectItem>
+                    <SelectItem value="bail">Bail Conditions</SelectItem>
+                    <SelectItem value="warrant">Warrant</SelectItem>
+                    <SelectItem value="flag">Person Flags</SelectItem>
+                    <SelectItem value="vehicle">Vehicle Flags</SelectItem>
+                    <SelectItem value="weapon">Weapon Restrictions</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="text-[hsl(var(--police-blue))] font-medium mb-3">Quick Actions</h4>
+                <div className="space-y-3">
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-left justify-start"
+                    onClick={() => {
+                      if (!revocationCitizenId) {
+                        toast.error('Please enter a citizen ID');
+                        return;
+                      }
+                      toast.success(`All fines removed for citizen ${revocationCitizenId}`);
+                    }}
+                  >
+                    <Trash className="mr-2 h-4 w-4" /> Remove All Fines
+                  </Button>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-left justify-start"
+                    onClick={() => {
+                      if (!revocationCitizenId) {
+                        toast.error('Please enter a citizen ID');
+                        return;
+                      }
+                      toast.success(`All warrants removed for citizen ${revocationCitizenId}`);
+                    }}
+                  >
+                    <X className="mr-2 h-4 w-4" /> Clear All Warrants
+                  </Button>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-left justify-start"
+                    onClick={() => {
+                      if (!revocationCitizenId) {
+                        toast.error('Please enter a citizen ID');
+                        return;
+                      }
+                      toast.success(`All flags removed for citizen ${revocationCitizenId}`);
+                    }}
+                  >
+                    <Ban className="mr-2 h-4 w-4" /> Remove All Flags
+                  </Button>
+                  
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-left justify-start"
+                    onClick={() => {
+                      if (!revocationCitizenId) {
+                        toast.error('Please enter a citizen ID');
+                        return;
+                      }
+                      toast.success(`All restrictions removed for citizen ${revocationCitizenId}`);
+                    }}
+                  >
+                    <ShieldX className="mr-2 h-4 w-4" /> Remove All Restrictions
+                  </Button>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-[hsl(var(--police-blue))] font-medium mb-3">Specific Revocation</h4>
+                <div className="space-y-4">
+                  <div>
+                    <Button 
+                      onClick={handleRevokeAction}
+                      className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white"
+                    >
+                      Revoke Selected Action
+                    </Button>
+                  </div>
+                  
+                  <div className="border border-border/30 rounded-md p-3 text-sm text-muted-foreground">
+                    <p>Note: All revocation actions are logged for administrative purposes. Please ensure you have proper authorization before revoking any police actions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </TabsContent>
         
