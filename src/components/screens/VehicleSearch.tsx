@@ -13,7 +13,6 @@ const mockVehicle: Vehicle = {
   color: 'BLACK',
   owner: 'JOHN DOE',
   registration: 'VALID',
-  insurance: 'VALID',
   flags: {
     stolen: false,
     wanted: false
@@ -96,12 +95,6 @@ const VehicleSearch: React.FC = () => {
               <span>REGISTRATION:</span>
               <span className={searchResult.registration === 'VALID' ? 'text-[hsl(var(--police-blue))]' : 'text-destructive'}>
                 {searchResult.registration}
-              </span>
-            </div>
-            <div className="data-line">
-              <span>INSURANCE:</span>
-              <span className={searchResult.insurance === 'VALID' ? 'text-[hsl(var(--police-blue))]' : 'text-destructive'}>
-                {searchResult.insurance}
               </span>
             </div>
           </div>

@@ -21,7 +21,6 @@ const mockPerson: Person = {
   flags: {
     wanted: false,
     bail: false,
-    mentalHealth: false,
     possessWeapon: false,
     violencePolice: true,
     violence: false,
@@ -162,10 +161,6 @@ const PeopleSearch: React.FC = () => {
                   <div className="data-line">
                     <span>VIOLENCE:</span>
                     <span>{searchResult.flags.violence ? 'YES' : 'NO'}</span>
-                  </div>
-                  <div className="data-line">
-                    <span>MEN. HEALTH:</span>
-                    <span>{searchResult.flags.mentalHealth ? 'YES' : 'NO'}</span>
                   </div>
                   <div className="data-line">
                     <span>POS WEAP:</span>

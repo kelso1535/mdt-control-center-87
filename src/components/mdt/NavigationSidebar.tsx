@@ -15,7 +15,7 @@ type Screen =
   | 'financial' 
   | 'supervisor' 
   | 'wanted'
-  | 'admin';  // Added 'admin' to the Screen type
+  | 'admin';
 
 interface NavigationSidebarProps {
   currentScreen: Screen;
@@ -46,11 +46,6 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <span>SEARCH VEHICLE</span>
       </div>
       
-      <div className={`nav-item ${currentScreen === 'history' ? 'active' : ''}`} onClick={() => onScreenChange('history')}>
-        <Clock className="mdt-sidebar-icon" />
-        <span>SEARCH HISTORY</span>
-      </div>
-      
       <div className={`nav-item ${currentScreen === 'serials' ? 'active' : ''}`} onClick={() => onScreenChange('serials')}>
         <Search className="mdt-sidebar-icon" />
         <span>SEARCH SERIALS</span>
@@ -78,6 +73,16 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <span>REPORTS</span>
       </div>
       
+      <div className={`nav-item ${currentScreen === 'financial' ? 'active' : ''}`} onClick={() => onScreenChange('financial')}>
+        <Database className="mdt-sidebar-icon" />
+        <span>FIN. RECORDS</span>
+      </div>
+      
+      <div className={`nav-item ${currentScreen === 'history' ? 'active' : ''}`} onClick={() => onScreenChange('history')}>
+        <Clock className="mdt-sidebar-icon" />
+        <span>SEARCH HISTORY</span>
+      </div>
+      
       <div className="mdt-hr my-2"></div>
       
       <div className="text-sm font-bold text-muted-foreground mb-2 mt-1 flex items-center">
@@ -88,11 +93,6 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       <div className={`nav-item ${currentScreen === 'actions' ? 'active' : ''}`} onClick={() => onScreenChange('actions')}>
         <AlertTriangle className="mdt-sidebar-icon" />
         <span>ACTIONS</span>
-      </div>
-      
-      <div className={`nav-item ${currentScreen === 'financial' ? 'active' : ''}`} onClick={() => onScreenChange('financial')}>
-        <Database className="mdt-sidebar-icon" />
-        <span>FIN. RECORDS</span>
       </div>
       
       <div className={`nav-item ${currentScreen === 'supervisor' ? 'active' : ''}`} onClick={() => onScreenChange('supervisor')}>

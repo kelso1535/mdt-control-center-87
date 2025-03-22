@@ -49,7 +49,7 @@
   }
   
   .section-header {
-    @apply w-full border-t border-b border-[hsl(var(--police-blue))]/30 flex items-center justify-center text-center my-1 py-1;
+    @apply w-full flex items-center justify-center text-center my-1 py-1 border-t border-b border-[hsl(var(--police-blue))]/30;
   }
   
   .section-title {

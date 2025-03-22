@@ -1,4 +1,3 @@
-
 export interface Person {
   id: string;
   name: string;
@@ -13,7 +12,6 @@ export interface Person {
   flags: {
     wanted: boolean;
     bail: boolean;
-    mentalHealth: boolean;
     possessWeapon: boolean;
     violencePolice: boolean;
     violence: boolean;
@@ -34,7 +32,6 @@ export interface Vehicle {
   color: string;
   owner: string;
   registration: 'VALID' | 'EXPIRED' | 'SUSPENDED';
-  insurance: 'VALID' | 'EXPIRED' | 'NONE';
   flags: {
     stolen: boolean;
     wanted: boolean;
