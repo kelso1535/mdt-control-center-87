@@ -5,7 +5,7 @@
     width: 100%;
     max-width: 1280px;
     height: 820px;
-    background-color: #000000;  /* Changed to black */
+    background-color: #333;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -60,11 +60,13 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    background-color: #000000;  /* Pure black background */
-    /* Removed gradient and overlay effects */
+    @apply bg-[hsl(215,60%,10%)];
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(0, 40, 83, 0.8) 0%, rgba(0, 0, 0, 0.6) 90%),
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
   }
   
-  /* Screen overlay - minimized */
+  /* Screen overlay */
   .screen-overlay {
     pointer-events: none;
     position: absolute;
@@ -72,7 +74,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Removed all background effects for pure black */
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%),
+      radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background-size: 100% 2px, 100% 100%;
     z-index: 10;
   }
 }

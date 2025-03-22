@@ -8,31 +8,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;  /* Changed to pure black */
+    --background: 215 60% 10%;
     --foreground: 210 40% 98%;
-    --card: 0 0% 0%;  /* Changed to pure black */
+    --card: 215 60% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 0 0% 0%;  /* Changed to pure black */
+    --popover: 215 60% 8%;
     --popover-foreground: 210 40% 98%;
     --primary: 210 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;  /* Darkened secondary */
+    --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 0 0% 10%;  /* Darkened muted */
+    --muted: 215 27% 16%;
     --muted-foreground: 217.9 10.6% 64.9%;
     --accent: 210 100% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 0 0% 15%;  /* Darkened border */
-    --input: 0 0% 10%;  /* Darkened input */
+    --border: 215 27% 20%;
+    --input: 215 27% 18%;
     --ring: 210 100% 50%;
     --radius: 0.5rem;
     --police-blue: 210 100% 50%;
     --alert-red: 0 100% 50%;
-    --sidebar-background: 0 0% 5%;  /* Almost black sidebar */
+    --sidebar-background: 215 60% 15%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-border: 0 0% 15%;  /* Darkened sidebar border */
+    --sidebar-border: 215 27% 20%;
   }
 }
 
