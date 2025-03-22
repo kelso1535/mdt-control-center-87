@@ -12,7 +12,7 @@
   }
   
   .data-table td {
-    @apply py-2 px-2 text-foreground border-t border-border/30;
+    @apply py-2 px-2 text-[hsl(var(--police-blue))] border-t border-border/30;
   }
   
   .data-header {
@@ -37,15 +37,15 @@
   }
   
   .data-line span:last-child {
-    @apply ml-1;
+    @apply ml-1 text-[hsl(var(--police-blue))];
   }
   
   .text-unpaid {
-    @apply text-destructive;
+    @apply text-[hsl(var(--police-blue))];
   }
   
   .text-paid {
-    @apply text-primary;
+    @apply text-[hsl(var(--police-blue))];
   }
   
   .dashed-line {
@@ -81,7 +81,7 @@
   }
   
   .mdt-table td {
-    @apply py-2 px-2 text-foreground border-t border-border/30;
+    @apply py-2 px-2 text-[hsl(var(--police-blue))] border-t border-border/30;
   }
   
   .mdt-table tr:hover td {
@@ -91,5 +91,18 @@
   /* Data panel styling */
   .data-panel {
     @apply bg-card/30 border border-border rounded-md p-4;
+  }
+  
+  /* Warrant section styling */
+  .warrant-section {
+    @apply text-[hsl(var(--police-blue))] mb-4;
+  }
+  
+  .warrant-header {
+    @apply text-[hsl(var(--police-blue))] font-bold;
+  }
+  
+  .warrant-details {
+    @apply text-[hsl(var(--police-blue))] whitespace-pre-line;
   }
 }

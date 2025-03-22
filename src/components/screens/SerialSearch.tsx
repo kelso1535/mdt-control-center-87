@@ -50,7 +50,7 @@ const SerialSearch: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-2">Search Serial Number</h2>
+      <h2 className="text-xl text-police-blue font-bold mb-2">Search Serial Number</h2>
       
       <div className="flex space-x-2 mb-2">
         <Input
@@ -62,7 +62,7 @@ const SerialSearch: React.FC = () => {
         />
         <Button 
           onClick={handleSearch}
-          className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/90 text-white"
+          className="bg-police-blue hover:bg-[hsl(var(--police-blue))]/90 text-white"
           disabled={loading}
         >
           {loading ? 'Searching...' : 'Run Serial Check'}
@@ -109,15 +109,11 @@ const SerialSearch: React.FC = () => {
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
             <div className="data-line">
               <span>STOLEN:</span>
-              <span className={searchResult.flags.stolen ? 'text-destructive' : ''}>
-                {searchResult.flags.stolen ? 'YES' : 'NO'}
-              </span>
+              <span>{searchResult.flags.stolen ? 'YES' : 'NO'}</span>
             </div>
             <div className="data-line">
               <span>WANTED:</span>
-              <span className={searchResult.flags.wanted ? 'text-destructive' : ''}>
-                {searchResult.flags.wanted ? 'YES' : 'NO'}
-              </span>
+              <span>{searchResult.flags.wanted ? 'YES' : 'NO'}</span>
             </div>
           </div>
         </div>

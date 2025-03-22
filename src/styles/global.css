@@ -33,6 +33,7 @@
     --sidebar-background: 215 60% 15%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 215 27% 20%;
+    --mdt-text: 210 100% 50%;
   }
 }
 
@@ -56,6 +57,10 @@
 
 .bg-police-blue {
   @apply bg-[hsl(var(--police-blue))];
+}
+
+.text-mdt {
+  @apply text-[hsl(var(--mdt-text))];
 }
 
 /* Terminal/code effect for text */
@@ -135,4 +140,9 @@
 
 .mdt-hr {
   @apply border-t border-border my-1;
+}
+
+/* Table Styles */
+.mdt-table-container {
+  @apply bg-card/30 border border-border rounded-md p-4 overflow-auto;
 }

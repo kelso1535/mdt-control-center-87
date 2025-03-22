@@ -55,7 +55,7 @@ const TrafficOffences: React.FC = () => {
         </div>
       </div>
       
-      <div className="data-panel">
+      <div className="mdt-table-container">
         <table className="mdt-table">
           <thead>
             <tr>
