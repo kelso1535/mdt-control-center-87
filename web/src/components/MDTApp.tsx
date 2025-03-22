@@ -1,5 +1,5 @@
+
 import React, { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
 import { OfficerStatus } from '@/types';
 import LoginScreen from './LoginScreen';
 import MainSidebar from './mdt/MainSidebar';
@@ -18,15 +18,10 @@ type Screen =
   | 'actions'
   | 'financial'
   | 'supervisor'
-  | 'wanted';
+  | 'wanted'
+  | 'admin';
 
-interface MDTAppProps {
-  sendNUIMessage: (data: any) => void;
-  nuiCallback: (event: string, data: any) => void;
-}
-
-const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
-  const { toast } = useToast();
+const MDTApp: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [callsign, setCallsign] = useState('');
   const [currentStatus, setCurrentStatus] = useState<OfficerStatus>('Code 1 On Patrol');
@@ -36,49 +31,27 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
     setCallsign(officerCallsign);
     setLoggedIn(true);
     setCurrentScreen('people');
-    nuiCallback('login', { callsign: officerCallsign });
-    toast({
-      title: "Login Successful",
-      description: `Welcome Officer ${officerCallsign}`,
-    });
+    // Toast will be handled by use-toast once we add it
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
     setCurrentScreen('login');
     setCallsign('');
-    nuiCallback('closeApp', {});
-    toast({
-      title: "Logged Out",
-      description: "You have been logged out of the MDT",
-    });
+    // Toast will be handled by use-toast once we add it
   };
 
   const handleChangeStatus = (status: OfficerStatus) => {
     setCurrentStatus(status);
-    nuiCallback('changeStatus', { status });
-    toast({
-      title: "Status Updated",
-      description: `Status set to: ${status}`,
-    });
+    // Toast will be handled by use-toast once we add it
   };
 
   const handleFlagStolen = () => {
-    nuiCallback('flagStolen', {});
-    toast({
-      title: "Vehicle Flagged",
-      description: "Police unit has been flagged as stolen",
-      variant: "destructive",
-    });
+    // Toast will be handled by use-toast once we add it
   };
 
   const handleDuress = () => {
-    nuiCallback('duress', {});
-    toast({
-      title: "DURESS ALERT ACTIVATED",
-      description: "All available units have been notified of your location",
-      variant: "destructive",
-    });
+    // Toast will be handled by use-toast once we add it
   };
 
   if (!loggedIn) {

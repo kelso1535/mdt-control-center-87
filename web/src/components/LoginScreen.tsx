@@ -1,9 +1,5 @@
 
 import React, { useState } from 'react';
-import MDTLogo from './MDTLogo';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
 
 interface LoginScreenProps {
   onLogin: (callsign: string) => void;
@@ -11,57 +7,45 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [callsign, setCallsign] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (!callsign.trim()) {
-      toast.error('Please enter a valid callsign');
-      return;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (callsign.trim()) {
+      onLogin(callsign.trim());
     }
-    
-    setLoading(true);
-    // Simulate login API call
-    setTimeout(() => {
-      onLogin(callsign);
-      setLoading(false);
-    }, 1000);
   };
 
   return (
-    <div className="login-screen">
-      <div className="mb-8 animate-fade-in">
-        <MDTLogo />
-      </div>
-      <div className="w-full max-w-md p-6 space-y-6 animate-slide-in">
-        <h2 className="text-xl text-center text-primary font-bold">
-          <span className="terminal-effect">LOGIN TO MDT</span>
-        </h2>
+    <div className="flex items-center justify-center h-full w-full">
+      <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border w-full max-w-md">
+        <div className="flex flex-col items-center mb-6">
+          <h1 className="text-3xl font-bold text-police-blue mb-2">Police MDT</h1>
+          <p className="text-muted-foreground">Login to access the system</p>
+        </div>
         
-        <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Input
+            <label htmlFor="callsign" className="text-sm font-medium text-white">
+              Officer Callsign
+            </label>
+            <input
+              id="callsign"
               type="text"
-              placeholder="Enter your callsign"
               value={callsign}
               onChange={(e) => setCallsign(e.target.value)}
-              className="bg-input/50 border-border/50 backdrop-blur-sm"
+              className="w-full px-3 py-2 bg-background border border-input rounded-md"
+              placeholder="Enter your callsign"
+              required
             />
           </div>
           
-          <Button 
-            onClick={handleLogin} 
-            className="w-full glass-button" 
-            disabled={loading}
+          <button
+            type="submit"
+            className="w-full bg-police-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
           >
-            {loading ? (
-              <span className="loading-dots">
-                <div></div>
-                <div></div>
-                <div></div>
-              </span>
-            ) : 'Login to MDT'}
-          </Button>
-        </div>
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );
