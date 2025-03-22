@@ -3,8 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import tailwindcssPostcss from '@tailwindcss/postcss';
 
 export default defineConfig(({ mode }) => ({
   server: {
@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => ({
   css: {
     postcss: {
       plugins: [
-        tailwindcss,
+        tailwindcssPostcss(),
         autoprefixer,
       ],
     },
