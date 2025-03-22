@@ -111,6 +111,7 @@ const Units: React.FC = () => {
           <thead>
             <tr className="text-left text-blue-400">
               <th className="py-1 px-1">CALLSIGN</th>
+              <th className="py-1 px-1">PIN #</th>
               <th className="py-1 px-1">NAME</th>
               <th className="py-1 px-1">UPDATED</th>
               <th className="py-1 px-1">STATUS</th>
@@ -121,7 +122,7 @@ const Units: React.FC = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={showPhones ? 6 : 5} className="py-8 text-center">
+                <td colSpan={showPhones ? 7 : 6} className="py-8 text-center">
                   <div className="loading-dots inline-flex">
                     <div></div>
                     <div></div>
@@ -131,7 +132,7 @@ const Units: React.FC = () => {
               </tr>
             ) : units.length === 0 ? (
               <tr>
-                <td colSpan={showPhones ? 6 : 5} className="py-8 text-center text-muted-foreground">
+                <td colSpan={showPhones ? 7 : 6} className="py-8 text-center text-muted-foreground">
                   No units currently on duty
                 </td>
               </tr>
@@ -139,6 +140,7 @@ const Units: React.FC = () => {
               units.map((unit, index) => (
                 <tr key={index} className="border-t border-border/30">
                   <td className="py-1 px-1 text-blue-400">{unit.callsign}</td>
+                  <td className="py-1 px-1 text-blue-400">{unit.pin}</td>
                   <td className="py-1 px-1 text-blue-400">{unit.name}</td>
                   <td className="py-1 px-1 text-blue-400">{unit.updated}</td>
                   <td className="py-1 px-1 text-blue-400">{unit.status}</td>
