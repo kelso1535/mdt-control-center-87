@@ -22,7 +22,12 @@ type Screen =
   | 'wanted'
   | 'admin';
 
-const MDTApp: React.FC = () => {
+interface MDTAppProps {
+  sendNUIMessage?: (data: any) => void;
+  nuiCallback?: (event: string, data: any) => void;
+}
+
+const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
   const { toast } = useToast();
   const [loggedIn, setLoggedIn] = useState(false);
   const [callsign, setCallsign] = useState('');
