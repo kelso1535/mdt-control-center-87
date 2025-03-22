@@ -28,7 +28,7 @@
   }
   
   .data-line span:last-child {
-    @apply ml-1;
+    @apply text-foreground ml-1;
   }
   
   .text-unpaid {
@@ -60,5 +60,14 @@
   .section-line {
     @apply flex-1 border-t-2 border-dashed border-[hsl(var(--police-blue))]/50;
     margin: 0 10px;
+  }
+  
+  /* Table styles for consistency */
+  table th {
+    @apply text-[hsl(var(--police-blue))] font-bold;
+  }
+  
+  table td {
+    @apply text-foreground;
   }
 }

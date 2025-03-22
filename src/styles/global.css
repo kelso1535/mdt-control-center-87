@@ -47,4 +47,9 @@
     padding: 0;
     overflow: hidden;
   }
+  
+  /* Set default text color for all text elements */
+  p, span, h1, h2, h3, h4, h5, h6, th, td, div, button, input, textarea, select {
+    @apply text-[hsl(var(--police-blue))] text-foreground;
+  }
 }
