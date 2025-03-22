@@ -1,17 +1,19 @@
 
 import React from 'react';
-import PeopleSearch from '@/components/screens/PeopleSearch';
-import VehicleSearch from '@/components/screens/VehicleSearch';
-import SearchHistory from '@/components/screens/SearchHistory';
-import CriminalHistory from '@/components/screens/CriminalHistory';
-import TrafficOffences from '@/components/screens/TrafficOffences';
-import FinancialRecords from '@/components/screens/FinancialRecords';
-import SerialSearch from '@/components/screens/SerialSearch';
-import Actions from '@/components/screens/Actions';
-import Units from '@/components/screens/Units';
-import Warrants from '@/components/screens/Warrants';
-import Reports from '@/components/screens/Reports';
-import Admin from '@/components/screens/Admin';
+
+// Create placeholder components instead of trying to import missing ones
+const PeopleSearch = () => <div className="p-4"><h2 className="text-xl mb-4">People Search</h2><p>Search for people in the database</p></div>;
+const VehicleSearch = () => <div className="p-4"><h2 className="text-xl mb-4">Vehicle Search</h2><p>Search for vehicles in the database</p></div>;
+const SearchHistory = () => <div className="p-4"><h2 className="text-xl mb-4">Search History</h2><p>View your recent searches</p></div>;
+const CriminalHistory = () => <div className="p-4"><h2 className="text-xl mb-4">Criminal History</h2><p>View criminal records</p></div>;
+const TrafficOffences = () => <div className="p-4"><h2 className="text-xl mb-4">Traffic Offences</h2><p>View traffic violations</p></div>;
+const FinancialRecords = () => <div className="p-4"><h2 className="text-xl mb-4">Financial Records</h2><p>View financial information</p></div>;
+const SerialSearch = () => <div className="p-4"><h2 className="text-xl mb-4">Serial Search</h2><p>Search for serial numbers</p></div>;
+const Actions = () => <div className="p-4"><h2 className="text-xl mb-4">Actions</h2><p>Perform police actions</p></div>;
+const Units = () => <div className="p-4"><h2 className="text-xl mb-4">Units</h2><p>View and manage units</p></div>;
+const Warrants = () => <div className="p-4"><h2 className="text-xl mb-4">Warrants</h2><p>View and manage warrants</p></div>;
+const Reports = () => <div className="p-4"><h2 className="text-xl mb-4">Reports</h2><p>View and create reports</p></div>;
+const Admin = () => <div className="p-4"><h2 className="text-xl mb-4">Admin</h2><p>Administrative functions</p></div>;
 
 type Screen = 
   | 'login'
