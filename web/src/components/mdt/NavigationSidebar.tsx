@@ -42,15 +42,16 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   ];
 
   return (
-    <div className="w-48 bg-black border-r border-gray-800 p-2" style={{ minWidth: '160px' }}>
-      <div className="space-y-0">
+    <div className="w-64 bg-[#0a1726] border-r border-[#1c3a5a] text-white">
+      <div className="py-4">
         {navItems.map((item) => (
           <div
             key={item.id}
             onClick={() => onScreenChange(item.id)}
-            className={`nav-item ${
-              currentScreen === item.id ? 'active' : ''
-            }`}
+            className={`
+              px-4 py-2 cursor-pointer hover:bg-[#1c3a5a] transition-colors
+              ${currentScreen === item.id ? 'bg-[#007bff] text-white' : 'text-gray-300'}
+            `}
           >
             {item.label}
           </div>

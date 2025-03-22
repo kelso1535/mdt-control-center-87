@@ -20,45 +20,45 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
   onLogout
 }) => {
   return (
-    <div className="w-48 bg-sidebar border-r border-sidebar-border p-3 flex flex-col" style={{ minWidth: '160px' }}>
+    <div className="w-64 bg-[#0d1e33] border-r border-[#1c3a5a] p-4 flex flex-col text-white">
       <div className="mb-4">
-        <h2 className="text-xl font-bold text-white">MDT System</h2>
-        <p className="text-sm text-white">Officer: {callsign}</p>
+        <h2 className="text-xl font-bold">MDT System</h2>
+        <p className="text-sm text-gray-400">Officer: {callsign}</p>
       </div>
       
       <div className="mb-4">
-        <p className="text-sm text-white font-bold">Status</p>
+        <p className="text-sm text-gray-400 font-bold">Status</p>
         <p className="text-white">{currentStatus}</p>
       </div>
       
-      <div className="flex flex-col mt-2 space-y-2">
+      <div className="flex flex-col mt-4 space-y-2">
         <button
           onClick={() => onStatusChange('Code 1 On Patrol')}
-          className="simple-button"
+          className="bg-[#0d1e33] border border-[#1c3a5a] hover:bg-[#1c3a5a] text-white py-2 px-4 rounded"
         >
           Code 1 On Patrol
         </button>
         <button
           onClick={() => onStatusChange('Code 2 Responding')}
-          className="simple-button"
+          className="bg-[#0d1e33] border border-[#1c3a5a] hover:bg-[#1c3a5a] text-white py-2 px-4 rounded"
         >
           Code 2 Responding
         </button>
         <button
           onClick={() => onStatusChange('Code 3 Emergency')}
-          className="simple-button"
+          className="bg-[#0d1e33] border border-[#1c3a5a] hover:bg-[#1c3a5a] text-white py-2 px-4 rounded"
         >
           Code 3 Emergency
         </button>
         <button
           onClick={onDuress}
-          className="simple-button bg-destructive"
+          className="bg-red-800 hover:bg-red-700 text-white py-2 px-4 rounded"
         >
           DURESS
         </button>
         <button
           onClick={onFlagStolen}
-          className="simple-button"
+          className="bg-[#0d1e33] border border-[#1c3a5a] hover:bg-[#1c3a5a] text-white py-2 px-4 rounded"
         >
           Flag Unit as Stolen
         </button>
@@ -67,7 +67,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       <div className="mt-auto">
         <button
           onClick={onLogout}
-          className="logout-button"
+          className="w-full bg-[#1c3a5a] hover:bg-[#0d1e33] text-white py-2 px-4 rounded"
         >
           Logout
         </button>

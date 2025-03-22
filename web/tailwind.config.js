@@ -51,7 +51,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        'police-blue': 'hsl(var(--police-blue))',
+        'police-blue': '#007bff',
+        'mdt-dark': '#0a1422',
+        'mdt-bg': '#0a1726',
+        'mdt-sidebar': '#0d1e33',
+        'mdt-border': '#1c3a5a',
       },
       fontFamily: {
         mono: ['monospace'],
