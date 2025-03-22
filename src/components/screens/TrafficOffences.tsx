@@ -40,11 +40,11 @@ const TrafficOffences: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-3">
-        <h2 className="text-police-blue text-2xl font-bold">Infringement Notices & Fines</h2>
+        <h2 className="text-blue-400 text-2xl font-bold">Infringement Notices & Fines</h2>
         <div className="flex gap-2">
           <Button 
             variant="outline" 
-            className="bg-card border-primary/30 text-primary" 
+            className="bg-blue-950/50 border-blue-500/30 text-blue-400" 
             size="sm"
             onClick={loadData}
             disabled={loading}
@@ -55,7 +55,7 @@ const TrafficOffences: React.FC = () => {
         </div>
       </div>
       
-      <div className="mdt-table-container">
+      <div className="data-card">
         <table className="mdt-table">
           <thead>
             <tr>
