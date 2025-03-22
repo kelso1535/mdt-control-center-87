@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -111,27 +112,27 @@ const Reports: React.FC = () => {
             </div>
           </div>
         ) : reports.length === 0 ? (
-          <div className="p-8 text-center text-[hsl(var(--police-blue))]">
+          <div className="p-8 text-center text-white">
             No reports found
           </div>
         ) : (
           <div className="p-2 font-mono">
             {reports.map((report) => (
-              <div key={report.id} className="mb-6 text-[hsl(var(--police-blue))] text-sm">
+              <div key={report.id} className="mb-6 text-white text-sm">
                 <SectionHeader title="WARRANTS" />
                 
-                <div className="mb-2">
+                <div className="mb-2 text-white">
                   <span>DATE: {report.date} {report.time} - {report.summary} - Entered by: {report.officer}</span>
                 </div>
                 
                 {report.warrantDetails && (
-                  <div className="mb-2">
+                  <div className="mb-2 text-white">
                     <span>WARRANT DETAILS: {report.warrantDetails}</span>
                   </div>
                 )}
                 
                 {report.charges && report.charges.length > 0 && (
-                  <div className="mb-3">
+                  <div className="mb-3 text-white">
                     <div>List of Charges:</div>
                     {report.charges.map((charge, index) => (
                       <div key={index} className="pl-2">- {charge}</div>
@@ -140,7 +141,7 @@ const Reports: React.FC = () => {
                 )}
                 
                 {report.pins && report.pins.length > 0 && (
-                  <div className="mb-3">
+                  <div className="mb-3 text-white">
                     <div>Pins:</div>
                     {report.pins.map((pin, index) => (
                       <div key={index} className="pl-2">- {pin}</div>
@@ -148,14 +149,14 @@ const Reports: React.FC = () => {
                   </div>
                 )}
                 
-                <div className="mb-2">
+                <div className="mb-2 text-white">
                   <div>REPORT: Preliminary Details</div>
                   <div>Time: {report.time} APPROX</div>
                   <div>Date: {report.date}</div>
                 </div>
                 
                 {report.details && (
-                  <div className="whitespace-pre-line">
+                  <div className="whitespace-pre-line text-white">
                     {report.details}
                   </div>
                 )}

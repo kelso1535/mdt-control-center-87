@@ -75,25 +75,25 @@ const VehicleSearch: React.FC = () => {
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 mb-2">
             <div className="data-line">
               <span>PLATE:</span>
-              <span>{searchResult.plate}</span>
+              <span className="text-white">{searchResult.plate}</span>
             </div>
             <div className="data-line">
               <span>MODEL:</span>
-              <span>{searchResult.model}</span>
+              <span className="text-white">{searchResult.model}</span>
             </div>
             
             <div className="data-line">
               <span>COLOR:</span>
-              <span>{searchResult.color}</span>
+              <span className="text-white">{searchResult.color}</span>
             </div>
             <div className="data-line">
               <span>OWNER:</span>
-              <span>{searchResult.owner}</span>
+              <span className="text-white">{searchResult.owner}</span>
             </div>
             
             <div className="data-line">
               <span>REGISTRATION:</span>
-              <span className={searchResult.registration === 'VALID' ? 'text-[hsl(var(--police-blue))]' : 'text-destructive'}>
+              <span className={searchResult.registration === 'VALID' ? 'text-white' : 'text-destructive'}>
                 {searchResult.registration}
               </span>
             </div>
@@ -106,13 +106,13 @@ const VehicleSearch: React.FC = () => {
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
             <div className="data-line">
               <span>STOLEN:</span>
-              <span className={searchResult.flags.stolen ? 'text-destructive' : ''}>
+              <span className={searchResult.flags.stolen ? 'text-destructive' : 'text-white'}>
                 {searchResult.flags.stolen ? 'YES' : 'NO'}
               </span>
             </div>
             <div className="data-line">
               <span>WANTED:</span>
-              <span className={searchResult.flags.wanted ? 'text-destructive' : ''}>
+              <span className={searchResult.flags.wanted ? 'text-destructive' : 'text-white'}>
                 {searchResult.flags.wanted ? 'YES' : 'NO'}
               </span>
             </div>

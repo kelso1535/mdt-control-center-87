@@ -86,9 +86,9 @@ const Warrants: React.FC = () => {
             ) : (
               warrants.map((warrant) => (
                 <tr key={warrant.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-[hsl(var(--police-blue))]">{warrant.name}</td>
+                  <td className="py-2 px-2 text-white">{warrant.name}</td>
                   <td className="py-2 px-2 text-destructive">{warrant.status}</td>
-                  <td className="py-2 px-2 text-[hsl(var(--police-blue))]">{warrant.count}</td>
+                  <td className="py-2 px-2 text-white">{warrant.count}</td>
                 </tr>
               ))
             )}

@@ -28,7 +28,7 @@
   }
   
   .data-line span:last-child {
-    @apply ml-1;
+    @apply text-white ml-1;
   }
   
   .text-unpaid {

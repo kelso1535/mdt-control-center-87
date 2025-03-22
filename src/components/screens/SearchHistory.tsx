@@ -78,10 +78,10 @@ const SearchHistory: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-3">
-        <h2 className="text-police-blue text-2xl font-bold">Search History</h2>
+        <h2 className="text-[hsl(var(--police-blue))] text-2xl font-bold">Search History</h2>
         <Button 
           variant="outline" 
-          className="bg-card border-primary/30 text-primary" 
+          className="bg-card border-[hsl(var(--police-blue))]/30 text-[hsl(var(--police-blue))]" 
           size="sm"
           onClick={loadHistory}
           disabled={loading}
@@ -95,9 +95,9 @@ const SearchHistory: React.FC = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-police-blue py-2 px-1">Timestamp</th>
-              <th className="text-police-blue py-2 px-1">Search Type</th>
-              <th className="text-police-blue py-2 px-1">Query</th>
+              <th className="text-[hsl(var(--police-blue))] py-2 px-1">Timestamp</th>
+              <th className="text-[hsl(var(--police-blue))] py-2 px-1">Search Type</th>
+              <th className="text-[hsl(var(--police-blue))] py-2 px-1">Query</th>
             </tr>
           </thead>
           <tbody>
@@ -110,9 +110,9 @@ const SearchHistory: React.FC = () => {
             ) : (
               history.map((item) => (
                 <tr key={item.id} className="border-t border-border/30">
-                  <td className="py-2 px-1 text-police-blue">{item.timestamp}</td>
-                  <td className="py-2 px-1 text-police-blue">{item.type}</td>
-                  <td className="py-2 px-1 text-police-blue">{item.query}</td>
+                  <td className="py-2 px-1 text-white">{item.timestamp}</td>
+                  <td className="py-2 px-1 text-white">{item.type}</td>
+                  <td className="py-2 px-1 text-white">{item.query}</td>
                 </tr>
               ))
             )}
