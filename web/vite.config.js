@@ -21,5 +21,6 @@ export default defineConfig({
         manualChunks: undefined, // Disable code splitting for better compatibility
       }
     }
-  }
+  },
+  assetsInclude: ['**/*.ttf'], // Explicitly include font files as assets
 })

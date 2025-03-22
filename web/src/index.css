@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import all CSS files */
+@import './styles/animations.css';
+@import './styles/components.css';
+@import './styles/layout.css';
+@import './styles/buttons.css';
+@import './styles/data.css';
+@import './styles/forms.css';
+@import './styles/utils.css';
+
 /* Embedding fonts locally rather than loading from Google Fonts */
 @font-face {
   font-family: 'Share Tech Mono';
@@ -67,12 +76,3 @@
     overflow: hidden;
   }
 }
-
-/* Import all CSS files */
-@import './styles/animations.css';
-@import './styles/components.css';
-@import './styles/layout.css';
-@import './styles/buttons.css';
-@import './styles/data.css';
-@import './styles/forms.css';
-@import './styles/utils.css';
