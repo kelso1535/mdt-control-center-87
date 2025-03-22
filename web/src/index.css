@@ -5,11 +5,34 @@
 
 body {
   margin: 0;
-  font-family: monospace;
+  font-family: 'Roboto Condensed', 'Share Tech Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
+  background-color: hsl(215 60% 10%);
   color: #fff;
+}
+
+:root {
+  --background: 215 60% 10%;
+  --foreground: 210 40% 98%;
+  --card: 215 60% 8%;
+  --card-foreground: 210 40% 98%;
+  --popover: 215 60% 8%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 215 27% 16%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  --accent: 210 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 215 27% 20%;
+  --input: 215 27% 18%;
+  --ring: 210 100% 50%;
+  --police-blue: 210 100% 50%;
 }
 
 .mdt-container {
@@ -19,7 +42,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: #000;
+  background-color: hsl(var(--background));
 }
 
 .mdt-main {
@@ -53,12 +76,12 @@ body {
 }
 
 .nav-item:hover, .nav-item.active {
-  background-color: #333;
+  background-color: hsl(var(--primary));
 }
 
 /* Simple buttons */
 .simple-button {
-  background-color: #333;
+  background-color: hsl(var(--secondary));
   color: white;
   border: none;
   padding: 5px 10px;
@@ -68,11 +91,11 @@ body {
 }
 
 .simple-button:hover {
-  background-color: #555;
+  background-color: hsl(var(--primary));
 }
 
 .logout-button {
-  background-color: #8B0000;
+  background-color: hsl(var(--destructive));
   color: white;
   border: none;
   padding: 10px;
@@ -83,5 +106,5 @@ body {
 }
 
 .logout-button:hover {
-  background-color: #A52A2A;
+  background-color: hsl(0, 84%, 70%);
 }

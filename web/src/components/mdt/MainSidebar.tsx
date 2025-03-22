@@ -17,7 +17,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
   onLogout
 }) => {
   return (
-    <div className="w-48 bg-black border-r border-gray-800 p-3 flex flex-col" style={{ minWidth: '160px' }}>
+    <div className="w-48 bg-sidebar border-r border-gray-800 p-3 flex flex-col" style={{ minWidth: '160px' }}>
       <div className="mb-4">
         <h2 className="text-xl font-bold text-white">MDT System</h2>
         <p className="text-sm text-white">Officer: {callsign}</p>
