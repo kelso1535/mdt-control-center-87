@@ -32,7 +32,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
     width: '210px'
   }}>
       <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center">
-        <Shield className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
+        <Shield className="h-4 w-4 mr-1 text-police-blue" />
         POLICE DEPARTMENT
       </div>
       
@@ -54,7 +54,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       <div className="mdt-hr my-2"></div>
       
       <div className="text-sm font-bold text-muted-foreground mb-2 mt-1 flex items-center">
-        <Clipboard className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
+        <Clipboard className="h-4 w-4 mr-1 text-police-blue" />
         RECORDS
       </div>
       
@@ -86,7 +86,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       <div className="mdt-hr my-2"></div>
       
       <div className="text-sm font-bold text-muted-foreground mb-2 mt-1 flex items-center">
-        <AlertTriangle className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
+        <AlertTriangle className="h-4 w-4 mr-1 text-police-blue" />
         SYSTEM
       </div>
       

@@ -6,6 +6,15 @@
     border-collapse: collapse;
   }
   
+  .data-table th {
+    @apply text-[hsl(var(--police-blue))] text-sm font-bold py-2 px-2;
+    text-align: left;
+  }
+  
+  .data-table td {
+    @apply py-2 px-2 text-foreground border-t border-border/30;
+  }
+  
   .data-header {
     @apply text-[hsl(var(--police-blue))] text-sm font-bold;
     letter-spacing: 1px;
@@ -60,5 +69,27 @@
   .section-line {
     @apply flex-1 border-t-2 border-dashed border-[hsl(var(--police-blue))]/50;
     margin: 0 10px;
+  }
+  
+  /* Standardize table styles */
+  .mdt-table {
+    @apply w-full border-collapse;
+  }
+  
+  .mdt-table th {
+    @apply text-[hsl(var(--police-blue))] py-2 px-2 font-bold text-left;
+  }
+  
+  .mdt-table td {
+    @apply py-2 px-2 text-foreground border-t border-border/30;
+  }
+  
+  .mdt-table tr:hover td {
+    @apply bg-muted/50;
+  }
+  
+  /* Data panel styling */
+  .data-panel {
+    @apply bg-card/30 border border-border rounded-md p-4;
   }
 }

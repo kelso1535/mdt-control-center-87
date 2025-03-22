@@ -29,4 +29,12 @@
   .search-button {
     @apply bg-[hsl(var(--police-blue))] text-white rounded-md px-4 py-2 text-sm hover:bg-[hsl(var(--police-blue))/90] transition-colors;
   }
+  
+  .action-button {
+    @apply bg-card hover:bg-muted text-foreground border border-border rounded-md px-4 py-2 transition-colors;
+  }
+  
+  .action-button-primary {
+    @apply bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))/90] text-white border border-[hsl(var(--police-blue))]/50 rounded-md px-4 py-2 transition-colors;
+  }
 }

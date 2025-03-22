@@ -55,14 +55,14 @@ const TrafficOffences: React.FC = () => {
         </div>
       </div>
       
-      <div className="bg-card/30 border border-border rounded-md p-4">
-        <table className="w-full">
+      <div className="data-panel">
+        <table className="mdt-table">
           <thead>
-            <tr className="text-left">
-              <th className="text-police-blue py-2 px-2">Date</th>
-              <th className="text-police-blue py-2 px-2">Type</th>
-              <th className="text-police-blue py-2 px-2">Amount</th>
-              <th className="text-police-blue py-2 px-2">Details</th>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>
@@ -84,11 +84,11 @@ const TrafficOffences: React.FC = () => {
               </tr>
             ) : (
               offences.map((offence) => (
-                <tr key={offence.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-police-blue">{offence.date}</td>
-                  <td className="py-2 px-2 text-police-blue">{offence.type}</td>
-                  <td className="py-2 px-2 text-police-blue">${offence.amount}</td>
-                  <td className="py-2 px-2 text-police-blue">{offence.details}</td>
+                <tr key={offence.id}>
+                  <td>{offence.date}</td>
+                  <td>{offence.type}</td>
+                  <td>${offence.amount}</td>
+                  <td>{offence.details}</td>
                 </tr>
               ))
             )}
