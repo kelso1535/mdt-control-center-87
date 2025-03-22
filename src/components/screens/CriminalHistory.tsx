@@ -115,26 +115,26 @@ const CriminalHistory: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-police-blue text-2xl font-bold mb-3">LEAP CRIMINAL HISTORY</h2>
+      <h2 className="text-police-blue text-2xl font-bold mb-2">LEAP CRIMINAL HISTORY</h2>
       
-      <div className="bg-card/30 border border-border rounded-md p-4 overflow-auto">
+      <div className="bg-card/30 border border-border rounded-md p-3 overflow-auto">
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-police-blue py-2 px-1">Date</th>
-              <th className="text-police-blue py-2 px-1">P? Amount</th>
-              <th className="text-police-blue py-2 px-1">Offence</th>
+              <th className="text-police-blue py-1 px-1">Date</th>
+              <th className="text-police-blue py-1 px-1">P? Amount</th>
+              <th className="text-police-blue py-1 px-1">Offence</th>
             </tr>
           </thead>
           <tbody>
             {records.map((record) => (
               <tr key={record.id} className="border-t border-border/30">
-                <td className="py-2 px-1 text-police-blue">{record.date}</td>
-                <td className="py-2 px-1">
+                <td className="py-1 px-1 text-police-blue">{record.date}</td>
+                <td className="py-1 px-1">
                   <span className="text-police-blue">{record.paid ? 'Y' : 'N'}</span>{' '}
                   <span className="text-police-blue">${record.amount}</span>
                 </td>
-                <td className="py-2 px-1 text-police-blue">{record.offense}</td>
+                <td className="py-1 px-1 text-police-blue">{record.offense}</td>
               </tr>
             ))}
           </tbody>

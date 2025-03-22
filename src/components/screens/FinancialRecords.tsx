@@ -49,7 +49,7 @@ const FinancialRecords: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-center mb-2">
         <h2 className="text-police-blue text-2xl font-bold">Financial Records</h2>
         <Button 
           variant="outline" 
@@ -63,21 +63,21 @@ const FinancialRecords: React.FC = () => {
         </Button>
       </div>
       
-      <div className="bg-card/30 border border-border rounded-md p-4">
+      <div className="bg-card/30 border border-border rounded-md p-3">
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="text-police-blue py-2 px-2">Date</th>
-              <th className="text-police-blue py-2 px-2">Type</th>
-              <th className="text-police-blue py-2 px-2">Amount</th>
-              <th className="text-police-blue py-2 px-2">Status</th>
-              <th className="text-police-blue py-2 px-2">Description</th>
+              <th className="text-police-blue py-1 px-2">Date</th>
+              <th className="text-police-blue py-1 px-2">Type</th>
+              <th className="text-police-blue py-1 px-2">Amount</th>
+              <th className="text-police-blue py-1 px-2">Status</th>
+              <th className="text-police-blue py-1 px-2">Description</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5} className="py-8 text-center">
+                <td colSpan={5} className="py-4 text-center">
                   <div className="loading-dots inline-flex">
                     <div></div>
                     <div></div>
@@ -87,20 +87,20 @@ const FinancialRecords: React.FC = () => {
               </tr>
             ) : records.length === 0 ? (
               <tr>
-                <td colSpan={5} className="py-8 text-center text-muted-foreground">
+                <td colSpan={5} className="py-4 text-center text-muted-foreground">
                   No financial records found
                 </td>
               </tr>
             ) : (
               records.map((record) => (
                 <tr key={record.id} className="border-t border-border/30">
-                  <td className="py-2 px-2 text-police-blue">{record.date}</td>
-                  <td className="py-2 px-2 text-police-blue">{record.type}</td>
-                  <td className="py-2 px-2 text-police-blue">${record.amount.toLocaleString()}</td>
-                  <td className={`py-2 px-2 ${record.status === 'PAID' ? 'text-police-blue' : 'text-[#ff5555]'}`}>
+                  <td className="py-1 px-2 text-police-blue">{record.date}</td>
+                  <td className="py-1 px-2 text-police-blue">{record.type}</td>
+                  <td className="py-1 px-2 text-police-blue">${record.amount.toLocaleString()}</td>
+                  <td className={`py-1 px-2 ${record.status === 'PAID' ? 'text-police-blue' : 'text-[#ff5555]'}`}>
                     {record.status}
                   </td>
-                  <td className="py-2 px-2 text-police-blue">{record.description}</td>
+                  <td className="py-1 px-2 text-police-blue">{record.description}</td>
                 </tr>
               ))
             )}

@@ -10,15 +10,15 @@
     @apply text-primary text-sm font-bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem; /* Reduced from 0.5rem */
   }
   
   .data-section {
-    @apply mb-6;
+    @apply mb-3; /* Reduced from mb-6 */
   }
   
   .data-line {
-    @apply flex justify-between mb-1 text-sm;
+    @apply flex justify-between mb-0.5 text-sm; /* Reduced from mb-1 */
   }
   
   .text-unpaid {
@@ -31,10 +31,10 @@
   
   .dashed-line {
     border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    margin: 1rem 0;
+    margin: 0.5rem 0; /* Reduced from 1rem */
   }
   
   .data-card {
-    @apply border border-border/50 rounded-lg p-4 bg-card/50 backdrop-blur-sm;
+    @apply border border-border/50 rounded-lg p-3 bg-card/50 backdrop-blur-sm; /* Reduced from p-4 */
   }
 }

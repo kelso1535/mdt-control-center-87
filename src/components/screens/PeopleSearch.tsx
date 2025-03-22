@@ -57,9 +57,9 @@ const PeopleSearch: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-4">Search Person</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-2">Search Person</h2>
       
-      <div className="flex space-x-2 mb-4">
+      <div className="flex space-x-2 mb-3">
         <Input
           type="text"
           placeholder="Enter name to search..."
@@ -77,14 +77,14 @@ const PeopleSearch: React.FC = () => {
       </div>
       
       {searchResult && (
-        <div className="bg-card border border-border rounded-md p-4 mt-4 animate-slide-in overflow-y-auto max-h-[calc(100vh-220px)]">
+        <div className="bg-card border border-border rounded-md p-3 mt-3 animate-slide-in overflow-y-auto max-h-[calc(100vh-220px)]">
           <div className="flex justify-between">
             <div className="flex-1">
-              <div className="text-center mb-2">
+              <div className="text-center mb-1">
                 <h3 className="text-[hsl(var(--police-blue))] text-lg">------- LEAP DATABASE ENTRY -------</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-1">
                 <div className="data-line">
                   <span className="text-[hsl(var(--police-blue))]">NAME:</span>
                   <span>{searchResult.name}</span>
@@ -109,11 +109,11 @@ const PeopleSearch: React.FC = () => {
               
               <DashedDivider />
               
-              <div className="text-center mb-2">
+              <div className="text-center mb-1">
                 <h3 className="text-[hsl(var(--police-blue))]">------- ROAD TRAFFIC AUTHORITY -------</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-1">
                 <div className="data-line">
                   <span className="text-[hsl(var(--police-blue))]">LIC CLASS:</span>
                   <span>{searchResult.licenseClass}</span>
@@ -139,13 +139,13 @@ const PeopleSearch: React.FC = () => {
               
               <DashedDivider />
               
-              <div className="grid grid-cols-2 gap-x-8">
+              <div className="grid grid-cols-2 gap-x-4">
                 <div>
-                  <div className="text-center mb-2">
+                  <div className="text-center mb-1">
                     <h3 className="text-[hsl(var(--police-blue))]">------- WANTED -------</h3>
                   </div>
                   
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <div className="data-line">
                       <span className="text-[hsl(var(--police-blue))]">WANTED:</span>
                       <span>{searchResult.flags.wanted ? 'YES' : 'NO'}</span>
@@ -166,11 +166,11 @@ const PeopleSearch: React.FC = () => {
                 </div>
                 
                 <div>
-                  <div className="text-center mb-2">
+                  <div className="text-center mb-1">
                     <h3 className="text-[hsl(var(--police-blue))]">------- FLAGS -------</h3>
                   </div>
                   
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <div className="data-line">
                       <span className="text-[hsl(var(--police-blue))]">VIOLENCE POLICE:</span>
                       <span>{searchResult.flags.violencePolice ? 'YES' : 'NO'}</span>
@@ -185,13 +185,13 @@ const PeopleSearch: React.FC = () => {
               
               <DashedDivider />
               
-              <div className="grid grid-cols-2 gap-x-8">
+              <div className="grid grid-cols-2 gap-x-4">
                 <div>
-                  <div className="text-center mb-2">
+                  <div className="text-center mb-1">
                     <h3 className="text-[hsl(var(--police-blue))]">------- WEAPON LONGARM -------</h3>
                   </div>
                   
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <div className="data-line">
                       <span className="text-[hsl(var(--police-blue))]">WEAPON LONGARM:</span>
                       <span>{searchResult.weapons.longarm ? 'YES' : 'NO'}</span>
@@ -208,11 +208,11 @@ const PeopleSearch: React.FC = () => {
                 </div>
                 
                 <div>
-                  <div className="text-center mb-2">
+                  <div className="text-center mb-1">
                     <h3 className="text-[hsl(var(--police-blue))]">------- WEAPON LICENCES -------</h3>
                   </div>
                   
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <div className="data-line">
                       <span className="text-[hsl(var(--police-blue))]">HANDGUN:</span>
                       <span>{searchResult.weapons.handgun ? 'YES' : 'NO'}</span>
@@ -223,11 +223,11 @@ const PeopleSearch: React.FC = () => {
               
               <DashedDivider />
               
-              <div className="text-center mb-2">
+              <div className="text-center mb-1">
                 <h3 className="text-[hsl(var(--police-blue))]">------- OTHER -------</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-1">
                 <div className="data-line">
                   <span className="text-[hsl(var(--police-blue))]">DNA ON FILE:</span>
                   <span>CURRENT ON FILE</span>
@@ -240,7 +240,7 @@ const PeopleSearch: React.FC = () => {
             </div>
             
             {searchResult.imageUrl && (
-              <div className="ml-4">
+              <div className="ml-3">
                 <img 
                   src={searchResult.imageUrl} 
                   alt={searchResult.name} 
