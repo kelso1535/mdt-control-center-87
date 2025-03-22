@@ -1,12 +1,28 @@
 
 import React from 'react';
-import { AlertTriangle, Clipboard, Clock, Database, FileSearch, LogOut, Search, Shield, Users } from 'lucide-react';
-type Screen = 'login' | 'people' | 'vehicles' | 'history' | 'serials' | 'criminal' | 'traffic' | 'reports' | 'actions' | 'financial' | 'supervisor' | 'wanted';
+import { AlertTriangle, Clipboard, Clock, Database, FileSearch, LogOut, Search, Settings, Shield, Users } from 'lucide-react';
+
+type Screen = 
+  | 'login' 
+  | 'people' 
+  | 'vehicles' 
+  | 'history' 
+  | 'serials' 
+  | 'criminal' 
+  | 'traffic' 
+  | 'reports' 
+  | 'actions' 
+  | 'financial' 
+  | 'supervisor' 
+  | 'wanted'
+  | 'admin';  // Added 'admin' to the Screen type
+
 interface NavigationSidebarProps {
   currentScreen: Screen;
   onScreenChange: (screen: Screen) => void;
   onLogout: () => void;
 }
+
 const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   currentScreen,
   onScreenChange,
@@ -89,6 +105,11 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         <span>WANTED</span>
       </div>
       
+      <div className={`nav-item ${currentScreen === 'admin' ? 'active' : ''}`} onClick={() => onScreenChange('admin')}>
+        <Settings className="mdt-sidebar-icon" />
+        <span>ADMIN</span>
+      </div>
+      
       <div className="my-1"></div>
       
       <div className="nav-item" onClick={onLogout}>
@@ -97,4 +118,5 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       </div>
     </div>;
 };
+
 export default NavigationSidebar;

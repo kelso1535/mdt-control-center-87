@@ -11,6 +11,7 @@ import Actions from '../screens/Actions';
 import Units from '../screens/Units';
 import Warrants from '../screens/Warrants';
 import Reports from '../screens/Reports';
+import Admin from '../screens/Admin';
 
 type Screen = 
   | 'login'
@@ -24,7 +25,8 @@ type Screen =
   | 'actions'
   | 'financial'
   | 'supervisor'
-  | 'wanted';
+  | 'wanted'
+  | 'admin';  // Added 'admin' to the Screen type
 
 interface ContentRendererProps {
   currentScreen: Screen;
@@ -54,6 +56,8 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
       return <Units />;
     case 'wanted':
       return <Warrants />;
+    case 'admin':
+      return <Admin />;
     default:
       return <PeopleSearch />;
   }
