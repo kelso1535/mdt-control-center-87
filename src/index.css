@@ -1,5 +1,6 @@
 
 /* Import all CSS files */
+@import './styles/global.css';
 @import './styles/animations.css';
 @import './styles/components.css';
 @import './styles/layout.css';
@@ -7,11 +8,3 @@
 @import './styles/data.css';
 @import './styles/forms.css';
 @import './styles/utils.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  /* Base styles can go here */
-}
