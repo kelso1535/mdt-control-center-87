@@ -14,8 +14,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    // Ensure all assets are bundled and no external requests are made
-    assetsInlineLimit: 0
+    emptyOutDir: true
   }
 })
