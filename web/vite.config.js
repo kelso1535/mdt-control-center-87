@@ -21,5 +21,8 @@ export default defineConfig({
         manualChunks: undefined, // Disable code splitting for better compatibility
       }
     }
+  },
+  css: {
+    postcss: "./postcss.config.cjs",
   }
 })
