@@ -8,11 +8,11 @@
 
 @layer base {
   :root {
-    --background: 220 20% 10%;
+    --background: 215 60% 10%;
     --foreground: 210 40% 98%;
-    --card: 220 20% 7%;
+    --card: 215 60% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 220 20% 7%;
+    --popover: 215 60% 8%;
     --popover-foreground: 210 40% 98%;
     --primary: 210 100% 50%;
     --primary-foreground: 0 0% 100%;
@@ -30,7 +30,7 @@
     --radius: 0.5rem;
     --police-blue: 210 100% 50%;
     --alert-red: 0 100% 50%;
-    --sidebar-background: 215 30% 15%;
+    --sidebar-background: 215 60% 15%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 215 27% 20%;
   }
