@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { CriminalRecord } from '@/types';
-import { Button } from '@/components/ui/button';
-import { RefreshCcw } from 'lucide-react';
 
 const mockCriminalRecords: CriminalRecord[] = [
   {
@@ -95,17 +93,12 @@ const CriminalHistory: React.FC = () => {
   const [records, setRecords] = useState<CriminalRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const loadData = () => {
-    setLoading(true);
+  useEffect(() => {
     // Simulate API call
     setTimeout(() => {
       setRecords(mockCriminalRecords);
       setLoading(false);
     }, 800);
-  };
-  
-  useEffect(() => {
-    loadData();
   }, []);
 
   if (loading) {
@@ -122,36 +115,26 @@ const CriminalHistory: React.FC = () => {
 
   return (
     <div className="fade-in">
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="text-police-blue text-2xl font-bold">LEAP CRIMINAL HISTORY</h2>
-        <Button 
-          variant="outline" 
-          className="bg-card border-primary/30 text-primary" 
-          size="sm"
-          onClick={loadData}
-        >
-          <RefreshCcw className="w-4 h-4" />
-          <span className="ml-1">Refresh</span>
-        </Button>
-      </div>
+      <h2 className="text-police-blue text-2xl font-bold mb-2">LEAP CRIMINAL HISTORY</h2>
       
-      <div className="mdt-table-container">
-        <table className="mdt-table">
+      <div className="bg-card/30 border border-border rounded-md p-2 overflow-auto">
+        <table className="w-full">
           <thead>
-            <tr>
-              <th>Date</th>
-              <th>P? Amount</th>
-              <th>Offence</th>
+            <tr className="text-left">
+              <th className="text-police-blue py-1 px-1">Date</th>
+              <th className="text-police-blue py-1 px-1">P? Amount</th>
+              <th className="text-police-blue py-1 px-1">Offence</th>
             </tr>
           </thead>
           <tbody>
             {records.map((record) => (
-              <tr key={record.id}>
-                <td>{record.date}</td>
-                <td>
-                  {record.paid ? 'Y' : 'N'} ${record.amount}
+              <tr key={record.id} className="border-t border-border/30">
+                <td className="py-1 px-1 text-police-blue">{record.date}</td>
+                <td className="py-1 px-1">
+                  <span className="text-police-blue">{record.paid ? 'Y' : 'N'}</span>{' '}
+                  <span className="text-police-blue">${record.amount}</span>
                 </td>
-                <td>{record.offense}</td>
+                <td className="py-1 px-1 text-police-blue">{record.offense}</td>
               </tr>
             ))}
           </tbody>

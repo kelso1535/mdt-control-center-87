@@ -63,15 +63,15 @@ const FinancialRecords: React.FC = () => {
         </Button>
       </div>
       
-      <div className="data-panel">
-        <table className="mdt-table">
+      <div className="bg-card/30 border border-border rounded-md p-3">
+        <table className="w-full">
           <thead>
-            <tr>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Description</th>
+            <tr className="text-left">
+              <th className="text-police-blue py-1 px-2">Date</th>
+              <th className="text-police-blue py-1 px-2">Type</th>
+              <th className="text-police-blue py-1 px-2">Amount</th>
+              <th className="text-police-blue py-1 px-2">Status</th>
+              <th className="text-police-blue py-1 px-2">Description</th>
             </tr>
           </thead>
           <tbody>
@@ -93,14 +93,14 @@ const FinancialRecords: React.FC = () => {
               </tr>
             ) : (
               records.map((record) => (
-                <tr key={record.id}>
-                  <td>{record.date}</td>
-                  <td>{record.type}</td>
-                  <td>${record.amount.toLocaleString()}</td>
-                  <td className={record.status === 'PAID' ? 'text-police-blue' : 'text-destructive'}>
+                <tr key={record.id} className="border-t border-border/30">
+                  <td className="py-1 px-2 text-police-blue">{record.date}</td>
+                  <td className="py-1 px-2 text-police-blue">{record.type}</td>
+                  <td className="py-1 px-2 text-police-blue">${record.amount.toLocaleString()}</td>
+                  <td className={`py-1 px-2 ${record.status === 'PAID' ? 'text-police-blue' : 'text-[#ff5555]'}`}>
                     {record.status}
                   </td>
-                  <td>{record.description}</td>
+                  <td className="py-1 px-2 text-police-blue">{record.description}</td>
                 </tr>
               ))
             )}

@@ -91,13 +91,13 @@ const SearchHistory: React.FC = () => {
         </Button>
       </div>
       
-      <div className="mdt-table-container">
-        <table className="mdt-table">
+      <div className="bg-card/30 border border-border rounded-md p-4 overflow-auto">
+        <table className="w-full">
           <thead>
-            <tr>
-              <th>Timestamp</th>
-              <th>Search Type</th>
-              <th>Query</th>
+            <tr className="text-left">
+              <th className="text-police-blue py-2 px-1">Timestamp</th>
+              <th className="text-police-blue py-2 px-1">Search Type</th>
+              <th className="text-police-blue py-2 px-1">Query</th>
             </tr>
           </thead>
           <tbody>
@@ -109,10 +109,10 @@ const SearchHistory: React.FC = () => {
               </tr>
             ) : (
               history.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.timestamp}</td>
-                  <td>{item.type}</td>
-                  <td>{item.query}</td>
+                <tr key={item.id} className="border-t border-border/30">
+                  <td className="py-2 px-1 text-police-blue">{item.timestamp}</td>
+                  <td className="py-2 px-1 text-police-blue">{item.type}</td>
+                  <td className="py-2 px-1 text-police-blue">{item.query}</td>
                 </tr>
               ))
             )}

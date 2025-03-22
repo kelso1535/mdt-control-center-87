@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 import { Serial } from '@/types';
 import DashedDivider from '../DashedDivider';
-import { SectionHeader } from '../DataSection';
 
 const mockSerial: Serial = {
   id: 's12345',
@@ -41,9 +40,17 @@ const SerialSearch: React.FC = () => {
     }, 800);
   };
 
+  const SectionHeader = ({ title }: { title: string }) => (
+    <div className="section-header">
+      <div className="section-line"></div>
+      <div className="section-title">------- {title} -------</div>
+      <div className="section-line"></div>
+    </div>
+  );
+
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-blue-400 font-bold mb-2">Search Serial Number</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-2">Search Serial Number</h2>
       
       <div className="flex space-x-2 mb-2">
         <Input
@@ -55,7 +62,7 @@ const SerialSearch: React.FC = () => {
         />
         <Button 
           onClick={handleSearch}
-          className="bg-blue-600 hover:bg-blue-700 text-white"
+          className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/90 text-white"
           disabled={loading}
         >
           {loading ? 'Searching...' : 'Run Serial Check'}
@@ -63,7 +70,7 @@ const SerialSearch: React.FC = () => {
       </div>
       
       {searchResult && (
-        <div className="data-card animate-slide-in">
+        <div className="bg-card border border-border rounded-md p-2 mt-2 animate-slide-in">
           <SectionHeader title="SERIAL DATABASE ENTRY" />
           
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 mb-2">
@@ -102,11 +109,15 @@ const SerialSearch: React.FC = () => {
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
             <div className="data-line">
               <span>STOLEN:</span>
-              <span>{searchResult.flags.stolen ? 'YES' : 'NO'}</span>
+              <span className={searchResult.flags.stolen ? 'text-destructive' : ''}>
+                {searchResult.flags.stolen ? 'YES' : 'NO'}
+              </span>
             </div>
             <div className="data-line">
               <span>WANTED:</span>
-              <span>{searchResult.flags.wanted ? 'YES' : 'NO'}</span>
+              <span className={searchResult.flags.wanted ? 'text-destructive' : ''}>
+                {searchResult.flags.wanted ? 'YES' : 'NO'}
+              </span>
             </div>
           </div>
         </div>

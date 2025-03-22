@@ -6,17 +6,8 @@
     border-collapse: collapse;
   }
   
-  .data-table th {
-    @apply text-blue-400 text-sm font-bold py-2 px-2;
-    text-align: left;
-  }
-  
-  .data-table td {
-    @apply py-2 px-2 text-white border-t border-blue-900/30;
-  }
-  
   .data-header {
-    @apply text-blue-400 text-sm font-bold;
+    @apply text-[hsl(var(--police-blue))] text-sm font-bold;
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 0.25rem;
@@ -31,78 +22,43 @@
   }
   
   .data-line span:first-child {
-    @apply text-blue-400;
+    @apply text-[hsl(var(--police-blue))];
     min-width: 40%;
     max-width: 40%;
   }
   
   .data-line span:last-child {
-    @apply ml-1 text-white;
+    @apply ml-1;
   }
   
   .text-unpaid {
-    @apply text-red-400;
+    @apply text-destructive;
   }
   
   .text-paid {
-    @apply text-green-400;
+    @apply text-primary;
   }
   
   .dashed-line {
-    border-top: 1px dashed rgba(59, 130, 246, 0.5);
+    border-top: 1px dashed rgba(var(--police-blue), 0.3);
     margin: 0.25rem 0;
   }
   
   .data-card {
-    @apply border border-blue-900/50 rounded-lg p-4 bg-blue-950/90 backdrop-blur-sm;
+    @apply border border-border/50 rounded-lg p-2 bg-card/50 backdrop-blur-sm;
   }
   
   .section-header {
     @apply w-full flex items-center justify-center text-center my-2 py-1;
-    background-color: rgba(30, 58, 138, 0.3);
+    background-color: rgba(0, 68, 138, 0.2);
   }
   
   .section-title {
-    @apply text-blue-400 font-bold text-lg uppercase tracking-wider px-4;
+    @apply text-[hsl(var(--police-blue))] font-bold text-lg uppercase tracking-wider px-4;
   }
   
   .section-line {
-    @apply flex-1 border-t border-dashed border-blue-500/50;
+    @apply flex-1 border-t-2 border-dashed border-[hsl(var(--police-blue))]/50;
     margin: 0 10px;
-  }
-  
-  /* Standardize table styles */
-  .mdt-table {
-    @apply w-full border-collapse;
-  }
-  
-  .mdt-table th {
-    @apply text-blue-400 py-2 px-2 font-bold text-left;
-  }
-  
-  .mdt-table td {
-    @apply py-2 px-2 text-white border-t border-blue-900/30;
-  }
-  
-  .mdt-table tr:hover td {
-    @apply bg-blue-900/30;
-  }
-  
-  /* Data panel styling */
-  .data-panel {
-    @apply bg-blue-950/90 border border-blue-900/50 rounded-md p-4;
-  }
-  
-  /* Warrant section styling */
-  .warrant-section {
-    @apply text-white mb-4;
-  }
-  
-  .warrant-header {
-    @apply text-blue-400 font-bold;
-  }
-  
-  .warrant-details {
-    @apply text-white whitespace-pre-line;
   }
 }

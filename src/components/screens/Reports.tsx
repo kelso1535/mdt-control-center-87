@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { RefreshCcw } from 'lucide-react';
+import { RefreshCcw, File, AlertTriangle, FileText } from 'lucide-react';
 import DashedDivider from '../DashedDivider';
 
 type Report = {
@@ -89,10 +88,10 @@ const Reports: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-police-blue text-2xl font-bold">Police Reports</h2>
+        <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold">Police Reports</h2>
         <Button 
           variant="outline" 
-          className="bg-card border-primary/30 text-primary" 
+          className="bg-card border-[hsl(var(--police-blue))]/30 text-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/10" 
           size="sm"
           onClick={loadData}
           disabled={loading}
@@ -102,7 +101,7 @@ const Reports: React.FC = () => {
         </Button>
       </div>
       
-      <div className="data-panel">
+      <div className="bg-card border border-[hsl(var(--police-blue))]/30 rounded-md">
         {loading ? (
           <div className="p-8 text-center">
             <div className="loading-dots inline-flex">
@@ -112,13 +111,13 @@ const Reports: React.FC = () => {
             </div>
           </div>
         ) : reports.length === 0 ? (
-          <div className="p-8 text-center text-police-blue">
+          <div className="p-8 text-center text-[hsl(var(--police-blue))]">
             No reports found
           </div>
         ) : (
           <div className="p-2 font-mono">
             {reports.map((report) => (
-              <div key={report.id} className="mb-6 warrant-section">
+              <div key={report.id} className="mb-6 text-[hsl(var(--police-blue))] text-sm">
                 <SectionHeader title="WARRANTS" />
                 
                 <div className="mb-2">

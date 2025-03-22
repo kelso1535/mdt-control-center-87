@@ -11,7 +11,7 @@
   }
   
   .mdt-sidebar-item:hover, .mdt-sidebar-item.active {
-    @apply bg-muted text-foreground;
+    @apply bg-muted text-white;
   }
   
   .mdt-sidebar-icon {
@@ -20,23 +20,5 @@
   
   .mdt-hr {
     @apply border-t border-border my-1;
-  }
-  
-  /* Form controls */
-  .mdt-form-group {
-    @apply mb-3;
-  }
-  
-  .mdt-label {
-    @apply block text-sm text-muted-foreground mb-1;
-  }
-  
-  .mdt-select {
-    @apply bg-input border border-border rounded-md px-3 py-2 text-foreground w-full focus:outline-none focus:ring-1 focus:ring-[hsl(var(--police-blue))];
-  }
-  
-  .mdt-textarea {
-    @apply bg-input border border-border rounded-md px-3 py-2 text-foreground w-full focus:outline-none focus:ring-1 focus:ring-[hsl(var(--police-blue))];
-    min-height: 100px;
   }
 }
