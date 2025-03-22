@@ -1,22 +1,24 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const PeopleSearch: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div className="p-4 h-full bg-[#0a1726] text-white">
-      <h1 className="text-2xl font-bold mb-4">People Search</h1>
-      <div className="bg-[#0d1e33] border border-[#1c3a5a] rounded-md p-4 mb-4">
-        <p className="text-gray-400 mb-2">Search for people in the database</p>
-        <div className="flex gap-2">
-          <input 
-            type="text" 
-            placeholder="Enter name, ID, or phone number" 
-            className="flex-1 px-3 py-2 bg-[#0a1422] border border-[#1c3a5a] rounded text-white"
-          />
-          <button className="bg-[#007bff] hover:bg-[#0069d9] text-white px-4 py-2 rounded">
-            Search
-          </button>
-        </div>
+      <h1 className="text-2xl font-bold mb-4">People Screen</h1>
+      
+      <div className="flex gap-2 mb-4">
+        <input 
+          type="text" 
+          placeholder="Enter name to search..." 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="flex-1 px-3 py-2 bg-[#0a1422] border border-[#1c3a5a] rounded text-white"
+        />
+        <button className="bg-[#007bff] hover:bg-[#0069d9] text-white px-4 py-2 rounded">
+          Run Person Check
+        </button>
       </div>
       
       <div className="bg-[#0d1e33] border border-[#1c3a5a] rounded-md p-4">

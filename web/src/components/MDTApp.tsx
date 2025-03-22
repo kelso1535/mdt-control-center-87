@@ -75,15 +75,15 @@ const MDTApp: React.FC = () => {
 
   if (!loggedIn) {
     return (
-      <div className="mdt-container w-full h-full bg-[#0a1422]">
+      <div className="w-full h-full bg-[#0a1422]">
         <LoginScreen onLogin={handleLogin} />
       </div>
     );
   }
 
   return (
-    <div className="mdt-container w-full h-full bg-[#0a1422]">
-      <div className="mdt-main h-full flex">
+    <div className="w-full h-full bg-[#0a1422]">
+      <div className="flex h-full">
         <MainSidebar 
           callsign={callsign}
           currentStatus={currentStatus}
@@ -99,7 +99,7 @@ const MDTApp: React.FC = () => {
           onLogout={handleLogout}
         />
         
-        <div className="mdt-content flex-1 h-full overflow-auto bg-[#0a1726]">
+        <div className="flex-1 h-full overflow-auto bg-[#0a1726]">
           <ContentRenderer currentScreen={currentScreen} />
         </div>
       </div>
