@@ -10,15 +10,25 @@
     @apply text-primary text-sm font-bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 0.25rem; /* Reduced from 0.5rem */
+    margin-bottom: 0.25rem;
   }
   
   .data-section {
-    @apply mb-3; /* Reduced from mb-6 */
+    @apply mb-2;
   }
   
   .data-line {
-    @apply flex justify-between mb-0.5 text-sm; /* Reduced from mb-1 */
+    @apply flex mb-0.5 text-sm;
+  }
+  
+  .data-line span:first-child {
+    @apply text-police-blue;
+    min-width: 40%;
+    max-width: 40%;
+  }
+  
+  .data-line span:last-child {
+    @apply ml-1;
   }
   
   .text-unpaid {
@@ -31,10 +41,10 @@
   
   .dashed-line {
     border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    margin: 0.5rem 0; /* Reduced from 1rem */
+    margin: 0.25rem 0;
   }
   
   .data-card {
-    @apply border border-border/50 rounded-lg p-3 bg-card/50 backdrop-blur-sm; /* Reduced from p-4 */
+    @apply border border-border/50 rounded-lg p-2 bg-card/50 backdrop-blur-sm;
   }
 }
