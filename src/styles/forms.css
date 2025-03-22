@@ -21,13 +21,4 @@
   .mdt-hr {
     @apply border-t border-border my-1;
   }
-  
-  /* Input and form field text colors */
-  input, select, textarea {
-    @apply text-foreground;
-  }
-  
-  label {
-    @apply text-[hsl(var(--police-blue))];
-  }
 }

@@ -129,6 +129,7 @@ const PeopleSearch: React.FC = () => {
                   <span>EXPIRES:</span>
                   <span>{searchResult.licenseExpiry}</span>
                 </div>
+                <div></div>
                 <div className="data-line">
                   <span>CONDITIONS:</span>
                   <span>{searchResult.demeritPoints === 0 ? 'NONE' : 'POINTS'}</span>
@@ -144,7 +145,7 @@ const PeopleSearch: React.FC = () => {
               <div className="w-full">
                 <SectionHeader title="FLAGS" />
                 
-                <div className="grid grid-cols-3 gap-x-4">
+                <div className="grid grid-cols-2 gap-x-4">
                   <div className="data-line">
                     <span>WANTED:</span>
                     <span>{searchResult.flags.wanted ? 'YES' : 'NO'}</span>
@@ -186,6 +187,7 @@ const PeopleSearch: React.FC = () => {
                     <span>CONCEAL CARRY PERMIT:</span>
                     <span>{searchResult.weapons.concealCarry ? 'YES' : 'NO'}</span>
                   </div>
+                  <div></div>
                   <div className="data-line">
                     <span>F/ARM PROHIB ORDER:</span>
                     <span>{searchResult.weapons.prohibOrder ? 'YES' : 'NO'}</span>

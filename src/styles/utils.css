@@ -24,13 +24,4 @@
   .highlight-text {
     @apply text-[hsl(var(--police-blue))] font-bold;
   }
-  
-  /* Default text colors */
-  .text-default {
-    @apply text-foreground;
-  }
-  
-  .text-blue {
-    @apply text-[hsl(var(--police-blue))];
-  }
 }
