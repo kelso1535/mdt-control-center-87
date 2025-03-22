@@ -41,9 +41,7 @@ const Actions: React.FC = () => {
         <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-xs h-auto py-1.5 px-2 min-h-[2.5rem] whitespace-normal text-left">
           Toggle Suspend Driver's Licence
         </Button>
-        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-xs h-auto py-1.5 px-2 min-h-[2.5rem] whitespace-normal text-left">
-          Revoke Prov Chgr/PIN Notice
-        </Button>
+        <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-xs h-auto py-1.5 px-2 min-h-[2.5rem] whitespace-normal text-left">Toggle Stolen Weapon</Button>
         <Button className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white text-xs h-auto py-1.5 px-2 min-h-[2.5rem] whitespace-normal text-left">
           Revoke Weapon Licence
         </Button>
@@ -77,14 +75,7 @@ const Actions: React.FC = () => {
       </div>
       
       <div className="mb-3 flex justify-between items-center">
-        <div className="flex space-x-2">
-          <Button size="sm" onClick={loadPursuitTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white">
-            Load Pursuit Template
-          </Button>
-          <Button size="sm" onClick={loadStolenWeaponTemplate} className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/80 text-white">
-            Load Stolen Weapon Template
-          </Button>
-        </div>
+        
         
         <div className="flex items-center space-x-2">
           <span className="text-sm text-[hsl(var(--police-blue))]">Toggle Stolen Weapon</span>
