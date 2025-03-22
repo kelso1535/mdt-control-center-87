@@ -5,6 +5,7 @@ local Config = require 'config'
 -- Hash table for active sessions
 local ActiveSessions = {}
 local SearchHistory = {}
+local Templates = {}
 
 -- Basic session management functions
 local function CreateSession(source, callsign)
@@ -157,6 +158,77 @@ RegisterServerCallback('mdt:server:GetWarrants', function(source, cb)
     cb(warrants)
 end)
 
+-- Template management
+RegisterServerCallback('mdt:server:GetTemplates', function(source, cb)
+    cb(Templates)
+end)
+
+RegisterNetEvent('mdt:server:AddTemplate')
+AddEventHandler('mdt:server:AddTemplate', function(password, template)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    table.insert(Templates, template)
+    Config.Framework.Notify(src, 'Template added successfully', 'success')
+end)
+
+RegisterNetEvent('mdt:server:UpdateTemplate')
+AddEventHandler('mdt:server:UpdateTemplate', function(password, templateId, updatedTemplate)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    for i, template in ipairs(Templates) do
+        if template.id == templateId then
+            Templates[i] = updatedTemplate
+            Config.Framework.Notify(src, 'Template updated successfully', 'success')
+            return
+        end
+    end
+    
+    Config.Framework.Notify(src, 'Template not found', 'error')
+end)
+
+RegisterNetEvent('mdt:server:DeleteTemplate')
+AddEventHandler('mdt:server:DeleteTemplate', function(password, templateId)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    for i, template in ipairs(Templates) do
+        if template.id == templateId then
+            table.remove(Templates, i)
+            Config.Framework.Notify(src, 'Template deleted successfully', 'success')
+            return
+        end
+    end
+    
+    Config.Framework.Notify(src, 'Template not found', 'error')
+end)
+
+-- Admin functions for player management
+RegisterNetEvent('mdt:server:IssueFine')
+AddEventHandler('mdt:server:IssueFine', function(password, citizenId, amount, reason)
+    local src = source
+    if password ~= Config.AdminPassword then
+        Config.Framework.Notify(src, 'Invalid admin password', 'error')
+        return
+    end
+    
+    -- In a real implementation, this would update the database
+    Config.Framework.Notify(src, 'Fine issued successfully', 'success')
+    
+    -- Example of how you might log this action
+    AddToSearchHistory(src, 'Admin Action', 'Issued fine to ' .. citizenId .. ' for $' .. amount)
+end)
+
 -- ANPR scanning functionality
 RegisterNetEvent('mdt:server:ANPRScan')
 AddEventHandler('mdt:server:ANPRScan', function(plate)
@@ -213,5 +285,22 @@ end)
 AddEventHandler('onResourceStart', function(resource)
     if resource == GetCurrentResourceName() then
         print('Standalone MDT system initialized')
+        
+        -- Add default templates
+        table.insert(Templates, {
+            id = 'template1',
+            name = 'Pursuit Template',
+            type = 'Warrant',
+            section1 = 'Outstanding Warrant for Questioning - FIRSTNAME LASTNAME\n\nList of Charges and/or PINS:\n- Engage in a Police pursuit / Evade Police',
+            section2 = 'Preliminary Details\nTime: xxxx HRS\nDate: xx/xx/20\n\nWarrant Details:\n[CALL SIGN] signalled for [VEHICLE DESCRIPTION] to stop. The driver of the vehicle deliberately increased their speed and engaged in a police pursuit. The vehicle was successful in evading police. The registered owner of the vehicle is [REGISTERED OWNER\'S NAME] and the vehicle was NOT listed as stolen at the time of the pursuit. The accused is required to provide evidence of the driver at the time of the incident or they are to be charged with the above charges as the registered owner of the vehicle.\n\nEvidence:\nEvidence Locker: \n\n- Example: Highway Patrol Radar Print Out\n\nANPR Hits:\nIf applicable - to be copied from your MDT\n\nVicRoads Profile:\nTo be copied and pasted after running a vehicle check on the license plate\n\nSigned,\nFIRSTNAME LASTNAME\nRank | Callsign\nVictoria Police'
+        })
+        
+        table.insert(Templates, {
+            id = 'template2',
+            name = 'Stolen Weapon Template',
+            type = 'Serial# KALOF',
+            section1 = 'SERIAL KALOF - Reported stolen\n\nCHARGES: \n-Robbery\n-Possess a [Class A / B / C] firearm without legal authority',
+            section2 = 'Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.'
+        })
     end
 end)

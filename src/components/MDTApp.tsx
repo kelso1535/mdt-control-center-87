@@ -19,7 +19,8 @@ type Screen =
   | 'actions'
   | 'financial'
   | 'supervisor'
-  | 'wanted';
+  | 'wanted'
+  | 'admin';  // Added new admin screen type
 
 const MDTApp: React.FC = () => {
   const { toast } = useToast();
