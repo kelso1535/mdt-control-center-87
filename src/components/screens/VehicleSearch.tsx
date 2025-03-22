@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,9 +40,17 @@ const VehicleSearch: React.FC = () => {
     }, 800);
   };
 
+  const SectionHeader = ({ title }: { title: string }) => (
+    <div className="section-header">
+      <div className="section-line"></div>
+      <div className="section-title">------- {title} -------</div>
+      <div className="section-line"></div>
+    </div>
+  );
+
   return (
     <div className="fade-in">
-      <h2 className="text-xl text-blue-400 font-bold mb-2">Search Vehicle</h2>
+      <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold mb-2">Search Vehicle</h2>
       
       <div className="flex space-x-2 mb-2">
         <Input
@@ -53,7 +62,7 @@ const VehicleSearch: React.FC = () => {
         />
         <Button 
           onClick={handleSearch}
-          className="search-button"
+          className="bg-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/90 text-white"
           disabled={loading}
         >
           {loading ? 'Searching...' : 'Run Vehicle Check'}
@@ -62,9 +71,7 @@ const VehicleSearch: React.FC = () => {
       
       {searchResult && (
         <div className="bg-card border border-border rounded-md p-2 mt-2 animate-slide-in">
-          <div className="text-center mb-1">
-            <h3 className="text-primary text-lg">------- VEHICLE DATABASE ENTRY -------</h3>
-          </div>
+          <SectionHeader title="VEHICLE DATABASE ENTRY" />
           
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 mb-2">
             <div className="data-line">
@@ -87,13 +94,13 @@ const VehicleSearch: React.FC = () => {
             
             <div className="data-line">
               <span>REGISTRATION:</span>
-              <span className={searchResult.registration === 'VALID' ? 'text-primary' : 'text-destructive'}>
+              <span className={searchResult.registration === 'VALID' ? 'text-[hsl(var(--police-blue))]' : 'text-destructive'}>
                 {searchResult.registration}
               </span>
             </div>
             <div className="data-line">
               <span>INSURANCE:</span>
-              <span className={searchResult.insurance === 'VALID' ? 'text-primary' : 'text-destructive'}>
+              <span className={searchResult.insurance === 'VALID' ? 'text-[hsl(var(--police-blue))]' : 'text-destructive'}>
                 {searchResult.insurance}
               </span>
             </div>
@@ -101,9 +108,7 @@ const VehicleSearch: React.FC = () => {
           
           <DashedDivider />
           
-          <div className="text-center my-1">
-            <h3 className="text-primary">------- FLAGS -------</h3>
-          </div>
+          <SectionHeader title="FLAGS" />
           
           <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
             <div className="data-line">

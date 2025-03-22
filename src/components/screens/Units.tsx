@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { PoliceUnit } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -81,13 +80,13 @@ const Units: React.FC = () => {
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4 text-center">
-        <h2 className="text-blue-400 text-2xl font-bold w-full">SUPERVISOR</h2>
+        <h2 className="text-[hsl(var(--police-blue))] text-2xl font-bold w-full">SUPERVISOR</h2>
       </div>
       
       <div className="flex justify-end gap-2 mb-4">
         <Button 
           variant="outline" 
-          className="bg-blue-500/20 border-blue-500/50 text-blue-400" 
+          className="bg-[hsl(var(--police-blue))]/20 border-[hsl(var(--police-blue))]/50 text-[hsl(var(--police-blue))]" 
           size="sm"
           onClick={loadData}
           disabled={loading}
@@ -97,7 +96,7 @@ const Units: React.FC = () => {
         </Button>
         <Button 
           variant="outline" 
-          className="bg-blue-500/20 border-blue-500/50 text-blue-400" 
+          className="bg-[hsl(var(--police-blue))]/20 border-[hsl(var(--police-blue))]/50 text-[hsl(var(--police-blue))]" 
           size="sm"
           onClick={() => setShowPhones(!showPhones)}
         >
@@ -109,9 +108,8 @@ const Units: React.FC = () => {
       <div className="bg-card/30 border border-border rounded-md p-4">
         <table className="w-full text-xs">
           <thead>
-            <tr className="text-left text-blue-400">
+            <tr className="text-left text-[hsl(var(--police-blue))]">
               <th className="py-1 px-1">CALLSIGN</th>
-              <th className="py-1 px-1">PIN #</th>
               <th className="py-1 px-1">NAME</th>
               <th className="py-1 px-1">UPDATED</th>
               <th className="py-1 px-1">STATUS</th>
@@ -122,7 +120,7 @@ const Units: React.FC = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={showPhones ? 7 : 6} className="py-8 text-center">
+                <td colSpan={showPhones ? 6 : 5} className="py-8 text-center">
                   <div className="loading-dots inline-flex">
                     <div></div>
                     <div></div>
@@ -132,20 +130,19 @@ const Units: React.FC = () => {
               </tr>
             ) : units.length === 0 ? (
               <tr>
-                <td colSpan={showPhones ? 7 : 6} className="py-8 text-center text-muted-foreground">
+                <td colSpan={showPhones ? 6 : 5} className="py-8 text-center text-muted-foreground">
                   No units currently on duty
                 </td>
               </tr>
             ) : (
               units.map((unit, index) => (
                 <tr key={index} className="border-t border-border/30">
-                  <td className="py-1 px-1 text-blue-400">{unit.callsign}</td>
-                  <td className="py-1 px-1 text-blue-400">{unit.pin}</td>
-                  <td className="py-1 px-1 text-blue-400">{unit.name}</td>
-                  <td className="py-1 px-1 text-blue-400">{unit.updated}</td>
-                  <td className="py-1 px-1 text-blue-400">{unit.status}</td>
-                  <td className="py-1 px-1 text-blue-400">{unit.location}</td>
-                  {showPhones && <td className="py-1 px-1 text-blue-400">{unit.phone}</td>}
+                  <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.callsign}</td>
+                  <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.name}</td>
+                  <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.updated}</td>
+                  <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.status}</td>
+                  <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.location}</td>
+                  {showPhones && <td className="py-1 px-1 text-[hsl(var(--police-blue))]">{unit.phone}</td>}
                 </tr>
               ))
             )}

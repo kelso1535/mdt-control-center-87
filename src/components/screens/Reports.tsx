@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -78,13 +77,21 @@ const Reports: React.FC = () => {
     loadData();
   }, []);
 
+  const SectionHeader = ({ title }: { title: string }) => (
+    <div className="section-header">
+      <div className="section-line"></div>
+      <div className="section-title">{title}</div>
+      <div className="section-line"></div>
+    </div>
+  );
+
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl text-blue-400 font-bold">Police Reports</h2>
+        <h2 className="text-xl text-[hsl(var(--police-blue))] font-bold">Police Reports</h2>
         <Button 
           variant="outline" 
-          className="bg-card border-blue-500/30 text-blue-400 hover:bg-blue-500/10" 
+          className="bg-card border-[hsl(var(--police-blue))]/30 text-[hsl(var(--police-blue))] hover:bg-[hsl(var(--police-blue))]/10" 
           size="sm"
           onClick={loadData}
           disabled={loading}
@@ -94,7 +101,7 @@ const Reports: React.FC = () => {
         </Button>
       </div>
       
-      <div className="bg-black border border-blue-500/30 rounded-md">
+      <div className="bg-card border border-[hsl(var(--police-blue))]/30 rounded-md">
         {loading ? (
           <div className="p-8 text-center">
             <div className="loading-dots inline-flex">
@@ -104,18 +111,14 @@ const Reports: React.FC = () => {
             </div>
           </div>
         ) : reports.length === 0 ? (
-          <div className="p-8 text-center text-blue-400">
+          <div className="p-8 text-center text-[hsl(var(--police-blue))]">
             No reports found
           </div>
         ) : (
           <div className="p-2 font-mono">
             {reports.map((report) => (
-              <div key={report.id} className="mb-6 text-blue-400 text-sm">
-                <div className="w-full border-b border-blue-400/50 flex mb-2">
-                  <div className="flex-1 border-t border-blue-400/50"></div>
-                  <div className="px-4 text-center font-bold text-lg uppercase tracking-wider">WARRANTS</div>
-                  <div className="flex-1 border-t border-blue-400/50"></div>
-                </div>
+              <div key={report.id} className="mb-6 text-[hsl(var(--police-blue))] text-sm">
+                <SectionHeader title="WARRANTS" />
                 
                 <div className="mb-2">
                   <span>DATE: {report.date} {report.time} - {report.summary} - Entered by: {report.officer}</span>

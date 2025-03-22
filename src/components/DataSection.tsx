@@ -15,4 +15,16 @@ const DataSection: React.FC<DataSectionProps> = ({ title, children }) => {
   );
 };
 
+export interface SectionHeaderProps {
+  title: string;
+}
+
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title }) => (
+  <div className="section-header">
+    <div className="section-line"></div>
+    <div className="section-title">------- {title} -------</div>
+    <div className="section-line"></div>
+  </div>
+);
+
 export default DataSection;

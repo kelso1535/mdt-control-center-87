@@ -7,7 +7,7 @@
   }
   
   .data-header {
-    @apply text-primary text-sm font-bold;
+    @apply text-[hsl(var(--police-blue))] text-sm font-bold;
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 0.25rem;
@@ -22,7 +22,7 @@
   }
   
   .data-line span:first-child {
-    @apply text-police-blue;
+    @apply text-[hsl(var(--police-blue))];
     min-width: 40%;
     max-width: 40%;
   }
@@ -40,11 +40,23 @@
   }
   
   .dashed-line {
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    border-top: 1px dashed rgba(var(--police-blue), 0.3);
     margin: 0.25rem 0;
   }
   
   .data-card {
     @apply border border-border/50 rounded-lg p-2 bg-card/50 backdrop-blur-sm;
+  }
+  
+  .section-header {
+    @apply w-full border-t border-b border-[hsl(var(--police-blue))]/30 flex items-center justify-center text-center my-1 py-1;
+  }
+  
+  .section-title {
+    @apply text-[hsl(var(--police-blue))] font-bold text-lg uppercase tracking-wider px-4;
+  }
+  
+  .section-line {
+    @apply flex-1 border-t border-[hsl(var(--police-blue))]/30;
   }
 }
