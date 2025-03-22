@@ -24,5 +24,6 @@ export default defineConfig({
   },
   css: {
     postcss: "./postcss.config.cjs",
-  }
+  },
+  assetsInclude: ['**/*.ttf'] // Ensure font files are treated as assets
 })
