@@ -1,26 +1,30 @@
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Ensures relative paths for all assets
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, 'src') }
+    ]
   },
   build: {
+    target: 'esnext',
     outDir: 'dist',
+    assetsDir: 'assets',
     emptyOutDir: true,
-    assetsInlineLimit: 0, // Ensure all assets are bundled and no external requests are made
-    rollupOptions: {
-      output: {
-        manualChunks: undefined, // Disable code splitting for better compatibility
-      }
-    }
+    assetsInlineLimit: 0
   },
-  assetsInclude: ['**/*.ttf'], // Explicitly include font files as assets
-})
+  css: {
+    postcss: {
+      plugins: [
+        // Use explicit imports instead of dynamic requires
+        import('tailwindcss'),
+        import('autoprefixer'),
+      ],
+    },
+  },
+  assetsInclude: ['**/*.ttf']
+});

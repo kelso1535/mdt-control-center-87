@@ -29,49 +29,52 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-screen bg-gradient-to-b from-sidebar-background/50 to-background/95">
-      <div className="mb-8 animate-fade-in">
+    <div className="login-screen flex flex-col items-center justify-center h-full w-full" 
+         style={{
+           backgroundImage: 'linear-gradient(180deg, #051628 0%, #0A2744 100%)',
+           backgroundSize: 'cover',
+           backgroundRepeat: 'no-repeat'
+         }}>
+      <div className="mb-12 animate-fade-in">
         <MDTLogo />
       </div>
-      <div className="w-full max-w-md p-6 space-y-6 animate-slide-in backdrop-blur-sm bg-card/30 border border-border/30 rounded-lg shadow-lg">
-        <div className="flex items-center justify-center space-x-2">
-          <Shield className="h-6 w-6 text-police-blue" />
-          <h2 className="text-xl text-center font-bold">
-            <span className="terminal-effect text-police-blue">POLICE MDT</span>
-          </h2>
+      
+      <div className="w-full max-w-md flex flex-col items-center">
+        <div className="flex items-center justify-center mb-4">
+          <Shield className="h-5 w-5 text-[#1E90FF] mr-2" />
+          <h2 className="text-[#1E90FF] text-xl font-bold tracking-wider">POLICE MDT</h2>
         </div>
         
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Input
-              type="text"
-              placeholder="Enter your callsign"
-              value={callsign}
-              onChange={(e) => setCallsign(e.target.value)}
-              className="bg-input/50 border-border/50 backdrop-blur-sm text-foreground"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') handleLogin();
-              }}
-            />
-          </div>
-          
-          <Button 
-            onClick={handleLogin} 
-            className="w-full glass-button bg-police-blue/20 border-police-blue/30 text-police-blue hover:bg-police-blue/30" 
-            disabled={loading}
-          >
-            {loading ? (
+        <Input
+          type="text"
+          placeholder="Enter your callsign"
+          value={callsign}
+          onChange={(e) => setCallsign(e.target.value)}
+          className="bg-[#0A1929]/80 border-[#1E3A5F] text-white w-full mb-4 h-12"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleLogin();
+          }}
+        />
+        
+        <Button 
+          onClick={handleLogin} 
+          className="w-full bg-[#1E90FF] hover:bg-[#1E90FF]/80 text-white h-12"
+          disabled={loading}
+        >
+          {loading ? (
+            <span className="flex items-center justify-center">
+              <span className="mr-2">Loading</span>
               <span className="loading-dots">
-                <div></div>
-                <div></div>
-                <div></div>
+                <span className="dot"></span>
+                <span className="dot"></span>
+                <span className="dot"></span>
               </span>
-            ) : 'Secure Login'}
-          </Button>
-          
-          <div className="text-xs text-center text-muted-foreground mt-2">
-            Authorized personnel only
-          </div>
+            </span>
+          ) : 'Secure Login'}
+        </Button>
+        
+        <div className="text-xs text-center text-gray-400 mt-4">
+          Authorized personnel only
         </div>
       </div>
     </div>

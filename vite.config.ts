@@ -27,8 +27,9 @@ export default defineConfig(({ mode }) => ({
   css: {
     postcss: {
       plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
+        // Use explicit imports instead of dynamic requires
+        import('tailwindcss'),
+        import('autoprefixer'),
       ],
     },
   },
