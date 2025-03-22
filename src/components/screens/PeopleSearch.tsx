@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Person } from '@/types';
 import DataSection from '../DataSection';
 import DashedDivider from '../DashedDivider';
+import { SectionHeader } from '../DataSection';
 
 const mockPerson: Person = {
   id: '12345',
@@ -53,14 +54,6 @@ const PeopleSearch: React.FC = () => {
       toast.success(`Search complete for "${searchQuery}"`);
     }, 800);
   };
-
-  const SectionHeader = ({ title }: { title: string }) => (
-    <div className="section-header">
-      <div className="section-line"></div>
-      <div className="section-title">------- {title} -------</div>
-      <div className="section-line"></div>
-    </div>
-  );
 
   return (
     <div className="fade-in">
@@ -166,6 +159,10 @@ const PeopleSearch: React.FC = () => {
                     <span>POS WEAP:</span>
                     <span>{searchResult.flags.possessWeapon ? 'YES' : 'NO'}</span>
                   </div>
+                  <div className="data-line">
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                  </div>
                 </div>
               </div>
               
@@ -187,7 +184,6 @@ const PeopleSearch: React.FC = () => {
                     <span>CONCEAL CARRY PERMIT:</span>
                     <span>{searchResult.weapons.concealCarry ? 'YES' : 'NO'}</span>
                   </div>
-                  <div></div>
                   <div className="data-line">
                     <span>F/ARM PROHIB ORDER:</span>
                     <span>{searchResult.weapons.prohibOrder ? 'YES' : 'NO'}</span>
