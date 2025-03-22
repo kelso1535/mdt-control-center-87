@@ -33,6 +33,9 @@ body {
   --input: 215 27% 18%;
   --ring: 210 100% 50%;
   --police-blue: 210 100% 50%;
+  --sidebar-background: 215 60% 15%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-border: 215 27% 20%;
 }
 
 .mdt-container {

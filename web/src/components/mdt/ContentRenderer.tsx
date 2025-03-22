@@ -33,32 +33,6 @@ interface ContentRendererProps {
 }
 
 const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
-  const getScreenTitle = () => {
-    switch (currentScreen) {
-      case 'people': return 'People Screen';
-      case 'vehicles': return 'Vehicle Screen';
-      case 'history': return 'Search History Screen';
-      case 'criminal': return 'Criminal History Screen';
-      case 'traffic': return 'Traffic Offenses Screen';
-      case 'reports': return 'Reports Screen';
-      case 'serials': return 'Serial Search Screen';
-      case 'actions': return 'Actions Screen';
-      case 'financial': return 'Financial Records Screen';
-      case 'supervisor': return 'Units Screen';
-      case 'wanted': return 'Warrants Screen';
-      case 'admin': return 'Admin Screen';
-      default: return 'Unknown Screen';
-    }
-  };
-  
-  // Simple fallback content for screens without content
-  const SimplePlaceholder = () => (
-    <div>
-      <h2 className="text-2xl mb-4">{getScreenTitle()}</h2>
-      <p>This is the {currentScreen} screen. Content will be rendered here.</p>
-    </div>
-  );
-
   switch (currentScreen) {
     case 'people':
       return <PeopleSearch />;
@@ -85,7 +59,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
     case 'admin':
       return <Admin />;
     default:
-      return <SimplePlaceholder />;
+      return <PeopleSearch />;
   }
 };
 

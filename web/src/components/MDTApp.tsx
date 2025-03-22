@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import { OfficerStatus } from '@/types';
 import LoginScreen from './LoginScreen';
 import MainSidebar from './mdt/MainSidebar';
@@ -22,6 +23,7 @@ type Screen =
   | 'admin';
 
 const MDTApp: React.FC = () => {
+  const { toast } = useToast();
   const [loggedIn, setLoggedIn] = useState(false);
   const [callsign, setCallsign] = useState('');
   const [currentStatus, setCurrentStatus] = useState<OfficerStatus>('Code 1 On Patrol');
@@ -31,27 +33,44 @@ const MDTApp: React.FC = () => {
     setCallsign(officerCallsign);
     setLoggedIn(true);
     setCurrentScreen('people');
-    // Toast will be handled by use-toast once we add it
+    toast({
+      title: "Login Successful",
+      description: `Welcome Officer ${officerCallsign}`,
+    });
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
     setCurrentScreen('login');
     setCallsign('');
-    // Toast will be handled by use-toast once we add it
+    toast({
+      title: "Logged Out",
+      description: "You have been logged out of the MDT",
+    });
   };
 
   const handleChangeStatus = (status: OfficerStatus) => {
     setCurrentStatus(status);
-    // Toast will be handled by use-toast once we add it
+    toast({
+      title: "Status Updated",
+      description: `Status set to: ${status}`,
+    });
   };
 
   const handleFlagStolen = () => {
-    // Toast will be handled by use-toast once we add it
+    toast({
+      title: "Vehicle Flagged",
+      description: "Police unit has been flagged as stolen",
+      variant: "destructive",
+    });
   };
 
   const handleDuress = () => {
-    // Toast will be handled by use-toast once we add it
+    toast({
+      title: "DURESS ALERT ACTIVATED",
+      description: "All available units have been notified of your location",
+      variant: "destructive",
+    });
   };
 
   if (!loggedIn) {
