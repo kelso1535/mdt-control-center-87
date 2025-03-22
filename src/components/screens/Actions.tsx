@@ -45,14 +45,14 @@ const Actions: React.FC = () => {
   const loadStolenWeaponTemplate = () => {
     setReportType('Serial# KALOF');
     setSection1Text('SERIAL KALOF - Reported stolen\n\nCHARGES: \n-Robbery\n-Possess a [Class A / B / C] firearm without legal authority');
-    setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.');
+    setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKNOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.');
     setSerialNumber(''); // Clear the serial number field when loading the template
   };
 
   const loadTrafficBailTemplate = () => {
     setReportType('Field Contact Report');
     setSection1Text('TRAFFIC BAIL NOTICE\n\nCHARGES: \n- [List traffic offenses]\n- Fail to obey traffic control signals');
-    setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nDetails of Incident:\nAt approximately [TIME], officer [CALL SIGN] observed [VEHICLE DESCRIPTION] [DESCRIPTION OF VIOLATION]. The driver was identified as [DRIVER NAME] and has been issued a Traffic Bail Notice to appear at [COURT LOCATION] on [COURT DATE].\n\nVehicle Details:\n[VEHICLE MAKE/MODEL]\n[LICENSE PLATE]\n[VIN if available]\n\nDriver's License Details:\n[LICENSE NUMBER]\n[EXPIRATION DATE]\n\nSigned,\n[OFFICER NAME]\n[RANK] | [CALLSIGN]\nVictoria Police');
+    setSection2Text('Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nDetails of Incident:\nAt approximately [TIME], officer [CALL SIGN] observed [VEHICLE DESCRIPTION] [DESCRIPTION OF VIOLATION]. The driver was identified as [DRIVER NAME] and has been issued a Traffic Bail Notice to appear at [COURT LOCATION] on [COURT DATE].\n\nVehicle Details:\n[VEHICLE MAKE/MODEL]\n[LICENSE PLATE]\n[VIN if available]\n\nDriver\'s License Details:\n[LICENSE NUMBER]\n[EXPIRATION DATE]\n\nSigned,\n[OFFICER NAME]\n[RANK] | [CALLSIGN]\nVictoria Police');
   };
 
   const loadArrestTemplate = () => {
