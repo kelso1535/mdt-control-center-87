@@ -1,6 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { CriminalRecord } from '@/types';
+
+interface CriminalRecord {
+  id: string;
+  date: string;
+  paid: boolean;
+  amount: number;
+  offense: string;
+}
 
 const mockCriminalRecords: CriminalRecord[] = [
   {
@@ -61,38 +68,36 @@ const CriminalHistory: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="loading-dots">
-          <div></div>
-          <div></div>
-          <div></div>
+      <div className="p-4 h-full bg-[#0a1726] text-white">
+        <h1 className="text-2xl font-bold mb-4">Criminal History</h1>
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#007bff]"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="fade-in">
-      <h2 className="text-[hsl(var(--police-blue))] text-2xl font-bold mb-2">LEAP CRIMINAL HISTORY</h2>
+    <div className="p-4 h-full bg-[#0a1726] text-white">
+      <h1 className="text-2xl font-bold mb-4">Criminal History</h1>
       
-      <div className="bg-card/30 border border-border rounded-md p-2 overflow-auto">
+      <div className="bg-[#0d1e33] border border-[#1c3a5a] rounded-md p-4">
         <table className="w-full">
           <thead>
-            <tr className="text-left">
-              <th className="text-[hsl(var(--police-blue))] py-1 px-1">Date</th>
-              <th className="text-[hsl(var(--police-blue))] py-1 px-1">P? Amount</th>
-              <th className="text-[hsl(var(--police-blue))] py-1 px-1">Offence</th>
+            <tr className="text-left border-b border-[#1c3a5a]">
+              <th className="py-2 px-4">Date</th>
+              <th className="py-2 px-4">Paid</th>
+              <th className="py-2 px-4">Amount</th>
+              <th className="py-2 px-4">Offense</th>
             </tr>
           </thead>
           <tbody>
             {records.map((record) => (
-              <tr key={record.id} className="border-t border-border/30">
-                <td className="py-1 px-1 text-white">{record.date}</td>
-                <td className="py-1 px-1">
-                  <span className="text-white">{record.paid ? 'Y' : 'N'}</span>{' '}
-                  <span className="text-white">${record.amount}</span>
-                </td>
-                <td className="py-1 px-1 text-white">{record.offense}</td>
+              <tr key={record.id} className="border-b border-[#1c3a5a]/30 hover:bg-[#1c3a5a]/20">
+                <td className="py-2 px-4">{record.date}</td>
+                <td className="py-2 px-4">{record.paid ? 'Yes' : 'No'}</td>
+                <td className="py-2 px-4">${record.amount}</td>
+                <td className="py-2 px-4">{record.offense}</td>
               </tr>
             ))}
           </tbody>

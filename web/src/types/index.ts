@@ -1,24 +1,15 @@
 
-// Officer statuses
 export type OfficerStatus = 
   | 'Code 1 On Patrol'
   | 'Code 2 Responding'
   | 'Code 3 Emergency'
-  | 'Code 4 Under Control'
-  | 'Code 5 Stakeout'
-  | 'Code 6 Investigating'
-  | 'Code 7 Meal Break'
-  | 'Off Duty';
+  | 'Break'
+  | 'Meal Break'
+  | 'Off Duty'
+  | 'On Scene'
+  | 'Unavailable'
+  | 'Busy';
 
-// Search history item
-export interface SearchHistoryItem {
-  id: string;
-  timestamp: string;
-  type: string;
-  query: string;
-}
-
-// Criminal record
 export interface CriminalRecord {
   id: string;
   date: string;
@@ -27,69 +18,66 @@ export interface CriminalRecord {
   offense: string;
 }
 
-// Traffic offence
 export interface TrafficOffence {
   id: string;
   date: string;
-  type: string;
+  paid: boolean;
   amount: number;
-  details: string;
+  offense: string;
+  vehicle: string;
 }
 
-// Financial record
-export interface FinancialRecord {
+export interface SearchRecord {
   id: string;
+  type: 'person' | 'vehicle' | 'property';
+  term: string;
   date: string;
-  type: string;
-  amount: number;
-  status: 'PAID' | 'UNPAID';
-  description: string;
+  officerId: string;
 }
 
-// Serial
-export interface Serial {
+export interface Person {
   id: string;
-  serial: string;
-  type: string;
-  model: string;
-  owner: string;
-  status: string;
-  registeredDate: string;
-  flags: {
-    stolen: boolean;
-    wanted: boolean;
-  }
+  firstName: string;
+  lastName: string;
+  dob: string;
+  gender: string;
+  mugshot?: string;
+  address: string;
+  licenses: string[];
+  flags: string[];
+  notes?: string;
 }
 
-// Vehicle
 export interface Vehicle {
   id: string;
   plate: string;
   model: string;
   color: string;
   owner: string;
-  registration: string;
-  flags: {
-    stolen: boolean;
-    wanted: boolean;
-  }
+  registered: boolean;
+  stolen: boolean;
+  insurance: string;
+  flags: string[];
+  notes?: string;
 }
 
-// Warrant
+export interface Report {
+  id: string;
+  title: string;
+  date: string;
+  author: string;
+  content: string;
+  tags: string[];
+  attachments?: string[];
+}
+
 export interface Warrant {
   id: string;
-  name: string;
-  status: 'ACTIVE' | 'EXPIRED' | 'COMPLETED';
-  count: number;
-}
-
-// Police Unit
-export interface PoliceUnit {
-  callsign: string;
-  pin: string;
-  name: string;
-  updated: string;
-  status: string;
-  location: string;
-  phone: string;
+  suspectName: string;
+  reason: string;
+  date: string;
+  expiry: string;
+  approved: boolean;
+  approvedBy?: string;
+  officers: string[];
 }
