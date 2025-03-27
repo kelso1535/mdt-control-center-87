@@ -2,16 +2,18 @@
 import React from 'react';
 import { 
   Search, 
+  Car, 
   Clock, 
-  Database, 
+  FileText, 
   AlertTriangle, 
+  DollarSign, 
+  Box, 
+  ShieldAlert, 
   Users, 
-  Settings, 
-  LogOut,
-  Shield,
-  FileText,
-  Gavel,
-  Calendar
+  BarChart3, 
+  Gavel, 
+  Calendar, 
+  LogOut 
 } from 'lucide-react';
 
 type Screen = 
@@ -19,16 +21,16 @@ type Screen =
   | 'people' 
   | 'vehicles' 
   | 'history' 
-  | 'serials' 
   | 'criminal' 
   | 'traffic' 
   | 'reports' 
+  | 'serials' 
   | 'actions' 
-  | 'financial' 
   | 'supervisor' 
-  | 'wanted'
-  | 'admin'
-  | 'court'
+  | 'financial' 
+  | 'wanted' 
+  | 'admin' 
+  | 'court' 
   | 'magistrate';
 
 interface NavigationSidebarProps {
@@ -38,190 +40,244 @@ interface NavigationSidebarProps {
   userRole?: 'officer' | 'magistrate';
 }
 
-const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
-  currentScreen,
+const NavigationSidebar: React.FC<NavigationSidebarProps> = ({ 
+  currentScreen, 
   onScreenChange,
   onLogout,
   userRole = 'officer'
 }) => {
+  // Determine which menu to show based on user role
   if (userRole === 'magistrate') {
     return (
-      <div className="w-[250px] bg-[#0f1824] border-r border-[#1c3a5a] text-white overflow-y-auto">
-        <div className="p-3 border-b border-[#1c3a5a]">
-          <div className="flex items-center text-xs font-bold text-[#007bff] mb-1">
-            <Gavel className="w-4 h-4 mr-1" />
-            MAGISTRATE SERVICES
-          </div>
-        </div>
-        
-        <div className="p-2">
-          <div 
-            className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'magistrate' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-            onClick={() => onScreenChange('magistrate')}
-          >
-            <Calendar className="w-4 h-4" />
-            <span className="text-sm">AVAILABILITY</span>
-          </div>
+      <div className="mdt-nav-sidebar h-full bg-[#0a1422] border-r border-[#1c3a5a] overflow-y-auto">
+        <div className="p-3">
+          <h3 className="text-[#007bff] text-sm font-semibold mb-4">MAGISTRATE PANEL</h3>
           
-          <div 
-            className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'court' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-            onClick={() => onScreenChange('court')}
-          >
-            <Gavel className="w-4 h-4" />
-            <span className="text-sm">COURT CASES</span>
-          </div>
-        </div>
-        
-        <div className="mt-2 border-t border-[#1c3a5a] p-2">
-          <div 
-            className="px-3 py-2 flex items-center gap-2 cursor-pointer hover:bg-[#1c3a5a]"
-            onClick={onLogout}
-          >
-            <LogOut className="w-4 h-4" />
-            <span className="text-sm">EXIT</span>
-          </div>
+          <nav className="flex flex-col space-y-1">
+            <button
+              onClick={() => onScreenChange('magistrate')}
+              className={`flex items-center px-3 py-2 text-sm rounded-md ${
+                currentScreen === 'magistrate' 
+                  ? 'bg-[#1c3a5a] text-white' 
+                  : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+              }`}
+            >
+              <Calendar className="w-4 h-4 mr-3" />
+              Availability
+            </button>
+            
+            <button
+              onClick={() => onScreenChange('court')}
+              className={`flex items-center px-3 py-2 text-sm rounded-md ${
+                currentScreen === 'court' 
+                  ? 'bg-[#1c3a5a] text-white' 
+                  : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+              }`}
+            >
+              <Gavel className="w-4 h-4 mr-3" />
+              Court Cases
+            </button>
+            
+            <button
+              onClick={() => onScreenChange('criminal')}
+              className={`flex items-center px-3 py-2 text-sm rounded-md ${
+                currentScreen === 'criminal' 
+                  ? 'bg-[#1c3a5a] text-white' 
+                  : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+              }`}
+            >
+              <AlertTriangle className="w-4 h-4 mr-3" />
+              Criminal Records
+            </button>
+            
+            <button
+              onClick={() => onLogout()}
+              className="flex items-center px-3 py-2 text-sm rounded-md text-gray-300 hover:bg-[#1c3a5a] hover:text-white mt-auto"
+            >
+              <LogOut className="w-4 h-4 mr-3" />
+              Logout
+            </button>
+          </nav>
         </div>
       </div>
     );
   }
-
+  
+  // Police officer navigation
   return (
-    <div className="w-[250px] bg-[#0f1824] border-r border-[#1c3a5a] text-white overflow-y-auto">
-      <div className="p-3 border-b border-[#1c3a5a]">
-        <div className="flex items-center text-xs font-bold text-[#007bff] mb-1">
-          <Shield className="w-4 h-4 mr-1" />
-          POLICE SERVICES
-        </div>
-      </div>
-      
-      <div className="py-2">
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'people' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('people')}
-        >
-          <Search className="w-4 h-4" />
-          <span className="text-sm">SEARCH PEOPLE</span>
-        </div>
+    <div className="mdt-nav-sidebar h-full bg-[#0a1422] border-r border-[#1c3a5a] overflow-y-auto">
+      <div className="p-3">
+        <h3 className="text-[#007bff] text-sm font-semibold mb-4">POLICE DATABASE</h3>
         
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'vehicles' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('vehicles')}
-        >
-          <Search className="w-4 h-4" />
-          <span className="text-sm">SEARCH VEHICLE</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'history' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('history')}
-        >
-          <Clock className="w-4 h-4" />
-          <span className="text-sm">SEARCH HISTORY</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'serials' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('serials')}
-        >
-          <Search className="w-4 h-4" />
-          <span className="text-sm">SEARCH SERIALS</span>
-        </div>
-      </div>
-      
-      <div className="border-t border-[#1c3a5a] py-2">
-        <div className="px-3 pb-1 flex items-center text-xs font-bold text-[#007bff]">
-          <FileText className="w-4 h-4 mr-1" />
-          RECORDS
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'criminal' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('criminal')}
-        >
-          <FileText className="w-4 h-4" />
-          <span className="text-sm">CRIM HIST</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'traffic' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('traffic')}
-        >
-          <FileText className="w-4 h-4" />
-          <span className="text-sm">TRAFFIC OFFENCES</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'reports' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('reports')}
-        >
-          <FileText className="w-4 h-4" />
-          <span className="text-sm">REPORTS</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'court' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('court')}
-        >
-          <Gavel className="w-4 h-4" />
-          <span className="text-sm">COURT CASES</span>
-        </div>
-      </div>
-      
-      <div className="border-t border-[#1c3a5a] py-2">
-        <div className="px-3 pb-1 flex items-center text-xs font-bold text-[#007bff]">
-          <AlertTriangle className="w-4 h-4 mr-1" />
-          SYSTEM
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'actions' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('actions')}
-        >
-          <AlertTriangle className="w-4 h-4" />
-          <span className="text-sm">ACTIONS</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'financial' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('financial')}
-        >
-          <Database className="w-4 h-4" />
-          <span className="text-sm">FIN. RECORDS</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'supervisor' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('supervisor')}
-        >
-          <Users className="w-4 h-4" />
-          <span className="text-sm">SUPERVISOR</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'wanted' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('wanted')}
-        >
-          <AlertTriangle className="w-4 h-4" />
-          <span className="text-sm">WANTED</span>
-        </div>
-        
-        <div 
-          className={`px-3 py-2 flex items-center gap-2 cursor-pointer ${currentScreen === 'admin' ? 'bg-[#007bff] text-white' : 'hover:bg-[#1c3a5a]'}`}
-          onClick={() => onScreenChange('admin')}
-        >
-          <Settings className="w-4 h-4" />
-          <span className="text-sm">ADMIN</span>
-        </div>
-      </div>
-      
-      <div className="mt-2 border-t border-[#1c3a5a] p-2">
-        <div 
-          className="px-3 py-2 flex items-center gap-2 cursor-pointer hover:bg-[#1c3a5a]"
-          onClick={onLogout}
-        >
-          <LogOut className="w-4 h-4" />
-          <span className="text-sm">EXIT</span>
-        </div>
+        <nav className="flex flex-col space-y-1">
+          <button
+            onClick={() => onScreenChange('people')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'people' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Search className="w-4 h-4 mr-3" />
+            People Search
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('vehicles')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'vehicles' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Car className="w-4 h-4 mr-3" />
+            Vehicle Search
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('history')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'history' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Clock className="w-4 h-4 mr-3" />
+            Search History
+          </button>
+          
+          <div className="border-t border-[#1c3a5a] my-2 pt-2">
+            <h3 className="text-[#007bff] text-xs font-semibold mb-2 pl-2">RECORDS</h3>
+          </div>
+          
+          <button
+            onClick={() => onScreenChange('criminal')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'criminal' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <AlertTriangle className="w-4 h-4 mr-3" />
+            Criminal Records
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('traffic')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'traffic' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Car className="w-4 h-4 mr-3" />
+            Traffic Citations
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('reports')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'reports' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <FileText className="w-4 h-4 mr-3" />
+            Police Reports
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('court')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'court' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Gavel className="w-4 h-4 mr-3" />
+            Court Cases
+          </button>
+          
+          <div className="border-t border-[#1c3a5a] my-2 pt-2">
+            <h3 className="text-[#007bff] text-xs font-semibold mb-2 pl-2">OTHER</h3>
+          </div>
+          
+          <button
+            onClick={() => onScreenChange('financial')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'financial' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <DollarSign className="w-4 h-4 mr-3" />
+            Financial Records
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('serials')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'serials' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Box className="w-4 h-4 mr-3" />
+            Serial Numbers
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('wanted')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'wanted' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <ShieldAlert className="w-4 h-4 mr-3" />
+            Wanted Persons
+          </button>
+          
+          <div className="border-t border-[#1c3a5a] my-2 pt-2">
+            <h3 className="text-[#007bff] text-xs font-semibold mb-2 pl-2">MANAGEMENT</h3>
+          </div>
+          
+          <button
+            onClick={() => onScreenChange('supervisor')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'supervisor' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <Users className="w-4 h-4 mr-3" />
+            Units & Officers
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('actions')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'actions' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <BarChart3 className="w-4 h-4 mr-3" />
+            Actions Log
+          </button>
+          
+          <button
+            onClick={() => onScreenChange('admin')}
+            className={`flex items-center px-3 py-2 text-sm rounded-md ${
+              currentScreen === 'admin' 
+                ? 'bg-[#1c3a5a] text-white' 
+                : 'text-gray-300 hover:bg-[#1c3a5a] hover:text-white'
+            }`}
+          >
+            <ShieldAlert className="w-4 h-4 mr-3" />
+            Administration
+          </button>
+        </nav>
       </div>
     </div>
   );

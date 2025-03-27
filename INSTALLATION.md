@@ -8,6 +8,7 @@ This guide will walk you through setting up the MDT (Mobile Data Terminal) for y
 - A running QBCore FiveM server
 - Basic knowledge of server configuration and resources
 - Access to your server files
+- Node.js and npm installed on your development machine
 
 ## Installation Steps
 
@@ -46,6 +47,32 @@ This guide will walk you through setting up the MDT (Mobile Data Terminal) for y
 ### Step 4: Database Setup
 
 1. Import the included `mdt.sql` file to your database to create the necessary tables
+   ```sql
+   -- Example mdt.sql content
+   CREATE TABLE IF NOT EXISTS `mdt_reports` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `identifier` varchar(50) DEFAULT NULL,
+     `title` varchar(255) DEFAULT NULL,
+     `incident` longtext DEFAULT NULL,
+     `created` timestamp NULL DEFAULT current_timestamp(),
+     `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+     `author` varchar(50) DEFAULT NULL,
+     PRIMARY KEY (`id`)
+   );
+
+   CREATE TABLE IF NOT EXISTS `mdt_court_cases` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `title` varchar(255) NOT NULL,
+     `defendant` varchar(50) NOT NULL,
+     `date` varchar(50) DEFAULT NULL,
+     `time` varchar(50) DEFAULT NULL,
+     `charges` longtext DEFAULT NULL,
+     `status` varchar(20) DEFAULT 'pending',
+     `created_by` varchar(50) DEFAULT NULL,
+     PRIMARY KEY (`id`)
+   );
+   ```
+
 2. Ensure your QBCore database connection is properly configured
 
 ### Step 5: In-Game Usage

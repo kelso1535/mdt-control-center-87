@@ -9,6 +9,7 @@ import {
   LogOut, 
   X 
 } from 'lucide-react';
+import StatusMenu from './StatusMenu';
 
 interface MainSidebarProps {
   callsign: string;
@@ -32,7 +33,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
   const [showStatusMenu, setShowStatusMenu] = useState(false);
   
   return (
-    <div className="w-[210px] bg-[#0f1824] border-r border-[#1c3a5a] flex flex-col text-white">
+    <div className="mdt-main-sidebar bg-[#0f1824] border-r border-[#1c3a5a] flex flex-col text-white">
       <div className="mb-4 p-4 text-center">
         <h2 className="text-3xl font-bold text-[#007bff]">CrimTrac</h2>
         <div className="mt-4 flex justify-center">
@@ -46,87 +47,13 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
       <div className="flex-1">
         {showStatusMenu && (
           <div className="mx-2 mb-2 bg-[#0a1422] border border-[#1c3a5a] rounded overflow-hidden">
-            <button
-              onClick={() => {
-                onStatusChange('Code 1 On Patrol');
+            <StatusMenu
+              currentStatus={currentStatus}
+              onStatusChange={(status) => {
+                onStatusChange(status);
                 setShowStatusMenu(false);
               }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Code 1 On Patrol
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Code 2 Responding');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Code 2 Responding
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Code 3 Emergency');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Code 3 Emergency
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Break');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Break
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Meal Break');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Meal Break
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Off Duty');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Off Duty
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('On Scene');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              On Scene
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Unavailable');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Unavailable
-            </button>
-            <button
-              onClick={() => {
-                onStatusChange('Busy');
-                setShowStatusMenu(false);
-              }}
-              className="w-full text-left px-3 py-2 hover:bg-[#1c3a5a] text-white text-sm"
-            >
-              Busy
-            </button>
+            />
           </div>
         )}
       </div>

@@ -93,7 +93,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
   }
 
   return (
-    <div className="p-4 overflow-y-auto max-h-[calc(100vh-32px)]">
+    <div className="p-4 overflow-y-auto h-full">
       {content}
     </div>
   );

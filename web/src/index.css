@@ -164,3 +164,22 @@ tr:hover {
 .mdt-button.danger:hover {
   background-color: #bd2130;
 }
+
+/* MDT Sidebar widths */
+.mdt-main-sidebar {
+  width: 240px;
+  min-width: 240px;
+  flex-shrink: 0;
+}
+
+.mdt-nav-sidebar {
+  width: 220px;
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.mdt-content-area {
+  flex: 1;
+  min-width: 0; /* Prevent content from overflowing */
+  overflow-y: auto;
+}
