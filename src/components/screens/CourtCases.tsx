@@ -63,7 +63,7 @@ const CourtCases: React.FC<CourtCasesProps> = ({ userRole, callsign }) => {
           description: 'Charges related to vehicle theft and evading police',
           date: '2023-12-15',
           time: '14:00',
-          status: 'scheduled',
+          status: 'scheduled', // Using valid literal type
           createdBy: 'Officer Smith',
           prosecutor: 'Officer Johnson',
           defendant: 'John Doe',
@@ -78,7 +78,7 @@ const CourtCases: React.FC<CourtCasesProps> = ({ userRole, callsign }) => {
           description: 'Illegal weapon possession',
           date: null,
           time: null,
-          status: 'pending',
+          status: 'pending', // Using valid literal type
           createdBy: 'Officer Davis',
           prosecutor: 'Officer Williams',
           defendant: 'Jane Smith',
@@ -115,7 +115,7 @@ const CourtCases: React.FC<CourtCasesProps> = ({ userRole, callsign }) => {
       description: newCase.description || '',
       date: newCase.date,
       time: newCase.time,
-      status: 'pending',
+      status: 'pending', // Using valid literal type
       createdBy: callsign,
       prosecutor: newCase.prosecutor || callsign,
       defendant: newCase.defendant || '',
@@ -153,7 +153,7 @@ const CourtCases: React.FC<CourtCasesProps> = ({ userRole, callsign }) => {
           ...c,
           date,
           time: time.split('-')[0],
-          status: 'scheduled'
+          status: 'scheduled' as const // Using 'as const' to fix the type
         };
       }
       return c;
@@ -202,7 +202,7 @@ const CourtCases: React.FC<CourtCasesProps> = ({ userRole, callsign }) => {
           ...c,
           verdict,
           sentence,
-          status: 'completed'
+          status: 'completed' as const // Using 'as const' to fix the type
         };
       }
       return c;

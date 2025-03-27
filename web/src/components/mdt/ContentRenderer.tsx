@@ -12,6 +12,8 @@ import Units from '../screens/Units';
 import Warrants from '../screens/Warrants';
 import Reports from '../screens/Reports';
 import Admin from '../screens/Admin';
+import CourtCases from '../screens/CourtCases';
+import MagistrateAvailability from '../screens/MagistrateAvailability';
 
 type Screen = 
   | 'login'
@@ -26,13 +28,21 @@ type Screen =
   | 'financial'
   | 'supervisor'
   | 'wanted'
-  | 'admin';
+  | 'admin'
+  | 'court'
+  | 'magistrate';
 
 interface ContentRendererProps {
   currentScreen: Screen;
+  userRole?: 'officer' | 'magistrate';
+  callsign?: string;
 }
 
-const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
+const ContentRenderer: React.FC<ContentRendererProps> = ({ 
+  currentScreen,
+  userRole = 'officer',
+  callsign = ''
+}) => {
   switch (currentScreen) {
     case 'people':
       return <PeopleSearch />;
@@ -58,6 +68,10 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ currentScreen }) => {
       return <Warrants />;
     case 'admin':
       return <Admin />;
+    case 'court':
+      return <CourtCases userRole={userRole} callsign={callsign} />;
+    case 'magistrate':
+      return <MagistrateAvailability callsign={callsign} />;
     default:
       return <PeopleSearch />;
   }

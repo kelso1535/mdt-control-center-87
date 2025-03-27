@@ -20,22 +20,31 @@ type Screen =
   | 'financial'
   | 'supervisor'
   | 'wanted'
-  | 'admin';  // Added 'admin' to be consistent with other Screen types
+  | 'admin'
+  | 'court'
+  | 'magistrate';
 
-const MDTApp: React.FC = () => {
+interface MDTAppProps {
+  sendNUIMessage?: (data: any) => void;
+  nuiCallback?: (event: string, data: any) => void;
+}
+
+const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
   const { toast } = useToast();
   const [loggedIn, setLoggedIn] = useState(false);
   const [callsign, setCallsign] = useState('');
   const [currentStatus, setCurrentStatus] = useState<OfficerStatus>('Code 1 On Patrol');
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
+  const [userRole, setUserRole] = useState<'officer' | 'magistrate'>('officer');
 
-  const handleLogin = (officerCallsign: string) => {
+  const handleLogin = (officerCallsign: string, role: 'officer' | 'magistrate' = 'officer') => {
     setCallsign(officerCallsign);
     setLoggedIn(true);
-    setCurrentScreen('people');
+    setUserRole(role);
+    setCurrentScreen(role === 'magistrate' ? 'magistrate' : 'people');
     toast({
       title: "Login Successful",
-      description: `Welcome Officer ${officerCallsign}`,
+      description: `Welcome ${role === 'magistrate' ? 'Magistrate' : 'Officer'} ${officerCallsign}`,
     });
   };
 
@@ -73,18 +82,22 @@ const MDTApp: React.FC = () => {
     });
   };
 
+  // Create a handler function for screen changes to fix the type error
+  const handleScreenChange = (screen: Screen) => {
+    setCurrentScreen(screen);
+  };
+
   if (!loggedIn) {
     return (
-      <div className="mdt-container">
+      <div className="w-full h-full bg-[#0a1422]">
         <LoginScreen onLogin={handleLogin} />
-        <div className="screen-overlay"></div>
       </div>
     );
   }
 
   return (
-    <div className="mdt-container">
-      <div className="mdt-main">
+    <div className="w-full h-full bg-[#0a1422]">
+      <div className="flex h-full">
         <MainSidebar 
           callsign={callsign}
           currentStatus={currentStatus}
@@ -92,19 +105,24 @@ const MDTApp: React.FC = () => {
           onDuress={handleDuress}
           onFlagStolen={handleFlagStolen}
           onLogout={handleLogout}
+          userRole={userRole}
         />
         
         <NavigationSidebar 
           currentScreen={currentScreen}
-          onScreenChange={setCurrentScreen}
+          onScreenChange={handleScreenChange}
           onLogout={handleLogout}
+          userRole={userRole}
         />
         
-        <div className="mdt-content">
-          <ContentRenderer currentScreen={currentScreen} />
+        <div className="flex-1 h-full overflow-auto bg-[#0a1726]">
+          <ContentRenderer 
+            currentScreen={currentScreen} 
+            userRole={userRole}
+            callsign={callsign}
+          />
         </div>
       </div>
-      <div className="screen-overlay"></div>
     </div>
   );
 };
