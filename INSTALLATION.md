@@ -1,88 +1,95 @@
 
-# Installation Guide for QB-MDT
+# QBCore MDT Installation Guide
 
-This guide will walk you through the process of installing and configuring the QB-MDT resource for your QB-Core FiveM server.
+This guide will walk you through setting up the MDT (Mobile Data Terminal) for your QBCore FiveM server.
 
 ## Prerequisites
 
-- A working QB-Core FiveM server
-- oxmysql resource installed and configured
-- Node.js and npm (for building the web UI)
+- A running QBCore FiveM server
+- Basic knowledge of server configuration and resources
+- Access to your server files
 
-## Step 1: Download and Extract
+## Installation Steps
 
-1. Download the QB-MDT resource
-2. Extract the files to your server's resources directory
-3. Rename the folder to `qb-mdt` if it's not already named that
+### Step 1: Resource Setup
 
-## Step 2: Build the Web UI
+1. Download or clone the MDT resource to your server's resources folder
+2. Rename the folder to `qb-mdt` (if it's not already named that)
 
-1. Open your terminal/command prompt
-2. Navigate to the web directory inside the qb-mdt resource:
-   ```
-   cd /path/to/server/resources/qb-mdt/web
-   ```
-3. Install dependencies:
-   ```
+### Step 2: Build the Web Interface
+
+1. Navigate to the `web` directory inside the resource folder
+2. Open a command prompt/terminal in this directory
+3. Run the following commands:
+   ```bash
    npm install
-   ```
-4. Build the UI:
-   ```
    npm run build
    ```
-   This will create a `dist` folder with the compiled web assets.
+   This will install all dependencies and build the web interface
 
-## Step 3: Configure the Resource
+### Step 3: Server Configuration
 
-1. Open the `config.lua` file in the resource directory
-2. Edit the configuration options to match your server's needs:
-   - Set the required job name(s)
-   - Configure commands and keybinds
-   - Adjust status options
-   - Set your department name
+1. Add the following to your `server.cfg` file:
+   ```
+   ensure qb-mdt
+   ```
 
-## Step 4: Add to Server Config
+2. Configure the permissions in the `config.lua` file to set which jobs have access to the MDT:
+   ```lua
+   Config.Jobs = {
+       ["police"] = true,
+       ["bcso"] = true,  -- Add any other police departments
+       ["judge"] = true  -- For magistrate access
+   }
+   ```
 
-Add the following line to your server.cfg file:
-```
-ensure qb-mdt
-```
+### Step 4: Database Setup
 
-## Step 5: Start or Restart Server
+1. Import the included `mdt.sql` file to your database to create the necessary tables
+2. Ensure your QBCore database connection is properly configured
 
-Restart your server or start the resource with:
-```
-refresh
-ensure qb-mdt
-```
+### Step 5: In-Game Usage
 
-## Usage
+1. The MDT can be accessed by:
+   - Using the `/mdt` command
+   - Pressing the configured keybind (default: F8)
+   - Using a computer object in police stations (if configured)
 
-- Use the `/mdt` command or press F6 (if configured) to open the MDT
-- Set your callsign with `/setcallsign [callsign]` if needed
-- Login with your callsign on the MDT login screen
+2. Officers can log in with their callsign
+3. Magistrates can log in by selecting the "Magistrate" option at login
+
+## Features
+
+- **For Police Officers:**
+  - Search people, vehicles, and weapon serials
+  - File reports and criminal charges
+  - View and update officer status
+  - Create court cases for the judicial system
+  - Access financial and traffic records
+
+- **For Magistrates:**
+  - Manage court cases
+  - Set availability for hearings
+  - Review and adjudicate cases
+  - Issue warrants and judicial orders
 
 ## Troubleshooting
 
-- If the MDT doesn't appear, check your server console for errors
-- Ensure that all dependencies are installed and working
-- Verify that you've built the web UI correctly
-- Make sure your job and permissions are set correctly in QB-Core
+If you encounter issues:
 
-## Additional Configuration
+1. Check the server console for error messages
+2. Verify your database connection settings
+3. Ensure all dependencies are properly installed
+4. Make sure the job permissions are correctly configured
+5. Check that the resource is started in the correct order (after QB-Core)
 
-### Adding Custom Charges and Fines
+## Customization
 
-You can add custom charges and fines by editing the database or implementing additional server events.
+You can customize:
 
-### Changing UI Colors and Styling
+- UI colors and themes in the CSS files
+- Job permissions in the config.lua
+- Available officer statuses
+- Access methods and commands
 
-1. Edit the CSS files in the web/src directory before building
-2. Rebuild the web UI with `npm run build`
-
-### Adding Translations
-
-1. Copy the locales/en.lua file
-2. Rename it to your language code (e.g., es.lua for Spanish)
-3. Translate the strings in the file
-4. Add your language file to the fxmanifest.lua
+For any further assistance, please refer to the documentation or contact support.

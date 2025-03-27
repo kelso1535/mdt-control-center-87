@@ -33,8 +33,8 @@ const StatusMenu: React.FC<StatusMenuProps> = ({
           onClick={() => onStatusChange(status)}
           className={`text-xs px-2 py-1 rounded transition-colors ${
             currentStatus === status
-              ? 'bg-police-blue text-white'
-              : 'bg-sidebar-item-hover text-sidebar-icon hover:bg-sidebar-item-hover/80'
+              ? 'bg-[#007bff] text-white'
+              : 'bg-[#0a1422] text-white hover:bg-[#1c3a5a]'
           }`}
         >
           {status}

@@ -115,7 +115,7 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
           userRole={userRole}
         />
         
-        <div className="flex-1 h-full overflow-auto bg-[#0a1726]">
+        <div className="flex-1 h-full overflow-auto bg-[#0f1824]">
           <ContentRenderer 
             currentScreen={currentScreen} 
             userRole={userRole}

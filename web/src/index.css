@@ -74,12 +74,93 @@ th {
   text-align: left;
   padding: 0.5rem;
   color: #007bff;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #1c3a5a;
 }
 
 td {
   padding: 0.5rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #1c3a5a30;
 }
 
 tr:hover {
   background-color: rgba(28, 58, 90, 0.2);
+}
+
+/* MDT layout */
+.mdt-content {
+  background-color: #0f1824;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.mdt-section {
+  background-color: #0a1422;
+  border: 1px solid #1c3a5a;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mdt-section-title {
+  color: #007bff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.mdt-section-title svg {
+  margin-right: 0.5rem;
+}
+
+/* Form elements */
+.mdt-input {
+  background-color: #0a1422;
+  border: 1px solid #1c3a5a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.mdt-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.mdt-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mdt-button:hover {
+  background-color: #0069d9;
+}
+
+.mdt-button.secondary {
+  background-color: transparent;
+  border: 1px solid #1c3a5a;
+}
+
+.mdt-button.secondary:hover {
+  background-color: #1c3a5a;
+}
+
+.mdt-button.danger {
+  background-color: #dc3545;
+}
+
+.mdt-button.danger:hover {
+  background-color: #bd2130;
 }
