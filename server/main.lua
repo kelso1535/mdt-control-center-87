@@ -1,3 +1,4 @@
+
 -- Standalone MDT Server side
 local Config = require 'config'
 
@@ -5,6 +6,8 @@ local Config = require 'config'
 local ActiveSessions = {}
 local SearchHistory = {}
 local Templates = {}
+local CourtCases = {}
+local MagistrateAvailability = {}
 
 -- Basic session management functions
 local function CreateSession(source, callsign)
@@ -228,66 +231,6 @@ AddEventHandler('mdt:server:IssueFine', function(password, citizenId, amount, re
     AddToSearchHistory(src, 'Admin Action', 'Issued fine to ' .. citizenId .. ' for $' .. amount)
 end)
 
-RegisterNetEvent('mdt:server:RevokeAction')
-AddEventHandler('mdt:server:RevokeAction', function(password, citizenId, actionType)
-    local src = source
-    if password ~= Config.AdminPassword then
-        Config.Framework.Notify(src, 'Invalid admin password', 'error')
-        return
-    end
-    
-    -- In a real implementation, this would update the database based on actionType
-    Config.Framework.Notify(src, 'Action revoked successfully', 'success')
-    
-    -- Log the revocation action
-    AddToSearchHistory(src, 'Admin Action', 'Revoked ' .. actionType .. ' for citizen ' .. citizenId)
-end)
-
-RegisterNetEvent('mdt:server:RemoveAllFines')
-AddEventHandler('mdt:server:RemoveAllFines', function(password, citizenId)
-    local src = source
-    if password ~= Config.AdminPassword then
-        Config.Framework.Notify(src, 'Invalid admin password', 'error')
-        return
-    end
-    
-    -- In a real implementation, this would clear all fines for the citizen
-    Config.Framework.Notify(src, 'All fines removed successfully', 'success')
-    
-    -- Log the action
-    AddToSearchHistory(src, 'Admin Action', 'Removed all fines for citizen ' .. citizenId)
-end)
-
-RegisterNetEvent('mdt:server:ClearAllWarrants')
-AddEventHandler('mdt:server:ClearAllWarrants', function(password, citizenId)
-    local src = source
-    if password ~= Config.AdminPassword then
-        Config.Framework.Notify(src, 'Invalid admin password', 'error')
-        return
-    end
-    
-    -- In a real implementation, this would clear all warrants for the citizen
-    Config.Framework.Notify(src, 'All warrants cleared successfully', 'success')
-    
-    -- Log the action
-    AddToSearchHistory(src, 'Admin Action', 'Cleared all warrants for citizen ' .. citizenId)
-end)
-
-RegisterNetEvent('mdt:server:RemoveAllFlags')
-AddEventHandler('mdt:server:RemoveAllFlags', function(password, citizenId)
-    local src = source
-    if password ~= Config.AdminPassword then
-        Config.Framework.Notify(src, 'Invalid admin password', 'error')
-        return
-    end
-    
-    -- In a real implementation, this would remove all flags for the citizen
-    Config.Framework.Notify(src, 'All flags removed successfully', 'success')
-    
-    -- Log the action
-    AddToSearchHistory(src, 'Admin Action', 'Removed all flags for citizen ' .. citizenId)
-end)
-
 -- ANPR scanning functionality
 RegisterNetEvent('mdt:server:ANPRScan')
 AddEventHandler('mdt:server:ANPRScan', function(plate)
@@ -308,6 +251,96 @@ AddEventHandler('mdt:server:ANPRScan', function(plate)
     }
     
     TriggerClientEvent('mdt:client:ANPRResults', src, result)
+end)
+
+-- Court case management
+RegisterServerCallback('mdt:server:CreateCourtCase', function(source, cb, caseData)
+    local src = source
+    local session = GetSession(src)
+    
+    if not session then
+        cb({ success = false, message = "Not authorized" })
+        return
+    end
+    
+    local caseId = #CourtCases + 1
+    caseData.id = tostring(caseId)
+    caseData.createdBy = session.callsign
+    caseData.timestamp = os.date("%Y-%m-%d %H:%M")
+    
+    table.insert(CourtCases, caseData)
+    
+    cb({ success = true, caseId = caseId })
+    AddToSearchHistory(src, 'Court', 'Created case: ' .. caseData.title)
+end)
+
+RegisterServerCallback('mdt:server:GetCourtCases', function(source, cb)
+    local src = source
+    local session = GetSession(src)
+    
+    if not session then
+        cb({ success = false, message = "Not authorized" })
+        return
+    end
+    
+    cb(CourtCases)
+end)
+
+RegisterServerCallback('mdt:server:UpdateCourtCase', function(source, cb, caseData)
+    local src = source
+    local session = GetSession(src)
+    
+    if not session then
+        cb({ success = false, message = "Not authorized" })
+        return
+    end
+    
+    for i, courtCase in ipairs(CourtCases) do
+        if courtCase.id == caseData.id then
+            -- Update the court case
+            CourtCases[i] = caseData
+            cb({ success = true })
+            AddToSearchHistory(src, 'Court', 'Updated case: ' .. caseData.title)
+            return
+        end
+    end
+    
+    cb({ success = false, message = "Case not found" })
+end)
+
+-- Magistrate availability management
+RegisterServerCallback('mdt:server:AddMagistrateAvailability', function(source, cb, availabilityData)
+    local src = source
+    local session = GetSession(src)
+    
+    -- Check if user is a magistrate (in real implementation, check job)
+    -- For now we'll just check if they have a session
+    if not session then
+        cb({ success = false, message = "Not authorized" })
+        return
+    end
+    
+    local availabilityId = #MagistrateAvailability + 1
+    availabilityData.id = tostring(availabilityId)
+    availabilityData.magistrateName = session.callsign
+    availabilityData.timestamp = os.date("%Y-%m-%d %H:%M")
+    
+    table.insert(MagistrateAvailability, availabilityData)
+    
+    cb({ success = true, availabilityId = availabilityId })
+    AddToSearchHistory(src, 'Magistrate', 'Added availability for: ' .. availabilityData.date)
+end)
+
+RegisterServerCallback('mdt:server:GetMagistrateAvailability', function(source, cb)
+    local src = source
+    local session = GetSession(src)
+    
+    if not session then
+        cb({ success = false, message = "Not authorized" })
+        return
+    end
+    
+    cb(MagistrateAvailability)
 end)
 
 -- Additional server events
@@ -360,6 +393,35 @@ AddEventHandler('onResourceStart', function(resource)
             type = 'Serial# KALOF',
             section1 = 'SERIAL KALOF - Reported stolen\n\nCHARGES: \n-Robbery\n-Possess a [Class A / B / C] firearm without legal authority',
             section2 = 'Preliminary Details:\nTime: xxxx HRS\nDate: xx/xx/20\n\nAt Approx. [TIME]hrs [CALL SIGN] responded to a 000 call in relation to a stolen weapon. After discussing with [REGISTERED OWNER], it was ascertained that they had complied with their weapons license and had their [Weapon type] stolen by an individual, [NAME|DESCRIPTION|UNKOWN]. \n\n[Serial information to be Copy and Pasted here]\n\nWhoever is found in possession of this firearm is to be charged with the above offence(s) and any others attached to this firearm serial.'
+        })
+        
+        -- Add sample court cases
+        table.insert(CourtCases, {
+            id = '1',
+            title = 'State vs. John Doe',
+            description = 'Charges related to vehicle theft and evading police',
+            date = '2023-12-15',
+            time = '14:00',
+            status = 'scheduled',
+            createdBy = 'Officer Smith',
+            prosecutor = 'Officer Johnson',
+            defendant = 'John Doe',
+            charges = {'Grand Theft Auto', 'Evading Police'},
+            witnesses = {'Officer Wilson', 'Civilian Jane Smith'},
+            evidence = {'Dashcam footage', 'CCTV recording'},
+            notes = 'Suspect was apprehended after a brief chase',
+            timestamp = '2023-12-01 10:30'
+        })
+        
+        -- Add sample magistrate availability
+        table.insert(MagistrateAvailability, {
+            id = '1',
+            magistrateName = 'Judge Anderson',
+            date = '2023-12-20',
+            startTime = '14:00',
+            endTime = '16:00',
+            notes = 'Available for all case types',
+            timestamp = '2023-12-01 09:15'
         })
     end
 end)

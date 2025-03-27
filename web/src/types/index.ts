@@ -81,3 +81,30 @@ export interface Warrant {
   approvedBy?: string;
   officers: string[];
 }
+
+export interface CourtCase {
+  id: string;
+  title: string;
+  description: string;
+  date: string | null;
+  time: string | null;
+  status: 'scheduled' | 'pending' | 'completed' | 'dismissed';
+  createdBy: string;
+  prosecutor: string;
+  defendant: string;
+  charges: string[];
+  witnesses: string[];
+  evidence: string[];
+  notes: string;
+  verdict?: string;
+  sentence?: string;
+}
+
+export interface MagistrateAvailability {
+  id: string;
+  magistrateName: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  notes?: string;
+}

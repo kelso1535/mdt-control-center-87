@@ -1,7 +1,6 @@
 
 local Config = require 'config'
 local MDTOpen = false
-local callsign = nil
 
 -- Create a standalone callback system
 local ClientCallbacks = {}
@@ -45,18 +44,13 @@ end
 function OpenMDT()
     if MDTOpen then return end
     
-    -- In standalone, we can use a job check command to verify or simply use the callsign requirement
-    if not callsign and Config.EnableCallsign then
-        Notify('Please set your callsign using /' .. Config.OpenCommand .. '-callsign first', 'error')
-        return
-    end
+    -- Removed callsign requirement - the MDT login screen will handle authentication
 
     -- Trigger NUI open
     MDTOpen = true
     SetNuiFocus(true, true)
     SendNUIMessage({
-        type = "open",
-        callsign = callsign
+        type = "open"
     })
     Notify('MDT opened', 'primary')
 end
@@ -81,17 +75,6 @@ RegisterCommand(Config.OpenCommand, function()
     end
 end, false)
 
--- Register callsign command
-RegisterCommand(Config.OpenCommand .. '-callsign', function(source, args)
-    if args[1] then
-        callsign = args[1]
-        TriggerServerEvent('mdt:server:SetCallsign', callsign)
-        Notify('Callsign set to: ' .. callsign, 'success')
-    else
-        Notify('Please specify a callsign', 'error')
-    end
-end, false)
-
 -- Register keybinding if configured
 if Config.OpenKey and Config.OpenKey ~= '' then
     RegisterKeyMapping(Config.OpenCommand, 'Open Police MDT', 'keyboard', Config.OpenKey)
@@ -106,9 +89,8 @@ end)
 RegisterNUICallback('login', function(data, cb)
     -- Handle login callback
     if data.callsign then
-        callsign = data.callsign
-        TriggerServerEvent('mdt:server:SetCallsign', callsign)
-        Notify('Logged in as: ' .. callsign, 'success')
+        TriggerServerEvent('mdt:server:SetCallsign', data.callsign)
+        Notify('Logged in as: ' .. data.callsign, 'success')
     end
     cb({ success = true })
 end)
@@ -192,6 +174,37 @@ end
 RegisterNUICallback('getSearchHistory', function(_, cb)
     TriggerServerCallback('mdt:server:GetSearchHistory', function(history)
         cb(history)
+    end)
+end)
+
+-- Court case management callbacks
+RegisterNUICallback('createCourtCase', function(data, cb)
+    TriggerServerCallback('mdt:server:CreateCourtCase', function(result)
+        cb(result)
+    end, data)
+end)
+
+RegisterNUICallback('getCourtCases', function(_, cb)
+    TriggerServerCallback('mdt:server:GetCourtCases', function(cases)
+        cb(cases)
+    end)
+end)
+
+RegisterNUICallback('updateCourtCase', function(data, cb)
+    TriggerServerCallback('mdt:server:UpdateCourtCase', function(result)
+        cb(result)
+    end, data)
+end)
+
+RegisterNUICallback('addMagistrateAvailability', function(data, cb)
+    TriggerServerCallback('mdt:server:AddMagistrateAvailability', function(result)
+        cb(result)
+    end, data)
+end)
+
+RegisterNUICallback('getMagistrateAvailability', function(_, cb)
+    TriggerServerCallback('mdt:server:GetMagistrateAvailability', function(availability)
+        cb(availability)
     end)
 end)
 

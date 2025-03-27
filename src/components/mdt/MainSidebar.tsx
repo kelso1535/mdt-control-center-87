@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
-import { AlertTriangle, ChevronDown, Flag, LogOut, Shield, X } from 'lucide-react';
+import React from 'react';
 import { OfficerStatus } from '@/types';
-import MDTLogo from '../MDTLogo';
-import SidebarButton from '../SidebarButton';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import StatusMenu from './StatusMenu';
+import DashedDivider from '../DashedDivider';
+import { AlertTriangle, LogOut, Shield } from 'lucide-react';
 
 interface MainSidebarProps {
   callsign: string;
@@ -13,6 +14,7 @@ interface MainSidebarProps {
   onDuress: () => void;
   onFlagStolen: () => void;
   onLogout: () => void;
+  userRole?: 'officer' | 'magistrate';
 }
 
 const MainSidebar: React.FC<MainSidebarProps> = ({
@@ -21,83 +23,76 @@ const MainSidebar: React.FC<MainSidebarProps> = ({
   onStatusChange,
   onDuress,
   onFlagStolen,
-  onLogout
+  onLogout,
+  userRole = 'officer'
 }) => {
-  const [showStatusMenu, setShowStatusMenu] = useState(false);
-  
-  const handleChangeStatus = (status: OfficerStatus) => {
-    onStatusChange(status);
-    setShowStatusMenu(false);
-  };
-
   return (
-    <div className="mdt-sidebar bg-sidebar/90 backdrop-blur-sm flex flex-col">
-      <div className="mdt-logo flex justify-center">
-        <MDTLogo />
+    <div className="w-14 bg-sidebar-background flex flex-col items-center py-4 border-r border-sidebar-border/30">
+      <div className="text-police-blue">
+        {userRole === 'magistrate' ? (
+          <div className="p-2 rounded-full bg-police-blue/10 border border-police-blue/20">
+            <Shield size={18} />
+          </div>
+        ) : (
+          <div className="p-2 rounded-full bg-police-blue/10 border border-police-blue/20">
+            <Shield size={18} />
+          </div>
+        )}
       </div>
       
-      <div className="flex-1"></div>
+      <div className="flex flex-col items-center justify-center mt-2">
+        <span className="text-sm font-bold text-police-blue">{callsign}</span>
+        <span className="text-xs text-muted-foreground mt-1">
+          {userRole === 'magistrate' ? 'Magistrate' : 'Officer'}
+        </span>
+      </div>
       
-      <div className="mt-2 mb-3">
-        <div className="relative mb-2">
-          <SidebarButton 
-            icon={<ChevronDown className="w-full h-full" />}
-            onClick={() => setShowStatusMenu(!showStatusMenu)}
-            variant="blue"
-          >
-            Change Status
-          </SidebarButton>
+      {userRole === 'officer' && (
+        <>
+          <DashedDivider />
           
-          <StatusMenu 
-            isOpen={showStatusMenu} 
-            onSelect={handleChangeStatus} 
-          />
-        </div>
-        
-        <SidebarButton 
-          icon={<AlertTriangle className="w-full h-full" />}
-          variant="alert"
-          onClick={onDuress}
-        >
-          [- DURESS -]
-        </SidebarButton>
-        
-        <div className="my-1"></div>
-        
-        <SidebarButton 
-          icon={<Flag className="w-full h-full" />}
-          onClick={onFlagStolen}
-        >
-          Flag Police Unit Stolen
-        </SidebarButton>
-        
-        <div className="my-1"></div>
-        
-        <SidebarButton 
-          icon={<LogOut className="w-full h-full" />}
-          onClick={onLogout}
-        >
-          Logout of MDT
-        </SidebarButton>
-        
-        <div className="my-1"></div>
-        
-        <SidebarButton 
-          icon={<X className="w-full h-full" />}
-          onClick={onLogout}
-        >
-          Exit
-        </SidebarButton>
-      </div>
+          <div className="mt-2">
+            <StatusMenu 
+              currentStatus={currentStatus} 
+              onStatusChange={onStatusChange}
+            />
+          </div>
+          
+          <DashedDivider />
+          
+          <div className="mt-4 mb-2 text-xs text-center text-muted-foreground">
+            Emergency
+          </div>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onDuress}
+            className="bg-red-900/20 hover:bg-red-900/30 text-red-500 border border-red-900/30 mb-2"
+          >
+            <AlertTriangle size={18} />
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="icon" 
+            onClick={onFlagStolen}
+            className="bg-sidebar-item-hover text-sidebar-icon border border-sidebar-border/30"
+          >
+            <Shield size={18} />
+          </Button>
+        </>
+      )}
       
-      <div className="flex flex-col items-center p-2 mb-2 bg-[hsl(var(--police-blue))]/10 rounded-md border border-[hsl(var(--police-blue))]/20">
-        <Shield className="h-4 w-4 text-[hsl(var(--police-blue))] mb-1" />
-        <div className="text-xs">
-          <span className="text-muted-foreground">Officer:</span> <span className="text-[hsl(var(--police-blue))] font-bold">{callsign}</span>
-        </div>
-        <div className="text-xs mt-1">
-          <span className="text-muted-foreground">Status:</span> <span className="text-[hsl(var(--police-blue))]">{currentStatus}</span>
-        </div>
+      <div className="mt-auto">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onLogout}
+          className="bg-sidebar-item-hover text-sidebar-icon border border-sidebar-border/30"
+        >
+          <LogOut size={18} />
+        </Button>
       </div>
     </div>
   );

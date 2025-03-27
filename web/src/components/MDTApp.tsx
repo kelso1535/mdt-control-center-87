@@ -20,7 +20,9 @@ type Screen =
   | 'financial'
   | 'supervisor'
   | 'wanted'
-  | 'admin';
+  | 'admin'
+  | 'court'
+  | 'magistrate';  // Added court and magistrate screens
 
 interface MDTAppProps {
   sendNUIMessage?: (data: any) => void;
@@ -33,14 +35,16 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
   const [callsign, setCallsign] = useState('');
   const [currentStatus, setCurrentStatus] = useState<OfficerStatus>('Code 1 On Patrol');
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
+  const [userRole, setUserRole] = useState<'officer' | 'magistrate'>('officer');
 
-  const handleLogin = (officerCallsign: string) => {
+  const handleLogin = (officerCallsign: string, role: 'officer' | 'magistrate' = 'officer') => {
     setCallsign(officerCallsign);
     setLoggedIn(true);
-    setCurrentScreen('people');
+    setUserRole(role);
+    setCurrentScreen(role === 'magistrate' ? 'magistrate' : 'people');
     toast({
       title: "Login Successful",
-      description: `Welcome Officer ${officerCallsign}`,
+      description: `Welcome ${role === 'magistrate' ? 'Magistrate' : 'Officer'} ${officerCallsign}`,
     });
   };
 
@@ -96,16 +100,22 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
           onDuress={handleDuress}
           onFlagStolen={handleFlagStolen}
           onLogout={handleLogout}
+          userRole={userRole}
         />
         
         <NavigationSidebar 
           currentScreen={currentScreen}
           onScreenChange={setCurrentScreen}
           onLogout={handleLogout}
+          userRole={userRole}
         />
         
         <div className="flex-1 h-full overflow-auto bg-[#0a1726]">
-          <ContentRenderer currentScreen={currentScreen} />
+          <ContentRenderer 
+            currentScreen={currentScreen} 
+            userRole={userRole}
+            callsign={callsign}
+          />
         </div>
       </div>
     </div>

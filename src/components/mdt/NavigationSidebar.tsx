@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AlertTriangle, Clipboard, Clock, Database, FileSearch, LogOut, Search, Settings, Shield, Users } from 'lucide-react';
+import { AlertTriangle, Clipboard, Clock, Database, FileSearch, LogOut, Search, Settings, Shield, Users, Gavel, Calendar } from 'lucide-react';
 
 type Screen = 
   | 'login' 
@@ -15,19 +15,53 @@ type Screen =
   | 'financial' 
   | 'supervisor' 
   | 'wanted'
-  | 'admin';
+  | 'admin'
+  | 'court'
+  | 'magistrate';
 
 interface NavigationSidebarProps {
   currentScreen: Screen;
   onScreenChange: (screen: Screen) => void;
   onLogout: () => void;
+  userRole?: 'officer' | 'magistrate';
 }
 
 const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   currentScreen,
   onScreenChange,
-  onLogout
+  onLogout,
+  userRole = 'officer'
 }) => {
+  if (userRole === 'magistrate') {
+    return (
+      <div className="mdt-sidebar bg-sidebar/80 backdrop-blur-sm" style={{
+        width: '210px'
+      }}>
+        <div className="text-sm font-bold text-muted-foreground mb-2 flex items-center">
+          <Gavel className="h-4 w-4 mr-1 text-[hsl(var(--police-blue))]" />
+          MAGISTRATE PORTAL
+        </div>
+        
+        <div className={`nav-item ${currentScreen === 'magistrate' ? 'active' : ''}`} onClick={() => onScreenChange('magistrate')}>
+          <Calendar className="mdt-sidebar-icon" />
+          <span>AVAILABILITY</span>
+        </div>
+        
+        <div className={`nav-item ${currentScreen === 'court' ? 'active' : ''}`} onClick={() => onScreenChange('court')}>
+          <Gavel className="mdt-sidebar-icon" />
+          <span>COURT CASES</span>
+        </div>
+        
+        <div className="mdt-hr my-2"></div>
+        
+        <div className="nav-item" onClick={onLogout}>
+          <LogOut className="mdt-sidebar-icon" />
+          <span>EXIT</span>
+        </div>
+      </div>
+    );
+  }
+
   return <div className="mdt-sidebar bg-sidebar/80 backdrop-blur-sm" style={{
     width: '210px'
   }}>
@@ -81,6 +115,11 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       <div className={`nav-item ${currentScreen === 'history' ? 'active' : ''}`} onClick={() => onScreenChange('history')}>
         <Clock className="mdt-sidebar-icon" />
         <span>SEARCH HISTORY</span>
+      </div>
+
+      <div className={`nav-item ${currentScreen === 'court' ? 'active' : ''}`} onClick={() => onScreenChange('court')}>
+        <Gavel className="mdt-sidebar-icon" />
+        <span>COURT CASES</span>
       </div>
       
       <div className="mdt-hr my-2"></div>
