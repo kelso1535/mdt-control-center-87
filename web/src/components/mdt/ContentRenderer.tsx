@@ -43,37 +43,98 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
   userRole = 'officer',
   callsign = ''
 }) => {
+  // Render the appropriate screen component based on the current screen
   switch (currentScreen) {
     case 'people':
-      return <PeopleSearch />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <PeopleSearch />
+        </div>
+      );
     case 'vehicles':
-      return <VehicleSearch />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <VehicleSearch />
+        </div>
+      );
     case 'history':
-      return <SearchHistory />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <SearchHistory />
+        </div>
+      );
     case 'criminal':
-      return <CriminalHistory />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <CriminalHistory />
+        </div>
+      );
     case 'traffic':
-      return <TrafficOffences />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <TrafficOffences />
+        </div>
+      );
     case 'reports':
-      return <Reports />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Reports />
+        </div>
+      );
     case 'serials':
-      return <SerialSearch />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <SerialSearch />
+        </div>
+      );
     case 'actions':
-      return <Actions />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Actions />
+        </div>
+      );
     case 'financial':
-      return <FinancialRecords />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <FinancialRecords />
+        </div>
+      );
     case 'supervisor':
-      return <Units />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Units />
+        </div>
+      );
     case 'wanted':
-      return <Warrants />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Warrants />
+        </div>
+      );
     case 'admin':
-      return <Admin />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Admin />
+        </div>
+      );
     case 'court':
-      return <CourtCases userRole={userRole} callsign={callsign} />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <CourtCases userRole={userRole} callsign={callsign} />
+        </div>
+      );
     case 'magistrate':
-      return <MagistrateAvailability callsign={callsign} />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <MagistrateAvailability callsign={callsign} />
+        </div>
+      );
     default:
-      return <PeopleSearch />;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <div>No content available for {currentScreen}</div>
+        </div>
+      );
   }
 };
 

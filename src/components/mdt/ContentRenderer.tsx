@@ -8,7 +8,7 @@ import TrafficOffences from '../screens/TrafficOffences';
 import Reports from '../screens/Reports';
 import FinancialRecords from '../screens/FinancialRecords';
 import Actions from '../screens/Actions';
-import Supervisor from '../screens/Units';
+import Units from '../screens/Units';
 import Warrants from '../screens/Warrants';
 import Admin from '../screens/Admin';
 import SearchHistory from '../screens/SearchHistory';
@@ -16,17 +16,17 @@ import CourtCases from '../screens/CourtCases';
 import MagistrateAvailability from '../screens/MagistrateAvailability';
 
 type Screen = 
-  | 'login' 
-  | 'people' 
-  | 'vehicles' 
-  | 'history' 
-  | 'criminal' 
-  | 'traffic' 
-  | 'reports' 
-  | 'actions' 
-  | 'supervisor' 
-  | 'financial' 
-  | 'serials' 
+  | 'login'
+  | 'people'
+  | 'vehicles'
+  | 'history'
+  | 'criminal'
+  | 'traffic'
+  | 'reports'
+  | 'serials'
+  | 'actions'
+  | 'financial'
+  | 'supervisor'
   | 'wanted'
   | 'admin'
   | 'court'
@@ -43,60 +43,99 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
   userRole = 'officer',
   callsign = ''
 }) => {
-  let content;
-
+  // Render the appropriate screen component based on the current screen
   switch (currentScreen) {
     case 'people':
-      content = <PeopleSearch />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <PeopleSearch />
+        </div>
+      );
     case 'vehicles':
-      content = <VehicleSearch />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <VehicleSearch />
+        </div>
+      );
     case 'serials':
-      content = <SerialSearch />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <SerialSearch />
+        </div>
+      );
     case 'criminal':
-      content = <CriminalHistory />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <CriminalHistory />
+        </div>
+      );
     case 'traffic':
-      content = <TrafficOffences />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <TrafficOffences />
+        </div>
+      );
     case 'reports':
-      content = <Reports />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Reports />
+        </div>
+      );
     case 'financial':
-      content = <FinancialRecords />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <FinancialRecords />
+        </div>
+      );
     case 'history':
-      content = <SearchHistory />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <SearchHistory />
+        </div>
+      );
     case 'actions':
-      content = <Actions />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Actions />
+        </div>
+      );
     case 'supervisor':
-      content = <Supervisor />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Units />
+        </div>
+      );
     case 'wanted':
-      content = <Warrants />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Warrants />
+        </div>
+      );
     case 'admin':
-      content = <Admin />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <Admin />
+        </div>
+      );
     case 'court':
-      content = <CourtCases userRole={userRole} callsign={callsign} />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <CourtCases userRole={userRole} callsign={callsign} />
+        </div>
+      );
     case 'magistrate':
-      content = <MagistrateAvailability callsign={callsign} />;
-      break;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <MagistrateAvailability callsign={callsign} />
+        </div>
+      );
     default:
-      content = <div>No content available for {currentScreen}</div>;
+      return (
+        <div className="p-4 overflow-y-auto h-full">
+          <div>No content available for {currentScreen}</div>
+        </div>
+      );
   }
-
-  return (
-    <div className="p-4 overflow-y-auto h-full">
-      {content}
-    </div>
-  );
 };
 
 export default ContentRenderer;
