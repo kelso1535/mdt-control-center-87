@@ -1,3 +1,4 @@
+
 export interface Person {
   id: string;
   name: string;
@@ -80,7 +81,7 @@ export interface TrafficOffence {
 export interface SearchHistoryItem {
   id: string;
   timestamp: string;
-  type: string; // Making this more flexible for FiveM server integration
+  type: string;
   query: string;
 }
 
@@ -103,7 +104,38 @@ export interface PoliceUnit {
 
 export type OfficerStatus = 
   | 'Code 1 On Patrol'
-  | 'Code 2 Arrived at Station'
-  | 'Code 4 Traffic Stop'
-  | 'Code 5 Arrived on Scene'
-  | 'Code 6 Unavailable';
+  | 'Code 2 Responding'
+  | 'Code 3 Emergency'
+  | 'Break'
+  | 'Meal Break'
+  | 'Off Duty'
+  | 'On Scene'
+  | 'Unavailable'
+  | 'Busy';
+
+export interface CourtCase {
+  id: string;
+  title: string;
+  description: string;
+  date: string | null;
+  time: string | null;
+  status: 'scheduled' | 'pending' | 'completed' | 'dismissed';
+  createdBy: string;
+  prosecutor: string;
+  defendant: string;
+  charges: string[];
+  witnesses: string[];
+  evidence: string[];
+  notes: string;
+  verdict?: string;
+  sentence?: string;
+}
+
+export interface MagistrateAvailability {
+  id: string;
+  magistrateName: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  notes?: string;
+}

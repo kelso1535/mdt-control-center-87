@@ -22,7 +22,7 @@ type Screen =
   | 'wanted'
   | 'admin'
   | 'court'
-  | 'magistrate';  // Added court and magistrate screens
+  | 'magistrate';
 
 interface MDTAppProps {
   sendNUIMessage?: (data: any) => void;
@@ -82,6 +82,11 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
     });
   };
 
+  // Create a handler function for screen changes to fix the type error
+  const handleScreenChange = (screen: Screen) => {
+    setCurrentScreen(screen);
+  };
+
   if (!loggedIn) {
     return (
       <div className="w-full h-full bg-[#0a1422]">
@@ -105,7 +110,7 @@ const MDTApp: React.FC<MDTAppProps> = ({ sendNUIMessage, nuiCallback }) => {
         
         <NavigationSidebar 
           currentScreen={currentScreen}
-          onScreenChange={setCurrentScreen}
+          onScreenChange={handleScreenChange}
           onLogout={handleLogout}
           userRole={userRole}
         />
